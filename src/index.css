@@ -1,0 +1,67 @@
+
+/* Outfit fonts copied from Google fonts*/
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Outfit", sans-serif; /* Chose this font family for all html elements  and it was got from google fonts*/
+}
+
+
+body {
+  background-color: rgb(190, 195, 218);
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.navContainer {
+  padding-left: 10%;
+  padding-right: 10%;
+}
+
+/*Styling all the buttons here */
+.myButton {
+  background: white;
+  color: brown;
+  padding: 14px 25px;
+  font-size: 16px;
+  border-radius: 30px;
+  cursor: pointer;
+  border: 0;
+  outline: 0;
+}
+
+.myButton.dark-btn{
+  color: white;
+  background-color: blue;
+  padding-top: 4px;
+  padding-bottom: 10px;
+}
+
+/*.............media query..............*/
+
+@media(max-width:1200px){
+  .navContainer{
+    padding-left: 5%;
+    padding-right: 5%;
+  }
+  .myButton{
+    
+    padding: 14px 22px;
+    
+  }
+
+}
