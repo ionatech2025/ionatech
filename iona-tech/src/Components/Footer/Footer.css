@@ -1,0 +1,88 @@
+.footer {
+    margin-top: 50px; /* Reduced margin-top for better spacing */
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-top: 1px solid #444; /* Lighter border color */
+    background-color: #222;
+    color: white;
+    font-size: 16px;
+    position: relative; /* Removed bottom: 0 to avoid positioning issues */
+    width: 100%;
+    padding: 20px;
+    flex-wrap: wrap; /* Allow items to wrap on smaller screens */
+}
+
+.footer p {
+    margin: 0;
+    padding-right: 20px;
+}
+
+.footer ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-wrap: wrap; /* Allow items to wrap on smaller screens */
+}
+
+.footer ul li {
+    list-style: none;
+    margin-left: 20px;
+    padding-right: 50px;
+    font-size: 14px; /* Adjust font size */
+}
+
+.footer ul li a {
+    color: white;
+    text-decoration: none;
+}
+
+/* Responsive Design */
+
+/* For medium-sized screens (tablets) */
+@media (max-width: 768px) {
+    .footer {
+        font-size: 14px;
+        padding: 15px;
+    }
+
+    .footer ul li {
+        margin-left: 15px; /* Reduced margin */
+        padding-right: 20px;
+    }
+}
+
+/* For smaller screens (phones) */
+@media (max-width: 480px) {
+    .footer {
+        flex-direction: column; /* Stack items vertically */
+        align-items: center;
+        justify-content: center;
+        font-size: 12px; /* Smaller font size */
+        padding: 20px 10px; /* More padding on small screens */
+    }
+
+    .footer p {
+        margin-bottom: 15px; /* Space between the text and list */
+        font-size: 14px; /* Slightly bigger font for the paragraph */
+    }
+
+    .footer ul li {
+        margin-left: 0;
+        padding-right: 0;
+        margin-bottom: 15px; /* Space between list items */
+    }
+
+    .footer ul li:last-child {
+        margin-bottom: 0;
+    }
+
+    .footer ul {
+        padding-left: 0;
+        margin: 0;
+        display: flex;
+        flex-direction: column; /* Stack the list items */
+        align-items: center;
+    }
+}
