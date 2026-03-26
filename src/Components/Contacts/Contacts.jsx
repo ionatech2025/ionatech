@@ -1,6 +1,5 @@
 "use client"
 
-
 import { useState } from "react"
 import { Mail, Phone, MapPin, MessageSquare, Send, CheckCircle, AlertCircle } from "lucide-react"
 
@@ -27,35 +26,41 @@ const Contacts = () => {
     setIsLoading(true)
     setResult("Sending...")
 
-    const formDataObj = new FormData(event.currentTarget)
-    formDataObj.append("access_key", "059244e1-534a-434e-a22d-7add58b68447")
+    // Construct the payload using state
+    const payload = {
+      ...formData,
+      access_key: "059244e1-534a-434e-a22d-7add58b68447",
+      subject: `New Inquiry from ${formData.name}`,
+      from_name: "iONA Tech Contact Form",
+    }
 
     try {
       const response = await fetch("https://api.web3forms.com/submit", {
         method: "POST",
-        body: formDataObj,
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
+        body: JSON.stringify(payload),
       })
 
       const data = await response.json()
 
       if (data.success) {
         setResult("success")
+        // Reset the form state
         setFormData({ name: "", email: "", phone: "", message: "" })
-        event.currentTarget.reset()
-
-        // Clear success message after 5 seconds
-        setTimeout(() => setResult(""), 5000)
       } else {
-        console.log("Error", data)
+        console.error("Web3Forms Error:", data)
         setResult("error")
-        setTimeout(() => setResult(""), 5000)
       }
     } catch (error) {
       console.error("Submission error:", error)
       setResult("error")
-      setTimeout(() => setResult(""), 5000)
     } finally {
       setIsLoading(false)
+      // Clear status message after 5 seconds
+      setTimeout(() => setResult(""), 5000)
     }
   }
 
@@ -81,7 +86,7 @@ const Contacts = () => {
   ]
 
   return (
-    <section className="  contact_us min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100 py-16 px-4">
+    <section className="contact_us min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100 py-16 px-4">
       <div className="max-w-7xl mx-auto">
         {/* Header */}
         <div className="text-center mb-16">
@@ -97,7 +102,9 @@ const Contacts = () => {
           <div className="space-y-8">
             <div className="bg-white/80 backdrop-blur-sm rounded-2xl p-8 shadow-xl border border-white/20">
               <div className="flex items-center gap-3 mb-6">
-                <MessageSquare className="w-8 h-8 text-blue-600" />
+                <div className="p-3 bg-blue-100 rounded-lg">
+                  <MessageSquare className="w-8 h-8 text-blue-600" />
+                </div>
                 <h3 className="text-2xl font-semibold text-gray-900">Let's Start a Conversation</h3>
               </div>
 
@@ -112,24 +119,24 @@ const Contacts = () => {
                     {item.href ? (
                       <a
                         href={item.href}
-                        className="flex items-center gap-4 p-4 rounded-xl bg-gray-50 hover:bg-blue-50 transition-all duration-300 hover:shadow-md"
+                        className="flex items-center gap-4 p-4 rounded-xl bg-gray-50 hover:bg-blue-50 transition-all duration-300 hover:shadow-md border border-transparent hover:border-blue-100"
                       >
-                        <div className="flex-shrink-0 w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center text-blue-600 group-hover:bg-blue-200 transition-colors">
+                        <div className="flex-shrink-0 w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center text-blue-600 group-hover:scale-110 transition-transform">
                           {item.icon}
                         </div>
                         <div>
                           <p className="text-sm font-medium text-gray-500 uppercase tracking-wide">{item.label}</p>
-                          <p className="text-gray-900 font-medium">{item.value}</p>
+                          <p className="text-gray-900 font-semibold">{item.value}</p>
                         </div>
                       </a>
                     ) : (
-                      <div className="flex items-center gap-4 p-4 rounded-xl bg-gray-50">
+                      <div className="flex items-center gap-4 p-4 rounded-xl bg-gray-50 border border-transparent">
                         <div className="flex-shrink-0 w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center text-blue-600">
                           {item.icon}
                         </div>
                         <div>
                           <p className="text-sm font-medium text-gray-500 uppercase tracking-wide">{item.label}</p>
-                          <p className="text-gray-900 font-medium">{item.value}</p>
+                          <p className="text-gray-900 font-semibold">{item.value}</p>
                         </div>
                       </div>
                     )}
@@ -139,25 +146,20 @@ const Contacts = () => {
             </div>
 
             {/* Additional Info Card */}
-            <div className="bg-gradient-to-r from-blue-600 to-indigo-600 rounded-2xl p-8 text-white">
+            <div className="bg-gradient-to-r from-blue-600 to-indigo-600 rounded-2xl p-8 text-white shadow-lg">
               <h4 className="text-xl font-semibold mb-4">Why Choose iONA Tech?</h4>
               <ul className="space-y-3">
-                <li className="flex items-center gap-3">
-                  <CheckCircle className="w-5 h-5 text-blue-200" />
-                  <span>Expert team with 5+ years experience</span>
-                </li>
-                <li className="flex items-center gap-3">
-                  <CheckCircle className="w-5 h-5 text-blue-200" />
-                  <span>Cutting-edge technology solutions</span>
-                </li>
-                <li className="flex items-center gap-3">
-                  <CheckCircle className="w-5 h-5 text-blue-200" />
-                  <span>24/7 support and maintenance</span>
-                </li>
-                <li className="flex items-center gap-3">
-                  <CheckCircle className="w-5 h-5 text-blue-200" />
-                  <span>Competitive pricing</span>
-                </li>
+                {[
+                  "Expert team with 5+ years experience",
+                  "Cutting-edge technology solutions",
+                  "24/7 support and maintenance",
+                  "Competitive pricing",
+                ].map((text, i) => (
+                  <li key={i} className="flex items-center gap-3">
+                    <CheckCircle className="w-5 h-5 text-blue-200" />
+                    <span>{text}</span>
+                  </li>
+                ))}
               </ul>
             </div>
           </div>
@@ -165,11 +167,12 @@ const Contacts = () => {
           {/* Contact Form */}
           <div className="bg-white/80 backdrop-blur-sm rounded-2xl p-8 shadow-xl border border-white/20">
             <form onSubmit={onSubmit} className="space-y-6">
+              {/* Web3Forms Honeypot Spam Protection */}
+              <input type="checkbox" name="botcheck" className="hidden" style={{ display: "none" }} />
+
               <div className="grid md:grid-cols-2 gap-6">
                 <div className="space-y-2">
-                  <label htmlFor="name" className="text-sm font-medium text-gray-700">
-                    Full Name *
-                  </label>
+                  <label htmlFor="name" className="text-sm font-medium text-gray-700">Full Name *</label>
                   <input
                     type="text"
                     id="name"
@@ -178,14 +181,12 @@ const Contacts = () => {
                     onChange={handleInputChange}
                     placeholder="Enter your full name"
                     required
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 bg-white/50 backdrop-blur-sm"
+                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all outline-none bg-white/50"
                   />
                 </div>
 
                 <div className="space-y-2">
-                  <label htmlFor="email" className="text-sm font-medium text-gray-700">
-                    Email Address *
-                  </label>
+                  <label htmlFor="email" className="text-sm font-medium text-gray-700">Email Address *</label>
                   <input
                     type="email"
                     id="email"
@@ -194,15 +195,13 @@ const Contacts = () => {
                     onChange={handleInputChange}
                     placeholder="Enter your email"
                     required
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 bg-white/50 backdrop-blur-sm"
+                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all outline-none bg-white/50"
                   />
                 </div>
               </div>
 
               <div className="space-y-2">
-                <label htmlFor="phone" className="text-sm font-medium text-gray-700">
-                  Phone Number *
-                </label>
+                <label htmlFor="phone" className="text-sm font-medium text-gray-700">Phone Number *</label>
                 <input
                   type="tel"
                   id="phone"
@@ -211,14 +210,12 @@ const Contacts = () => {
                   onChange={handleInputChange}
                   placeholder="Enter your phone number"
                   required
-                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 bg-white/50 backdrop-blur-sm"
+                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all outline-none bg-white/50"
                 />
               </div>
 
               <div className="space-y-2">
-                <label htmlFor="message" className="text-sm font-medium text-gray-700">
-                  Message *
-                </label>
+                <label htmlFor="message" className="text-sm font-medium text-gray-700">Message *</label>
                 <textarea
                   id="message"
                   name="message"
@@ -227,14 +224,14 @@ const Contacts = () => {
                   rows={6}
                   placeholder="Tell us about your project or inquiry..."
                   required
-                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 bg-white/50 backdrop-blur-sm resize-none"
+                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all outline-none bg-white/50 resize-none"
                 />
               </div>
 
               <button
                 type="submit"
                 disabled={isLoading}
-                className="w-full bg-gradient-to-r from-blue-600 to-indigo-600 text-white py-4 px-6 rounded-lg font-semibold text-lg hover:from-blue-700 hover:to-indigo-700 focus:ring-4 focus:ring-blue-300 transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-3 shadow-lg hover:shadow-xl"
+                className="w-full bg-gradient-to-r from-blue-600 to-indigo-600 text-white py-4 px-6 rounded-lg font-semibold text-lg hover:from-blue-700 hover:to-indigo-700 transition-all disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-3 shadow-lg active:scale-95"
               >
                 {isLoading ? (
                   <>
@@ -250,53 +247,22 @@ const Contacts = () => {
               </button>
 
               {/* Status Messages */}
-              {result === "success" && (
-                <div className="flex items-center gap-3 p-4 bg-green-50 border border-green-200 rounded-lg text-green-800">
-                  <CheckCircle className="w-5 h-5 text-green-600" />
-                  <span className="font-medium">Message sent successfully! We'll get back to you soon.</span>
-                </div>
-              )}
+              <div className="min-h-[60px]">
+                {result === "success" && (
+                  <div className="flex items-center gap-3 p-4 bg-green-50 border border-green-200 rounded-lg text-green-800 animate-in fade-in slide-in-from-top-1">
+                    <CheckCircle className="w-5 h-5 text-green-600" />
+                    <span className="font-medium">Message sent! We'll get back to you soon.</span>
+                  </div>
+                )}
 
-              {result === "error" && (
-                <div className="flex items-center gap-3 p-4 bg-red-50 border border-red-200 rounded-lg text-red-800">
-                  <AlertCircle className="w-5 h-5 text-red-600" />
-                  <span className="font-medium">Something went wrong. Please try again.</span>
-                </div>
-              )}
-
-              {result === "Sending..." && (
-                <div className="flex items-center gap-3 p-4 bg-blue-50 border border-blue-200 rounded-lg text-blue-800">
-                  <div className="w-5 h-5 border-2 border-blue-600/30 border-t-blue-600 rounded-full animate-spin" />
-                  <span className="font-medium">Sending your message...</span>
-                </div>
-              )}
+                {result === "error" && (
+                  <div className="flex items-center gap-3 p-4 bg-red-50 border border-red-200 rounded-lg text-red-800 animate-in fade-in slide-in-from-top-1">
+                    <AlertCircle className="w-5 h-5 text-red-600" />
+                    <span className="font-medium">Something went wrong. Please check your connection.</span>
+                  </div>
+                )}
+              </div>
             </form>
-          </div>
-        </div>
-
-        {/* Bottom CTA */}
-        <div className="mt-16 text-center">
-          <div className="bg-white/60 backdrop-blur-sm rounded-2xl p-8 shadow-lg border border-white/20 max-w-3xl mx-auto">
-            <h3 className="text-2xl font-semibold text-gray-900 mb-4">Ready to Transform Your Ideas into Reality?</h3>
-            <p className="text-gray-600 mb-6">
-              Join hundreds of satisfied clients who have trusted iONA Tech with their digital transformation journey.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <a
-                href="tel:+256700966715"
-                className="inline-flex items-center justify-center gap-2 bg-blue-600 text-white px-6 py-3 rounded-lg font-medium hover:bg-blue-700 transition-colors"
-              >
-                <Phone className="w-4 h-4" />
-                Call Now
-              </a>
-              <a
-                href="mailto:ionatec002@gmail.com"
-                className="inline-flex items-center justify-center gap-2 border border-blue-600 text-blue-600 px-6 py-3 rounded-lg font-medium hover:bg-blue-50 transition-colors"
-              >
-                <Mail className="w-4 h-4" />
-                Send Email
-              </a>
-            </div>
           </div>
         </div>
       </div>
