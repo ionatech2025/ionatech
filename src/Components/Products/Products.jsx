@@ -1,36 +1,36 @@
-import React from "react";
-import "./Products.css";
-import Driver from "../../assets/Driver.jpg";
-import Phone from "../../assets/Phone.jpg";
-import Pc from "../../assets/Pc.jpg";
-import { ArrowRight, Code, Smartphone, Monitor } from "lucide-react";
+import React from 'react';
+import './Products.css';
+import Driver from '../../assets/Driver.jpg';
+import Phone from '../../assets/Phone.jpg';
+import Pc from '../../assets/Pc.jpg';
+import { ArrowRight, Code, Smartphone, Monitor } from 'lucide-react';
 
 const Products = () => {
   const products = [
     {
       id: 1,
       image: Driver,
-      title: "Driver Management System",
-      description: "Comprehensive fleet management solution for modern businesses",
+      title: 'Software Management System',
+      description: 'Comprehensive fleet management solution for modern businesses',
       icon: <Code className="w-6 h-6" />,
-      category: "Software Solutions"
+      category: 'Software Solutions',
     },
     {
       id: 2,
       image: Phone,
-      title: "Mobile Applications",
-      description: "Cross-platform mobile apps built with cutting-edge technology",
+      title: 'Mobile Applications',
+      description: 'Cross-platform mobile apps built with cutting-edge technology',
       icon: <Smartphone className="w-6 h-6" />,
-      category: "Mobile Development"
+      category: 'Mobile Development',
     },
     {
       id: 3,
       image: Pc,
-      title: "Desktop Applications",
-      description: "Powerful desktop solutions for enterprise and personal use",
+      title: 'Desktop Applications',
+      description: 'Powerful desktop solutions for enterprise and personal use',
       icon: <Monitor className="w-6 h-6" />,
-      category: "Desktop Development"
-    }
+      category: 'Desktop Development',
+    },
   ];
 
   return (
@@ -49,25 +49,17 @@ const Products = () => {
           {products.map((product) => (
             <div key={product.id} className="product-card">
               <div className="product-image-container">
-                <img 
-                  src={product.image} 
-                  alt={product.title} 
-                  className="product-image" 
-                />
+                <img src={product.image} alt={product.title} className="product-image" />
                 <div className="product-overlay">
-                  <div className="product-icon">
-                    {product.icon}
-                  </div>
+                  <div className="product-icon">{product.icon}</div>
                 </div>
               </div>
-              
+
               <div className="product-content">
-                <div className="product-category">
-                  {product.category}
-                </div>
+                <div className="product-category">{product.category}</div>
                 <h3 className="product-title">{product.title}</h3>
                 <p className="product-description">{product.description}</p>
-                
+
                 <button className="product-button">
                   <span>Learn More</span>
                   <ArrowRight className="w-4 h-4" />
