@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import './Navbar.css'
 import Iona from '../../assets/Iona.jpg'
-import menuIcon from '../../assets/menuIcon.png'
 import { Link } from 'react-scroll'
 import { Menu, X } from 'lucide-react'
 
@@ -27,12 +26,12 @@ const Navbar = () => {
     setMobileMenu(false)
   }
 
+  // Updated Navigation Items
   const navItems = [
     { to: 'hero', label: 'Home' },
-    { to: 'programs', label: 'Programs' },
+    { to: 'programs', label: 'Services Page' }, // Pointing to the merged section ID
     { to: 'MyProducts', label: 'Products' },
-    { to: 'testimonials-section', label: 'Team' },
-    { to: 'descrip', label: 'Services' }
+    { to: 'testimonials-section', label: 'Team' }
   ]
 
   return (
