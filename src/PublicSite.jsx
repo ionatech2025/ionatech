@@ -1,0 +1,48 @@
+import React from 'react'
+import Navbar from './Components/Navbar/Navbar'
+import Tech from './Components/Tech/Tech'
+import About from './Components/About/About'
+import Products from './Components/Products/Products'
+import Testimonials from './Components/Testimonials/Testimonials'
+import Contacts from './Components/Contacts/Contacts'
+import Footer from './Components/Footer/Footer'
+import ClientTestimonials from './Components/ClientTestimonials/ClientTestimonials'
+import ServicesPage from './Components/Services/ServicesPage'
+
+const PublicSite = () => {
+  return (
+    <div>
+      <Navbar />
+
+      <section id="hero">
+        <Tech />
+      </section>
+
+      <section id="descrip">
+        <ServicesPage />
+      </section>
+
+      <section id="about">
+        <About />
+      </section>
+
+      <section id="MyProducts">
+        <Products />
+      </section>
+
+      <section id="testimonials-section">
+        <Testimonials />
+      </section>
+
+      <section id="contact_us">
+        <Contacts />
+      </section>
+
+      <ClientTestimonials />
+
+      <Footer />
+    </div>
+  )
+}
+
+export default PublicSite

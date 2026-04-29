@@ -1,0 +1,90 @@
+import jwt from 'jsonwebtoken';
+import bcrypt from 'bcryptjs';
+
+const COOKIE_NAME = 'iona_admin';
+const MAX_AGE_SECONDS = 60 * 60 * 24 * 7; // 7 days
+
+function getSecret() {
+  const secret = process.env.JWT_SECRET;
+  if (!secret) {
+    const e = new Error('JWT_SECRET is not configured');
+    e.status = 503;
+    throw e;
+  }
+  return secret;
+}
+
+export const verifyPassword = (plain, hash) => bcrypt.compare(plain, hash);
+export const hashPassword = (plain) => bcrypt.hash(plain, 12);
+
+export function signToken(user) {
+  return jwt.sign(
+    { uid: user.id, email: user.email },
+    getSecret(),
+    { expiresIn: '7d' }
+  );
+}
+
+export function readCookie(req, name = COOKIE_NAME) {
+  const header = req.headers?.cookie || '';
+  const match = header.match(new RegExp(`(?:^|;\\s*)${name}=([^;]+)`));
+  return match ? match[1] : null;
+}
+
+/**
+ * Verify the auth cookie and return the JWT payload. Throws an Error with
+ * `.status = 401` when the cookie is missing or invalid — admin handlers
+ * should catch and respond.
+ */
+export function requireAdmin(req) {
+  const token = readCookie(req);
+  if (!token) {
+    const e = new Error('unauthorized');
+    e.status = 401;
+    throw e;
+  }
+  try {
+    return jwt.verify(token, getSecret());
+  } catch {
+    const e = new Error('unauthorized');
+    e.status = 401;
+    throw e;
+  }
+}
+
+export function setAuthCookie(res, token) {
+  const parts = [
+    `${COOKIE_NAME}=${token}`,
+    'HttpOnly',
+    'Secure',
+    'SameSite=Lax',
+    'Path=/',
+    `Max-Age=${MAX_AGE_SECONDS}`,
+  ];
+  res.setHeader('Set-Cookie', parts.join('; '));
+}
+
+export function clearAuthCookie(res) {
+  res.setHeader(
+    'Set-Cookie',
+    `${COOKIE_NAME}=; HttpOnly; Secure; SameSite=Lax; Path=/; Max-Age=0`
+  );
+}
+
+/**
+ * Read and parse the JSON body of an incoming Vercel Function request.
+ * Returns {} if the body is empty.
+ */
+export async function readJson(req) {
+  if (req.body && typeof req.body === 'object') return req.body;
+  if (typeof req.body === 'string' && req.body) return JSON.parse(req.body);
+  return await new Promise((resolve, reject) => {
+    let buf = '';
+    req.on('data', (chunk) => (buf += chunk));
+    req.on('end', () => {
+      if (!buf) return resolve({});
+      try { resolve(JSON.parse(buf)); } catch (err) { reject(err); }
+    });
+    req.on('error', reject);
+  });
+}

@@ -1,61 +1,17 @@
 "use client"
 
-import { useState, useEffect } from "react"
+import { useState, useEffect, useMemo } from "react"
 import { ChevronLeft, ChevronRight, Pause, Play, Quote } from "lucide-react"
 import "./Testimonials.css"
-
-const teamMembers = [
-  {
-    id: 1,
-    name: "Nyombi Elijah",
-    role: "Director | Co-founder",
-    image: "/images/elijah.jpg",
-    description:
-      "Elijah Nyombi is one of the Directors and Co-founders for iONA Tech, a cutting-edge software company committed to driving innovation and providing impactful technological solutions. With a rich background in journalism, public health, and digital marketing communication, Elijah leads the company with a focus on digital transformation and high-quality software development.",
-  },
-  {
-    id: 2,
-    name: "Nakunda Lillian",
-    role: "Software Engineer | Co-founder",
-    image: "/images/lillian.jpg",
-    description:
-      "Lillian is an innovative Software Engineering student at Makerere University and a Co-founder at iONA Tech. As a versatile developer, she serves as a Systems Analyst, Web Developer, and Graphic Designer. She specializes in crafting high-quality front-end web experiences and mobile applications, bringing a fresh, modern perspective to the tech space.",
-  },
-  {
-    id: 3,
-    name: "Baliddawa Allan",
-    role: "Director | Co-founder",
-    image: "/images/allanella.jpg",
-    description:
-      "Allan is a Director, Co-founder, and a passionate, skilled Fullstack Web Developer with a strong background in both front-end and back-end development. He specializes in building responsive, user-friendly, and scalable web applications using modern technologies including ReactJS, Java (Spring Boot), and Node.js.",
-  },
-  {
-    id: 4,
-    name: "Mulungi Abigail",
-    role: "JavaScript Developer | Co-founder",
-    image: "/images/jordi.jpg",
-    description:
-      "Abigail is a passionate JavaScript developer and Co-founder with a keen eye for innovation. With a strong focus on crafting exceptional software experiences, she excels in designing and developing scalable web applications and desktop solutions.",
-  },
-  {
-    id: 5,
-    name: "Mpairwe Lauben",
-    role: "Software Engineer | Co-founder",
-    image: "/images/alien.jpg",
-    description:
-      "With over five years of hands-on experience, Mpairwe Lauben is a dynamic software engineer and Co-founder with a passion for crafting intelligent, scalable, and user-centric digital solutions. His core expertise lies at the intersection of mobile application development, cloud-native systems, and machine learning technologies.",
-  },
-  {
-    id: 6,
-    name: "Katongole Samuel",
-    role: "Director | Co-founder",
-    image: "/images/sam.jpg",
-    description:
-      "Samuel is a Director and Co-founder, and a passionate Java Developer dedicated to crafting software that inspires progress and delivers value. Skilled in building intuitive, functional desktop and web applications, he combines technical expertise with a heart for service, collaboration and faith-driven purpose.",
-  },
-]
+import { teamMembers as fallbackTeam } from "../../data/team"
+import { useContent } from "../../lib/api"
 
 export default function Testimonials() {
+  const allTeamMembers = useContent('team', fallbackTeam)
+  const teamMembers = useMemo(
+    () => allTeamMembers.filter((m) => m.published !== false).sort((a, b) => (a.sortOrder ?? 0) - (b.sortOrder ?? 0)),
+    [allTeamMembers]
+  )
   const [currentIndex, setCurrentIndex] = useState(0)
   const [isAutoPlaying, setIsAutoPlaying] = useState(true)
 
@@ -142,7 +98,7 @@ export default function Testimonials() {
                     <h3 className="text-2xl font-bold text-slate-900 mb-1">{member.name}</h3>
                     <p className="text-blue-600 font-medium mb-6 uppercase tracking-widest text-xs">{member.role}</p>
                     <p className="text-slate-600 text-lg leading-relaxed italic">
-                      "{member.description}"
+                      "{member.bio}"
                     </p>
                   </div>
                 </div>
