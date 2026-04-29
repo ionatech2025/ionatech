@@ -1,10 +1,8 @@
-<<<<<<< HEAD
 {
   "rewrites": [
-    { "source": "/api/(.*)", "destination": "/api/$1" },
-    { "source": "/(.*)", "destination": "/" }
+    {
+      "source": "/(.*)",
+      "destination": "/"
+    }
   ]
 }
-=======
-{ "rewrites": [{ "source": "/(.*)", "destination": "/" }] }
->>>>>>> origin/first_improvements

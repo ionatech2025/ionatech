@@ -1,11 +1,3 @@
-<<<<<<< HEAD
-import React from 'react'
-import './Tech.css'
-import { Sparkles, ArrowRight, Rocket, Users, Target } from 'lucide-react'
-import { Link } from 'react-scroll'
-
-const Tech = () => {
-=======
 import React, { useEffect, useRef } from 'react'
 import './Tech.css'
 import { Sparkles, ArrowRight, Rocket, Users, Target, Briefcase, Clock, Award } from 'lucide-react'
@@ -22,12 +14,12 @@ const Tech = () => {
     const ctx = canvas.getContext('2d')
     let animationFrameId
     let particles = []
-    
+
     const resizeCanvas = () => {
       canvas.width = canvas.offsetWidth
       canvas.height = canvas.offsetHeight
     }
-    
+
     resizeCanvas()
     window.addEventListener('resize', resizeCanvas)
 
@@ -86,12 +78,12 @@ const Tech = () => {
     // Animation loop
     const animate = () => {
       ctx.clearRect(0, 0, canvas.width, canvas.height)
-      
+
       particles.forEach(particle => {
         particle.update()
         particle.draw()
       })
-      
+
       drawConnections()
       animationFrameId = requestAnimationFrame(animate)
     }
@@ -104,11 +96,10 @@ const Tech = () => {
     }
   }, [])
 
->>>>>>> origin/first_improvements
   const scrollToAbout = () => {
     const aboutSection = document.getElementById('about')
     if (aboutSection) {
-      aboutSection.scrollIntoView({ 
+      aboutSection.scrollIntoView({
         behavior: 'smooth',
         block: 'start'
       })
@@ -136,14 +127,6 @@ const Tech = () => {
     }
   ]
 
-<<<<<<< HEAD
-  return (
-    <section className="tech-section">
-      <div className="tech-background">
-        <div className="tech-overlay"></div>
-      </div>
-      
-=======
   const stats = [
     {
       icon: <Briefcase className="w-5 h-5" />,
@@ -169,11 +152,10 @@ const Tech = () => {
         <div className="tech-gradient-glow tech-gradient-glow-1"></div>
         <div className="tech-gradient-glow tech-gradient-glow-2"></div>
       </div>
-      
+
       {/* Network particle canvas */}
       <canvas ref={canvasRef} className="tech-particles-canvas"></canvas>
-      
->>>>>>> origin/first_improvements
+
       <div className="tech-container">
         <div className="tech-content">
           {/* Header */}
@@ -182,24 +164,16 @@ const Tech = () => {
               <Sparkles className="w-4 h-4" />
               <span>iONA Tech</span>
             </div>
-            
+
             <h1 className="tech-title">
-<<<<<<< HEAD
-              Let's create something 
-=======
-              Let&apos;s create something 
->>>>>>> origin/first_improvements
-              <span className="tech-accent"> extraordinary</span> 
-              <span className="tech-accent">  </span> 
-               together!
+              Let&apos;s create something
+              <span className="tech-accent"> extraordinary</span>
+              <span className="tech-accent">  </span>
+              together!
             </h1>
-            
+
             <p className="tech-description">
-<<<<<<< HEAD
-              At iONA Tech, we believe in turning ideas into reality. Whether you're a startup, a growing business, 
-=======
-              At iONA Tech, we believe in turning ideas into reality. Whether you&apos;re a startup, a growing business, 
->>>>>>> origin/first_improvements
+              At iONA Tech, we believe in turning ideas into reality. Whether you&apos;re a startup, a growing business,
               or an established brand, we are here to help you stand out, connect, and thrive in the digital space.
             </p>
           </div>
@@ -235,22 +209,7 @@ const Tech = () => {
               <span>Explore More</span>
               <ArrowRight className="w-5 h-5" />
             </button>
-            
-<<<<<<< HEAD
-            <div className="tech-stats">
-              <div className="stat-item">
-                <span className="stat-number">50+</span>
-                <span className="stat-label">Projects Completed</span>
-              </div>
-              <div className="stat-item">
-                <span className="stat-number">5+</span>
-                <span className="stat-label">Years Experience</span>
-              </div>
-              <div className="stat-item">
-                <span className="stat-number">100%</span>
-                <span className="stat-label">Client Satisfaction</span>
-              </div>
-=======
+
             {/* Enhanced Stats Cards with Glassmorphism */}
             <div className="tech-stats">
               {stats.map((stat, index) => (
@@ -265,7 +224,6 @@ const Tech = () => {
                   </div>
                 </div>
               ))}
->>>>>>> origin/first_improvements
             </div>
           </div>
         </div>

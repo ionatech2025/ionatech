@@ -1,18 +1,4 @@
 import React from 'react'
-<<<<<<< HEAD
-import { BrowserRouter, Routes, Route } from 'react-router-dom'
-import PublicSite from './PublicSite'
-import AdminApp from './admin/AdminApp'
-
-const App = () => {
-  return (
-    <BrowserRouter>
-      <Routes>
-        <Route path="/admin/*" element={<AdminApp />} />
-        <Route path="/*" element={<PublicSite />} />
-      </Routes>
-    </BrowserRouter>
-=======
 import Navbar from './Components/Navbar/Navbar'
 import Tech from './Components/Tech/Tech'
 import Mission from './Components/Mission/Mission'
@@ -27,7 +13,7 @@ const App = () => {
   return (
     <div>
       <Navbar />
-      
+
       {/* Hero Section */}
       <section id="hero">
         <Tech />
@@ -43,7 +29,7 @@ const App = () => {
         <ServicesPage />
       </section>
 
-  
+
 
       {/* Products Section */}
       <section id="MyProducts">
@@ -61,11 +47,10 @@ const App = () => {
       </section>
 
       {/*ClientTestimonials Section*/}
-      <ClientTestimonials/>
+      <ClientTestimonials />
 
       <Footer />
     </div>
->>>>>>> origin/first_improvements
   )
 }
 

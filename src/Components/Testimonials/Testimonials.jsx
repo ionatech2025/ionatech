@@ -1,19 +1,5 @@
 "use client"
 
-<<<<<<< HEAD
-import { useState, useEffect, useMemo } from "react"
-import { ChevronLeft, ChevronRight, Pause, Play, Quote } from "lucide-react"
-import "./Testimonials.css"
-import { teamMembers as fallbackTeam } from "../../data/team"
-import { useContent } from "../../lib/api"
-
-export default function Testimonials() {
-  const allTeamMembers = useContent('team', fallbackTeam)
-  const teamMembers = useMemo(
-    () => allTeamMembers.filter((m) => m.published !== false).sort((a, b) => (a.sortOrder ?? 0) - (b.sortOrder ?? 0)),
-    [allTeamMembers]
-  )
-=======
 import { useState, useEffect } from "react"
 import { ChevronLeft, ChevronRight, Pause, Play, Quote } from "lucide-react"
 import "./Testimonials.css"
@@ -70,7 +56,6 @@ const teamMembers = [
 ]
 
 export default function Testimonials() {
->>>>>>> origin/first_improvements
   const [currentIndex, setCurrentIndex] = useState(0)
   const [isAutoPlaying, setIsAutoPlaying] = useState(true)
 
@@ -102,7 +87,7 @@ export default function Testimonials() {
   return (
     <section className="testimonials-section py-20 bg-slate-50">
       <div className="container mx-auto px-6">
-        
+
         {/* Header - Centered */}
         <div className="text-center mb-16">
           <h2 className="text-4xl font-bold text-slate-900 mb-4">Meet Our Team</h2>
@@ -113,17 +98,17 @@ export default function Testimonials() {
 
         {/* Main Carousel Container */}
         <div className="relative max-w-4xl mx-auto">
-          
+
           {/* Navigation Buttons */}
-          <button 
-            className="absolute -left-4 lg:-left-16 top-1/2 -translate-y-1/2 z-10 p-3 rounded-full bg-white shadow-lg text-slate-400 hover:text-blue-600 hover:bg-blue-50 transition-all hidden md:flex" 
+          <button
+            className="absolute -left-4 lg:-left-16 top-1/2 -translate-y-1/2 z-10 p-3 rounded-full bg-white shadow-lg text-slate-400 hover:text-blue-600 hover:bg-blue-50 transition-all hidden md:flex"
             onClick={goToPrevious}
           >
             <ChevronLeft size={24} />
           </button>
 
-          <button 
-            className="absolute -right-4 lg:-right-16 top-1/2 -translate-y-1/2 z-10 p-3 rounded-full bg-white shadow-lg text-slate-400 hover:text-blue-600 hover:bg-blue-50 transition-all hidden md:flex" 
+          <button
+            className="absolute -right-4 lg:-right-16 top-1/2 -translate-y-1/2 z-10 p-3 rounded-full bg-white shadow-lg text-slate-400 hover:text-blue-600 hover:bg-blue-50 transition-all hidden md:flex"
             onClick={goToNext}
           >
             <ChevronRight size={24} />
@@ -131,20 +116,20 @@ export default function Testimonials() {
 
           {/* Card Content */}
           <div className="overflow-hidden rounded-3xl bg-white shadow-xl border border-slate-100">
-            <div 
-              className="flex transition-transform duration-700 ease-in-out" 
+            <div
+              className="flex transition-transform duration-700 ease-in-out"
               style={{ transform: `translateX(-${currentIndex * 100}%)` }}
             >
               {teamMembers.map((member) => (
                 <div key={member.id} className="w-full flex-shrink-0 p-8 lg:p-16 flex flex-col items-center text-center">
-                  
+
                   {/* Profile Image */}
                   <div className="relative mb-8">
                     <div className="w-32 h-32 lg:w-40 h-40 rounded-full overflow-hidden border-4 border-blue-50 shadow-inner">
-                      <img 
-                        src={member.image || "/placeholder.svg"} 
-                        alt={member.name} 
-                        className="w-full h-full object-cover" 
+                      <img
+                        src={member.image || "/placeholder.svg"}
+                        alt={member.name}
+                        className="w-full h-full object-cover"
                       />
                     </div>
                     <div className="absolute -bottom-2 right-4 bg-blue-600 p-2 rounded-full text-white shadow-md">
@@ -157,11 +142,7 @@ export default function Testimonials() {
                     <h3 className="text-2xl font-bold text-slate-900 mb-1">{member.name}</h3>
                     <p className="text-blue-600 font-medium mb-6 uppercase tracking-widest text-xs">{member.role}</p>
                     <p className="text-slate-600 text-lg leading-relaxed italic">
-<<<<<<< HEAD
-                      "{member.bio}"
-=======
                       "{member.description}"
->>>>>>> origin/first_improvements
                     </p>
                   </div>
                 </div>
@@ -175,16 +156,15 @@ export default function Testimonials() {
               {teamMembers.map((_, index) => (
                 <button
                   key={index}
-                  className={`transition-all duration-300 rounded-full ${
-                    index === currentIndex ? "w-10 h-2 bg-blue-600" : "w-2 h-2 bg-slate-300"
-                  }`}
+                  className={`transition-all duration-300 rounded-full ${index === currentIndex ? "w-10 h-2 bg-blue-600" : "w-2 h-2 bg-slate-300"
+                    }`}
                   onClick={() => goToSlide(index)}
                 />
               ))}
             </div>
-            
-            <button 
-              className="flex items-center gap-2 text-xs font-bold text-slate-400 hover:text-blue-600 transition-colors uppercase tracking-widest" 
+
+            <button
+              className="flex items-center gap-2 text-xs font-bold text-slate-400 hover:text-blue-600 transition-colors uppercase tracking-widest"
               onClick={() => setIsAutoPlaying(!isAutoPlaying)}
             >
               {isAutoPlaying ? <><Pause size={14} /> Pause</> : <><Play size={14} /> Resume</>}
@@ -200,14 +180,13 @@ export default function Testimonials() {
               <button
                 key={member.id}
                 onClick={() => goToSlide(index)}
-                className={`group relative rounded-full p-1 transition-all duration-500 ${
-                  index === currentIndex ? "ring-2 ring-blue-600 ring-offset-2 scale-110" : "grayscale opacity-40 hover:opacity-100 hover:grayscale-0"
-                }`}
+                className={`group relative rounded-full p-1 transition-all duration-500 ${index === currentIndex ? "ring-2 ring-blue-600 ring-offset-2 scale-110" : "grayscale opacity-40 hover:opacity-100 hover:grayscale-0"
+                  }`}
               >
-                <img 
-                  src={member.image || "/placeholder.svg"} 
-                  alt={member.name} 
-                  className="w-12 h-12 rounded-full object-cover shadow-sm" 
+                <img
+                  src={member.image || "/placeholder.svg"}
+                  alt={member.name}
+                  className="w-12 h-12 rounded-full object-cover shadow-sm"
                 />
               </button>
             ))}

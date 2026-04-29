@@ -3,12 +3,6 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
-<<<<<<< HEAD
-  "engines": {
-    "node": ">=20"
-  },
-=======
->>>>>>> origin/first_improvements
   "scripts": {
     "dev": "vite",
     "build": "vite build",
@@ -16,23 +10,10 @@
     "preview": "vite preview"
   },
   "dependencies": {
-<<<<<<< HEAD
-    "@neondatabase/serverless": "^1.1.0",
-    "@vercel/blob": "^2.3.3",
-    "ait": "file:",
-    "bcryptjs": "^3.0.3",
-    "jsonwebtoken": "^9.0.3",
-    "lucide-react": "^0.511.0",
-    "pg": "^8.20.0",
-    "react": "^18.3.1",
-    "react-dom": "^18.3.1",
-    "react-router-dom": "^7.14.2",
-=======
     "ait": "file:",
     "lucide-react": "^0.511.0",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
->>>>>>> origin/first_improvements
     "react-scroll": "^1.9.0"
   },
   "devDependencies": {

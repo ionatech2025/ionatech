@@ -1,27 +1,12 @@
 "use client"
 
 import { useState } from "react"
-<<<<<<< HEAD
 import {
   Mail, Phone, MapPin, MessageSquare, Send,
   CheckCircle, AlertCircle, MessageCircle
 } from "lucide-react"
-import { contact as fallbackContact } from "../../data/contact"
-import { useContent } from "../../lib/api"
 
 const Contacts = () => {
-  const live = useContent("contact", null)
-  // Merge: live values from DB win for email/phone/address/whatsapp; the
-  // web3forms key always comes from the local fallback (server-only field).
-  const contact = { ...fallbackContact, ...(live || {}) }
-=======
-import { 
-  Mail, Phone, MapPin, MessageSquare, Send, 
-  CheckCircle, AlertCircle, MessageCircle 
-} from "lucide-react"
-
-const Contacts = () => {
->>>>>>> origin/first_improvements
   const [result, setResult] = useState("")
   const [isLoading, setIsLoading] = useState(false)
   const [formData, setFormData] = useState({
@@ -31,27 +16,18 @@ const Contacts = () => {
     message: "",
   })
 
-<<<<<<< HEAD
-=======
   // ✅ YOUR WHATSAPP CONFIG
-  const WHATSAPP_NUMBER = "256700966715" 
+  const WHATSAPP_NUMBER = "256700966715"
 
->>>>>>> origin/first_improvements
   const handleInputChange = (e) => {
     const { name, value } = e.target
     setFormData((prev) => ({ ...prev, [name]: value }))
   }
 
-<<<<<<< HEAD
-  const sendToWhatsApp = () => {
-    const text = `Hi iONA Tech! My name is ${formData.name}. I'm interested in a project. %0A%0A*Message:* ${formData.message}`
-    window.open(`https://wa.me/${contact.whatsappNumber}?text=${text}`, '_blank')
-=======
   // ✅ WHATSAPP REDIRECT FUNCTION
   const sendToWhatsApp = () => {
     const text = `Hi iONA Tech! My name is ${formData.name}. I'm interested in a project. %0A%0A*Message:* ${formData.message}`
     window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${text}`, '_blank')
->>>>>>> origin/first_improvements
   }
 
   const onSubmit = async (event) => {
@@ -61,11 +37,7 @@ const Contacts = () => {
 
     const payload = {
       ...formData,
-<<<<<<< HEAD
-      access_key: contact.web3formsAccessKey,
-=======
       access_key: "059244e1-534a-434e-a22d-7add58b68447",
->>>>>>> origin/first_improvements
       subject: `New iONA Tech Inquiry: ${formData.name}`,
     }
 
@@ -94,7 +66,7 @@ const Contacts = () => {
   return (
     <section id="contact" className="py-24 bg-white">
       <div className="container mx-auto px-6">
-        
+
         {/* Section Header */}
         <div className="text-center mb-20">
           <h2 className="text-4xl lg:text-5xl font-bold text-slate-900 mb-6">Let's Build Something</h2>
@@ -105,7 +77,7 @@ const Contacts = () => {
         </div>
 
         <div className="grid lg:grid-cols-12 gap-12 items-start">
-          
+
           {/* Left: Contact Info & WhatsApp */}
           <div className="lg:col-span-5 space-y-8">
             <div className="bg-slate-50 p-10 rounded-[2.5rem] border border-slate-100">
@@ -114,43 +86,6 @@ const Contacts = () => {
               </h3>
 
               <div className="space-y-6">
-<<<<<<< HEAD
-                {contact.email && (
-                  <a href={`mailto:${contact.email}`} className="group flex items-center gap-5 p-4 bg-white rounded-2xl hover:shadow-md transition-all">
-                    <div className="w-12 h-12 bg-blue-50 rounded-xl flex items-center justify-center text-blue-600 group-hover:bg-blue-600 group-hover:text-white transition-colors">
-                      <Mail size={24} />
-                    </div>
-                    <div>
-                      <p className="text-xs font-bold text-slate-400 uppercase tracking-widest">Email Us</p>
-                      <p className="text-slate-900 font-semibold">{contact.email}</p>
-                    </div>
-                  </a>
-                )}
-
-                {contact.phone && (
-                  <a href={`tel:${contact.phone}`} className="group flex items-center gap-5 p-4 bg-white rounded-2xl hover:shadow-md transition-all">
-                    <div className="w-12 h-12 bg-blue-50 rounded-xl flex items-center justify-center text-blue-600 group-hover:bg-blue-600 group-hover:text-white transition-colors">
-                      <Phone size={24} />
-                    </div>
-                    <div>
-                      <p className="text-xs font-bold text-slate-400 uppercase tracking-widest">Call Us</p>
-                      <p className="text-slate-900 font-semibold">{contact.phone}</p>
-                    </div>
-                  </a>
-                )}
-
-                {contact.address && (
-                  <div className="group flex items-center gap-5 p-4 bg-white rounded-2xl">
-                    <div className="w-12 h-12 bg-blue-50 rounded-xl flex items-center justify-center text-blue-600">
-                      <MapPin size={24} />
-                    </div>
-                    <div>
-                      <p className="text-xs font-bold text-slate-400 uppercase tracking-widest">Location</p>
-                      <p className="text-slate-900 font-semibold">{contact.address}</p>
-                    </div>
-                  </div>
-                )}
-=======
                 <a href="mailto:ionatec002@gmail.com" className="group flex items-center gap-5 p-4 bg-white rounded-2xl hover:shadow-md transition-all">
                   <div className="w-12 h-12 bg-blue-50 rounded-xl flex items-center justify-center text-blue-600 group-hover:bg-blue-600 group-hover:text-white transition-colors">
                     <Mail size={24} />
@@ -170,7 +105,6 @@ const Contacts = () => {
                     <p className="text-slate-900 font-semibold">Kampala, Uganda</p>
                   </div>
                 </div>
->>>>>>> origin/first_improvements
               </div>
 
               {/* WhatsApp Quick Action */}
@@ -178,7 +112,7 @@ const Contacts = () => {
                 <p className="text-green-700 font-bold mb-4 flex items-center gap-2">
                   <MessageCircle size={20} /> Instant Response?
                 </p>
-                <button 
+                <button
                   onClick={sendToWhatsApp}
                   className="w-full py-4 bg-green-600 text-white rounded-2xl font-bold hover:bg-green-700 transition-all shadow-lg shadow-green-100 flex items-center justify-center gap-3"
                 >

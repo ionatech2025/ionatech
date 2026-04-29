@@ -9,43 +9,17 @@
   overflow: hidden;
 }
 
-<<<<<<< HEAD
-/* Background */
-=======
 /* Deep Charcoal Background - More transparent for particle visibility */
->>>>>>> origin/first_improvements
 .tech-background {
   position: absolute;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
-<<<<<<< HEAD
-  background: url(../../assets/Acode.webp);
-  background-size: cover;
-  background-position: center;
-  background-attachment: fixed;
-}
-
-/* Disable fixed attachment on mobile for better performance */
-@media (max-width: 768px) {
-  .tech-background {
-    background-attachment: scroll;
-  }
-}
-
-.tech-overlay {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: linear-gradient(135deg, rgba(0, 0, 0, 0.8) 0%, rgba(37, 99, 235, 0.7) 100%);
-=======
-  background: linear-gradient(135deg, 
-    rgba(8, 8, 12, 0.92) 0%, 
-    rgba(14, 14, 20, 0.88) 50%, 
-    rgba(10, 10, 15, 0.90) 100%);
+  background: linear-gradient(135deg,
+      rgba(8, 8, 12, 0.92) 0%,
+      rgba(14, 14, 20, 0.88) 50%,
+      rgba(10, 10, 15, 0.90) 100%);
 }
 
 /* Subtle Gradient Glows - Enhanced visibility */
@@ -83,7 +57,6 @@
   pointer-events: none;
   z-index: 1;
   opacity: 0.9;
->>>>>>> origin/first_improvements
 }
 
 /* Container */
@@ -110,16 +83,10 @@
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
-<<<<<<< HEAD
-  background: rgba(255, 255, 255, 0.1);
-  backdrop-filter: blur(8px);
-  border: 1px solid rgba(255, 255, 255, 0.2);
-=======
   background: rgba(255, 255, 255, 0.03);
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
   border: 1px solid rgba(255, 255, 255, 0.06);
->>>>>>> origin/first_improvements
   color: white;
   padding: 0.75rem 1.5rem;
   border-radius: 2rem;
@@ -136,11 +103,7 @@
   font-weight: 700;
   line-height: 1.2;
   margin-bottom: 1.5rem;
-<<<<<<< HEAD
-  text-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
-=======
   color: #ffffff;
->>>>>>> origin/first_improvements
 }
 
 .tech-accent {
@@ -155,11 +118,7 @@
   line-height: 1.6;
   max-width: 32rem;
   margin: 0 auto;
-<<<<<<< HEAD
-  opacity: 0.9;
-=======
   color: rgba(255, 255, 255, 0.7);
->>>>>>> origin/first_improvements
 }
 
 /* Features Grid */
@@ -184,14 +143,9 @@
 }
 
 .tech-feature-link:hover .tech-feature {
-<<<<<<< HEAD
-  background: rgba(255, 255, 255, 0.15);
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
-=======
   background: rgba(255, 255, 255, 0.06);
   border-color: rgba(0, 204, 255, 0.2);
   box-shadow: 0 16px 40px rgba(0, 0, 0, 0.3), 0 0 30px rgba(0, 204, 255, 0.05);
->>>>>>> origin/first_improvements
 }
 
 .tech-feature-link:hover .feature-arrow {
@@ -199,16 +153,6 @@
   opacity: 1;
 }
 
-<<<<<<< HEAD
-/* Feature Card */
-.tech-feature {
-  background: rgba(255, 255, 255, 0.1);
-  backdrop-filter: blur(8px);
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  border-radius: 1rem;
-  padding: 2rem;
-  transition: all 0.3s ease;
-=======
 /* Feature Card - Subtle glassmorphism */
 .tech-feature {
   background: rgba(255, 255, 255, 0.025);
@@ -218,7 +162,6 @@
   border-radius: 1rem;
   padding: 2rem;
   transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
->>>>>>> origin/first_improvements
   position: relative;
   height: 100%;
   display: flex;
@@ -235,11 +178,7 @@
   justify-content: center;
   margin: 0 auto 1rem;
   color: white;
-<<<<<<< HEAD
-  box-shadow: 0 10px 25px rgba(37, 99, 235, 0.3);
-=======
   box-shadow: 0 10px 30px rgba(0, 204, 255, 0.25);
->>>>>>> origin/first_improvements
 }
 
 .feature-title {
@@ -250,11 +189,7 @@
 }
 
 .feature-description {
-<<<<<<< HEAD
-  color: rgba(255, 255, 255, 0.8);
-=======
   color: rgba(255, 255, 255, 0.6);
->>>>>>> origin/first_improvements
   line-height: 1.6;
   font-size: 0.875rem;
   flex-grow: 1;
@@ -267,11 +202,7 @@
   bottom: 1.5rem;
   right: 1.5rem;
   color: #00ccff;
-<<<<<<< HEAD
-  opacity: 0.7;
-=======
   opacity: 0.5;
->>>>>>> origin/first_improvements
   transition: all 0.3s ease;
 }
 
@@ -287,45 +218,23 @@
   display: inline-flex;
   align-items: center;
   gap: 0.75rem;
-<<<<<<< HEAD
-  background: linear-gradient(135deg, #00ccff 0%, #2563eb 100%);
-  color: white;
-  border: none;
-=======
   background: rgba(0, 204, 255, 0.1);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
   border: 1px solid rgba(0, 204, 255, 0.25);
   color: white;
->>>>>>> origin/first_improvements
   padding: 1rem 2rem;
   border-radius: 0.75rem;
   font-size: 1.125rem;
   font-weight: 600;
   cursor: pointer;
-<<<<<<< HEAD
-  transition: all 0.3s ease;
-  box-shadow: 0 15px 35px rgba(37, 99, 235, 0.3);
-=======
   transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2), 0 0 20px rgba(0, 204, 255, 0.1);
->>>>>>> origin/first_improvements
   white-space: nowrap;
   min-width: fit-content;
 }
 
 .tech-button:hover {
-<<<<<<< HEAD
-  transform: translateY(-3px);
-  box-shadow: 0 20px 40px rgba(37, 99, 235, 0.4);
-  background: linear-gradient(135deg, #0099cc 0%, #1d4ed8 100%);
-}
-
-/* Stats */
-.tech-stats {
-  display: flex;
-  gap: 3rem;
-=======
   transform: translateY(-2px);
   background: rgba(0, 204, 255, 0.15);
   border-color: rgba(0, 204, 255, 0.4);
@@ -336,34 +245,11 @@
 .tech-stats {
   display: flex;
   gap: 2rem;
->>>>>>> origin/first_improvements
   flex-wrap: wrap;
   justify-content: center;
   max-width: 100%;
 }
 
-<<<<<<< HEAD
-.stat-item {
-  text-align: center;
-  background: rgba(255, 255, 255, 0.1);
-  backdrop-filter: blur(8px);
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  border-radius: 1rem;
-  padding: 1.5rem;
-  min-width: 120px;
-  transition: all 0.3s ease;
-}
-
-.stat-item:hover {
-  transform: translateY(-3px);
-  background: rgba(255, 255, 255, 0.15);
-}
-
-.stat-number {
-  display: block;
-  font-size: 2rem;
-  font-weight: 700;
-=======
 .stat-card {
   position: relative;
   padding: 2px;
@@ -434,18 +320,10 @@
   border-radius: 10px;
   background: rgba(0, 204, 255, 0.1);
   border: 1px solid rgba(0, 204, 255, 0.2);
->>>>>>> origin/first_improvements
   color: #00ccff;
   margin-bottom: 0.5rem;
 }
 
-<<<<<<< HEAD
-.stat-label {
-  font-size: 0.875rem;
-  color: rgba(255, 255, 255, 0.8);
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-=======
 .stat-number {
   display: block;
   font-size: 2.25rem;
@@ -460,7 +338,6 @@
   text-transform: uppercase;
   letter-spacing: 0.1em;
   font-weight: 500;
->>>>>>> origin/first_improvements
 }
 
 /* Responsive Design */
@@ -471,59 +348,46 @@
     max-width: 1400px;
     padding: 6rem 2rem;
   }
-  
+
   .tech-title {
     font-size: 5rem;
   }
-  
+
   .tech-description {
     font-size: 1.5rem;
     max-width: 40rem;
   }
-  
+
   .tech-features {
     gap: 3rem;
     margin-bottom: 5rem;
   }
-  
+
   .tech-feature {
     padding: 3rem;
   }
-  
+
   .tech-stats {
-<<<<<<< HEAD
-    gap: 4rem;
-  }
-  
-  .stat-item {
-    padding: 2rem;
-    min-width: 150px;
-  }
-  
-  .stat-number {
-    font-size: 2.5rem;
-=======
     gap: 2.5rem;
   }
-  
+
   .stat-card-content {
     padding: 2rem 3rem;
     min-width: 160px;
   }
-  
+
   .stat-number {
     font-size: 2.75rem;
   }
-  
+
   .tech-gradient-glow-1 {
     width: 800px;
     height: 800px;
   }
-  
+
   .tech-gradient-glow-2 {
     width: 900px;
     height: 900px;
->>>>>>> origin/first_improvements
   }
 }
 
@@ -533,30 +397,26 @@
     max-width: 1200px;
     padding: 5rem 2rem;
   }
-  
+
   .tech-title {
     font-size: 4.5rem;
   }
-  
+
   .tech-description {
     font-size: 1.375rem;
     max-width: 36rem;
   }
-  
+
   .tech-features {
     gap: 2.5rem;
   }
-  
+
   .tech-feature {
     padding: 2.5rem;
   }
-  
+
   .tech-stats {
-<<<<<<< HEAD
-    gap: 3rem;
-=======
     gap: 2rem;
->>>>>>> origin/first_improvements
   }
 }
 
@@ -566,30 +426,26 @@
     max-width: 1000px;
     padding: 4rem 2rem;
   }
-  
+
   .tech-title {
     font-size: 4rem;
   }
-  
+
   .tech-description {
     font-size: 1.25rem;
     max-width: 32rem;
   }
-  
+
   .tech-features {
     gap: 2rem;
   }
-  
+
   .tech-feature {
     padding: 2rem;
   }
-  
+
   .tech-stats {
-<<<<<<< HEAD
-    gap: 2.5rem;
-=======
     gap: 1.75rem;
->>>>>>> origin/first_improvements
   }
 }
 
@@ -599,68 +455,55 @@
     max-width: 800px;
     padding: 3rem 1.5rem;
   }
-  
+
   .tech-title {
     font-size: 3.5rem;
   }
-  
+
   .tech-description {
     font-size: 1.125rem;
     max-width: 28rem;
   }
-  
+
   .tech-features {
     grid-template-columns: repeat(3, 1fr);
     gap: 1.5rem;
   }
-  
+
   .tech-feature {
     padding: 1.75rem;
   }
-  
+
   .feature-icon {
     width: 50px;
     height: 50px;
   }
-  
+
   .feature-title {
     font-size: 1.125rem;
   }
-  
+
   .tech-stats {
-<<<<<<< HEAD
-    gap: 2rem;
-  }
-  
-  .stat-item {
-    padding: 1.25rem;
-    min-width: 110px;
-  }
-  
-  .stat-number {
-    font-size: 1.75rem;
-=======
     gap: 1.5rem;
   }
-  
+
   .stat-card-content {
     padding: 1.5rem 2rem;
     min-width: 120px;
   }
-  
+
   .stat-number {
     font-size: 2rem;
   }
-  
+
   .tech-gradient-glow-1 {
     width: 400px;
     height: 400px;
   }
-  
+
   .tech-gradient-glow-2 {
     width: 500px;
     height: 500px;
->>>>>>> origin/first_improvements
   }
 }
 
@@ -669,64 +512,51 @@
   .tech-container {
     padding: 2.5rem 1.5rem;
   }
-  
+
   .tech-title {
     font-size: 3rem;
   }
-  
+
   .tech-description {
     font-size: 1.125rem;
     max-width: 26rem;
   }
-  
+
   .tech-features {
     grid-template-columns: repeat(2, 1fr);
     gap: 1.5rem;
   }
-  
+
   .tech-feature {
     padding: 1.5rem;
   }
-  
+
   .feature-icon {
     width: 45px;
     height: 45px;
   }
-  
+
   .feature-title {
     font-size: 1rem;
   }
-  
+
   .tech-stats {
-<<<<<<< HEAD
-    gap: 1.5rem;
-  }
-  
-  .stat-item {
-    padding: 1rem;
-    min-width: 100px;
-  }
-  
-  .stat-number {
-    font-size: 1.5rem;
-=======
     gap: 1.25rem;
   }
-  
+
   .stat-card-content {
     padding: 1.25rem 1.75rem;
     min-width: 110px;
   }
-  
+
   .stat-number {
     font-size: 1.75rem;
   }
-  
+
   .tech-gradient-glow-1,
   .tech-gradient-glow-2 {
     width: 350px;
     height: 350px;
->>>>>>> origin/first_improvements
   }
 }
 
@@ -735,75 +565,61 @@
   .tech-container {
     padding: 2rem 1rem;
   }
-  
+
   .tech-title {
     font-size: 2.5rem;
   }
-  
+
   .tech-description {
     font-size: 1rem;
     max-width: 24rem;
   }
-  
+
   .tech-features {
     grid-template-columns: 1fr;
     gap: 1.25rem;
   }
-  
+
   .tech-feature {
     padding: 1.25rem;
   }
-  
+
   .feature-icon {
     width: 40px;
     height: 40px;
   }
-  
+
   .feature-title {
     font-size: 1rem;
   }
-  
+
   .tech-stats {
     gap: 1rem;
   }
-  
-<<<<<<< HEAD
-  .stat-item {
-    padding: 0.875rem;
-    min-width: 90px;
-  }
-  
-  .stat-number {
-    font-size: 1.25rem;
-  }
-  
-  .stat-label {
-    font-size: 0.75rem;
-=======
+
   .stat-card-content {
     padding: 1.25rem 1.5rem;
     min-width: 95px;
   }
-  
+
   .stat-number {
     font-size: 1.5rem;
   }
-  
+
   .stat-label {
     font-size: 0.625rem;
   }
-  
+
   .stat-icon {
     width: 32px;
     height: 32px;
   }
-  
+
   .tech-gradient-glow-1,
   .tech-gradient-glow-2 {
     width: 250px;
     height: 250px;
     opacity: 0.3;
->>>>>>> origin/first_improvements
   }
 }
 
@@ -812,90 +628,76 @@
   .tech-container {
     padding: 1.5rem 0.75rem;
   }
-  
+
   .tech-title {
     font-size: 2rem;
     line-height: 1.1;
   }
-  
+
   .tech-description {
     font-size: 0.875rem;
     max-width: 20rem;
   }
-  
+
   .tech-badge {
     padding: 0.5rem 1rem;
     font-size: 0.75rem;
   }
-  
+
   .tech-features {
     grid-template-columns: 1fr;
     gap: 1rem;
   }
-  
+
   .tech-feature {
     padding: 1rem;
   }
-  
+
   .feature-icon {
     width: 35px;
     height: 35px;
   }
-  
+
   .feature-title {
     font-size: 0.875rem;
   }
-  
+
   .feature-description {
     font-size: 0.75rem;
   }
-  
+
   .tech-button {
     padding: 0.75rem 1.5rem;
     font-size: 1rem;
   }
-  
+
   .tech-stats {
     gap: 0.75rem;
   }
-  
-<<<<<<< HEAD
-  .stat-item {
-    padding: 0.75rem;
-    min-width: 80px;
-  }
-  
-  .stat-number {
-    font-size: 1.125rem;
-  }
-  
-  .stat-label {
-    font-size: 0.625rem;
-=======
+
   .stat-card-content {
     padding: 1rem 1.25rem;
     min-width: 85px;
   }
-  
+
   .stat-number {
     font-size: 1.25rem;
   }
-  
+
   .stat-label {
     font-size: 0.5rem;
   }
-  
+
   .stat-icon {
     width: 28px;
     height: 28px;
   }
-  
+
   .tech-gradient-glow-1,
   .tech-gradient-glow-2 {
     width: 200px;
     height: 200px;
     opacity: 0.25;
->>>>>>> origin/first_improvements
   }
 }
 
@@ -904,50 +706,40 @@
   .tech-container {
     padding: 1rem 0.5rem;
   }
-  
+
   .tech-title {
     font-size: 1.75rem;
   }
-  
+
   .tech-description {
     font-size: 0.8rem;
   }
-  
+
   .tech-feature {
     padding: 0.875rem;
   }
-  
+
   .feature-icon {
     width: 30px;
     height: 30px;
   }
-  
+
   .tech-button {
     padding: 0.625rem 1.25rem;
     font-size: 0.875rem;
   }
-  
-<<<<<<< HEAD
-  .stat-item {
-    padding: 0.625rem;
-    min-width: 70px;
-=======
+
   .stat-card-content {
     padding: 0.875rem 1rem;
     min-width: 75px;
->>>>>>> origin/first_improvements
   }
-  
+
   .stat-number {
     font-size: 1rem;
   }
-  
+
   .stat-label {
-<<<<<<< HEAD
-    font-size: 0.5rem;
-=======
     font-size: 0.4375rem;
->>>>>>> origin/first_improvements
   }
 }
 
@@ -957,6 +749,7 @@
     opacity: 0;
     transform: translateY(30px);
   }
+
   to {
     opacity: 1;
     transform: translateY(0);
@@ -987,9 +780,6 @@
 
 .tech-feature:nth-child(3) {
   animation-delay: 0.2s;
-<<<<<<< HEAD
-}
-=======
 }
 
 .stat-card {
@@ -1007,4 +797,3 @@
 .stat-card:nth-child(3) {
   animation-delay: 0.7s;
 }
->>>>>>> origin/first_improvements
