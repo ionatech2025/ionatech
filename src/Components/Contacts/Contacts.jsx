@@ -1,6 +1,7 @@
 "use client"
 
 import { useState } from "react"
+<<<<<<< HEAD
 import {
   Mail, Phone, MapPin, MessageSquare, Send,
   CheckCircle, AlertCircle, MessageCircle
@@ -13,6 +14,14 @@ const Contacts = () => {
   // Merge: live values from DB win for email/phone/address/whatsapp; the
   // web3forms key always comes from the local fallback (server-only field).
   const contact = { ...fallbackContact, ...(live || {}) }
+=======
+import { 
+  Mail, Phone, MapPin, MessageSquare, Send, 
+  CheckCircle, AlertCircle, MessageCircle 
+} from "lucide-react"
+
+const Contacts = () => {
+>>>>>>> origin/first_improvements
   const [result, setResult] = useState("")
   const [isLoading, setIsLoading] = useState(false)
   const [formData, setFormData] = useState({
@@ -22,14 +31,27 @@ const Contacts = () => {
     message: "",
   })
 
+<<<<<<< HEAD
+=======
+  // ✅ YOUR WHATSAPP CONFIG
+  const WHATSAPP_NUMBER = "256700966715" 
+
+>>>>>>> origin/first_improvements
   const handleInputChange = (e) => {
     const { name, value } = e.target
     setFormData((prev) => ({ ...prev, [name]: value }))
   }
 
+<<<<<<< HEAD
   const sendToWhatsApp = () => {
     const text = `Hi iONA Tech! My name is ${formData.name}. I'm interested in a project. %0A%0A*Message:* ${formData.message}`
     window.open(`https://wa.me/${contact.whatsappNumber}?text=${text}`, '_blank')
+=======
+  // ✅ WHATSAPP REDIRECT FUNCTION
+  const sendToWhatsApp = () => {
+    const text = `Hi iONA Tech! My name is ${formData.name}. I'm interested in a project. %0A%0A*Message:* ${formData.message}`
+    window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${text}`, '_blank')
+>>>>>>> origin/first_improvements
   }
 
   const onSubmit = async (event) => {
@@ -39,7 +61,11 @@ const Contacts = () => {
 
     const payload = {
       ...formData,
+<<<<<<< HEAD
       access_key: contact.web3formsAccessKey,
+=======
+      access_key: "059244e1-534a-434e-a22d-7add58b68447",
+>>>>>>> origin/first_improvements
       subject: `New iONA Tech Inquiry: ${formData.name}`,
     }
 
@@ -88,6 +114,7 @@ const Contacts = () => {
               </h3>
 
               <div className="space-y-6">
+<<<<<<< HEAD
                 {contact.email && (
                   <a href={`mailto:${contact.email}`} className="group flex items-center gap-5 p-4 bg-white rounded-2xl hover:shadow-md transition-all">
                     <div className="w-12 h-12 bg-blue-50 rounded-xl flex items-center justify-center text-blue-600 group-hover:bg-blue-600 group-hover:text-white transition-colors">
@@ -123,6 +150,27 @@ const Contacts = () => {
                     </div>
                   </div>
                 )}
+=======
+                <a href="mailto:ionatec002@gmail.com" className="group flex items-center gap-5 p-4 bg-white rounded-2xl hover:shadow-md transition-all">
+                  <div className="w-12 h-12 bg-blue-50 rounded-xl flex items-center justify-center text-blue-600 group-hover:bg-blue-600 group-hover:text-white transition-colors">
+                    <Mail size={24} />
+                  </div>
+                  <div>
+                    <p className="text-xs font-bold text-slate-400 uppercase tracking-widest">Email Us</p>
+                    <p className="text-slate-900 font-semibold">ionatec002@gmail.com</p>
+                  </div>
+                </a>
+
+                <div className="group flex items-center gap-5 p-4 bg-white rounded-2xl">
+                  <div className="w-12 h-12 bg-blue-50 rounded-xl flex items-center justify-center text-blue-600">
+                    <MapPin size={24} />
+                  </div>
+                  <div>
+                    <p className="text-xs font-bold text-slate-400 uppercase tracking-widest">Location</p>
+                    <p className="text-slate-900 font-semibold">Kampala, Uganda</p>
+                  </div>
+                </div>
+>>>>>>> origin/first_improvements
               </div>
 
               {/* WhatsApp Quick Action */}
