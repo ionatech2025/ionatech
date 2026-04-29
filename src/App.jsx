@@ -2,7 +2,6 @@ import React from 'react'
 import Navbar from './Components/Navbar/Navbar'
 import Tech from './Components/Tech/Tech'
 import Mission from './Components/Mission/Mission'
-import About from './Components/About/About'
 import Products from './Components/Products/Products'
 import Testimonials from './Components/Testimonials/Testimonials'
 import Contacts from './Components/Contacts/Contacts'
@@ -31,11 +30,6 @@ const App = () => {
       </section>
 
   
-
-      {/* About Section */}
-      <section id="about">
-        <About />
-      </section>
 
       {/* Products Section */}
       <section id="MyProducts">
