@@ -12,7 +12,7 @@ const BLANK = {
 
 export default function ProductEdit() {
   const nav = useNavigate()
-  const { item, setItem, loading, saving, error, save, remove, isNew } = useResourceItem('/api/admin/products', BLANK)
+  const { item, setItem, loading, saving, error, save, remove, isNew } = useResourceItem('/api/admin/products', '/admin/products', BLANK)
 
   if (loading) return <p className="text-slate-500">Loading…</p>
   if (!item) return <p className="text-red-600">{error || 'Not found.'}</p>

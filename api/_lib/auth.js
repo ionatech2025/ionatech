@@ -52,23 +52,27 @@ export function requireAdmin(req) {
   }
 }
 
+// Browsers refuse Secure cookies over plain HTTP. Vercel deployments are
+// always HTTPS, but `vercel dev` / our Vite dev plugin run on http://localhost —
+// so flip Secure off in development to keep login working locally without
+// weakening production.
+const isProd = () =>
+  process.env.VERCEL_ENV === 'production' || process.env.NODE_ENV === 'production';
+
+const cookieFlags = () => {
+  const flags = ['HttpOnly', 'SameSite=Lax', 'Path=/'];
+  if (isProd()) flags.splice(1, 0, 'Secure');
+  return flags;
+};
+
 export function setAuthCookie(res, token) {
-  const parts = [
-    `${COOKIE_NAME}=${token}`,
-    'HttpOnly',
-    'Secure',
-    'SameSite=Lax',
-    'Path=/',
-    `Max-Age=${MAX_AGE_SECONDS}`,
-  ];
+  const parts = [`${COOKIE_NAME}=${token}`, ...cookieFlags(), `Max-Age=${MAX_AGE_SECONDS}`];
   res.setHeader('Set-Cookie', parts.join('; '));
 }
 
 export function clearAuthCookie(res) {
-  res.setHeader(
-    'Set-Cookie',
-    `${COOKIE_NAME}=; HttpOnly; Secure; SameSite=Lax; Path=/; Max-Age=0`
-  );
+  const parts = [`${COOKIE_NAME}=`, ...cookieFlags(), 'Max-Age=0'];
+  res.setHeader('Set-Cookie', parts.join('; '));
 }
 
 /**

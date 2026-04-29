@@ -41,8 +41,8 @@ Follow this 5-step recipe:
 
 1. Add a typedef + `RESOURCES` entry in `src/data/schema.js`.
 2. Add a `CREATE TABLE` in `db/schema.sql` (Phase 2+).
-3. Add `api/content/<name>.js` (public GET) and `api/admin/<name>/[[...id]].js` (CRUD) (Phase 3+).
-4. Add list and edit pages under `src/pages/admin/<name>/` (Phase 3+).
+3. Add `api/content/<name>.js` (public GET) and `api/admin/<name>.js` plus `api/admin/<name>/[id].js` (CRUD) (Phase 3+).
+4. Add list and edit pages under `src/admin/` (e.g. `src/admin/<Name>List.jsx` and `<Name>Edit.jsx`) (Phase 3+).
 5. Add or update the public component in `src/Components/<Name>/` to fetch from `/api/content/<name>` (Phase 2+).
 
 ### To add a new icon choice

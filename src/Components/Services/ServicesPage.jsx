@@ -5,7 +5,7 @@ import {
 } from 'lucide-react'
 import { services as fallbackServices } from '../../data/services'
 import { getIcon } from '../../data/iconRegistry'
-import { useContent } from '../../lib/api'
+import { useContent, mergeBySlug } from '../../lib/api'
 
 const renderServiceIcon = (service) => {
   const Icon = getIcon(service.iconName)
@@ -23,7 +23,8 @@ const ServicesPage = () => {
     }
   }
 
-  const services = useContent('services', fallbackServices)
+  const liveServices = useContent('services', null)
+  const services = liveServices ? mergeBySlug(liveServices, fallbackServices) : fallbackServices
   const programs = services.filter((s) => s.published)
 
   return (

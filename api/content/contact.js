@@ -1,10 +1,11 @@
 import { db } from '../_lib/db.js';
 import { json, publicCache, methodNotAllowed, serverError } from '../_lib/respond.js';
 
-// Note: web3forms_access_key is intentionally NOT returned. The frontend
-// posts to /api/contact (TODO: future) which will read it server-side.
-// For now the existing src/data/contact.js still ships the key to the
-// browser as it does in Phase 1 — that's parity with the current site.
+// Note: web3forms_access_key is intentionally NOT returned here. Today the
+// frontend still submits the contact form directly to Web3Forms, and the
+// bundled src/data/contact.js continues to ship the key to the browser for
+// parity with the current site. A future change can move that submit into
+// an /api/contact handler so the key stays server-side.
 
 export default async function handler(req, res) {
   if (req.method !== 'GET') return methodNotAllowed(res, ['GET']);

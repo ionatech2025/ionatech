@@ -1,12 +1,14 @@
-import React from "react";
+import React, { useMemo } from "react";
 import { ArrowRight } from "lucide-react";
 import { about as fallbackAbout } from "../../data/about";
 import { getIcon } from "../../data/iconRegistry";
-import { useContent } from "../../lib/api";
+import { useContent, mergeSingleton } from "../../lib/api";
+import { sanitizeRichText } from "../../lib/sanitize";
 
 const About = () => {
   const live = useContent("about", null);
-  const about = live ? { ...fallbackAbout, ...live, image: live.image || fallbackAbout.image } : fallbackAbout;
+  const about = mergeSingleton(live, fallbackAbout);
+  const safeDescription = useMemo(() => sanitizeRichText(about.description), [about.description]);
   return (
     <section
       id="about"
@@ -43,7 +45,7 @@ const About = () => {
               </h2>
               <p
                 className="text-lg text-slate-600 leading-relaxed"
-                dangerouslySetInnerHTML={{ __html: about.description }}
+                dangerouslySetInnerHTML={{ __html: safeDescription }}
               />
             </div>
 

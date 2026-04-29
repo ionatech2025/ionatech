@@ -14,7 +14,7 @@ const BLANK = {
 
 export default function ServiceEdit() {
   const nav = useNavigate()
-  const { item, setItem, loading, saving, error, save, remove, isNew } = useResourceItem('/api/admin/services', BLANK)
+  const { item, setItem, loading, saving, error, save, remove, isNew } = useResourceItem('/api/admin/services', '/admin/services', BLANK)
 
   if (loading) return <p className="text-slate-500">Loading…</p>
   if (!item) return <p className="text-red-600">{error || 'Not found.'}</p>
