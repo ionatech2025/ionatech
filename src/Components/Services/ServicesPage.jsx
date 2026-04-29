@@ -1,18 +1,17 @@
 import React, { useState } from 'react'
-import { 
-  Sparkles, ArrowRight, Code, Smartphone, 
-  Palette, Monitor, X, CheckCircle, 
-  Star, Clock, Award 
+import {
+  Sparkles, ArrowRight, X, CheckCircle,
+  Star, Clock, Award,
 } from 'lucide-react'
+import { services as fallbackServices } from '../../data/services'
+import { getIcon } from '../../data/iconRegistry'
+import { useContent } from '../../lib/api'
 
-// Asset Imports
-import coda from '../../assets/coda.jpg'
-import mobile from '../../assets/mobile.jpeg'
-import graphics from '../../assets/graphics.jpeg'
-import Pc from '../../assets/Pc.jpg'
-import AppDev from '../../assets/AppDev.png'
-import phoneApp from '../../assets/phoneApp.png'
-import ManDesk from '../../assets/ManDesk.png'
+const renderServiceIcon = (service) => {
+  const Icon = getIcon(service.iconName)
+  if (!Icon) return null
+  return <Icon className={`w-8 h-8 ${service.colorClass || ''}`} />
+}
 
 const ServicesPage = () => {
   const [selectedProgram, setSelectedProgram] = useState(null)
@@ -24,64 +23,8 @@ const ServicesPage = () => {
     }
   }
 
-  const programs = [
-    {
-      id: 1,
-      image: coda,
-      icon: AppDev,
-      title: "Web Development",
-      description: "Modern, responsive websites and web applications built with cutting-edge technologies",
-      features: ["React & Next.js", "Node.js Backend", "Database Design"],
-      iconComponent: <Code className="w-8 h-8 text-blue-600" />,
-      details: {
-        overview: "Transform your digital presence with our comprehensive web development services. We focus on speed, security, and scalability.",
-        technologies: ["React.js", "Next.js", "Node.js", "Tailwind CSS"],
-        benefits: ["Responsive Design", "SEO Optimized", "Fast Loading"]
-      }
-    },
-    {
-      id: 2,
-      image: mobile,
-      icon: phoneApp,
-      title: "Mobile Development",
-      description: "Cross-platform mobile applications for iOS and Android platforms",
-      features: ["React Native", "Flutter", "App Store Deployment"],
-      iconComponent: <Smartphone className="w-8 h-8 text-purple-600" />,
-      details: {
-        overview: "Build powerful mobile applications that engage users and drive results. We handle everything from design to App Store launch.",
-        technologies: ["React Native", "Flutter", "Firebase"],
-        benefits: ["Native Performance", "Offline Capabilities", "User-Centric UX"]
-      }
-    },
-    {
-        id: 3,
-        image: graphics,
-        icon: ManDesk,
-        title: "Graphics Design",
-        description: "Creative visual solutions including branding and UI/UX design",
-        features: ["Brand Identity", "UI/UX Design", "Digital Marketing"],
-        iconComponent: <Palette className="w-8 h-8 text-pink-600" />,
-        details: {
-          overview: "Create stunning visual experiences that captivate your audience and build brand authority.",
-          technologies: ["Figma", "Adobe Suite", "Canva Pro"],
-          benefits: ["Brand Consistency", "Professional Quality", "Modern Aesthetics"]
-        }
-    },
-    {
-        id: 4,
-        image: Pc,
-        icon: ManDesk,
-        title: "Desktop Applications",
-        description: "Powerful software solutions for Windows, macOS, and Linux",
-        features: ["Cross-Platform", "Native Performance", "System Integration"],
-        iconComponent: <Monitor className="w-8 h-8 text-green-600" />,
-        details: {
-          overview: "Develop robust desktop applications designed for heavy performance and deep system reliability.",
-          technologies: ["Electron", "Python", "Tauri"],
-          benefits: ["Data Security", "Native Feel", "Offline Reliability"]
-        }
-    }
-  ]
+  const services = useContent('services', fallbackServices)
+  const programs = services.filter((s) => s.published)
 
   return (
     <div className="min-h-screen bg-gray-50 font-sans text-slate-900">
@@ -145,14 +88,16 @@ const ServicesPage = () => {
                   <img src={program.image} alt={program.title} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" />
                   <div className="absolute inset-0 bg-gradient-to-t from-slate-900/80 via-slate-900/20 to-transparent flex items-end p-8">
                     <div className="p-3 bg-white/20 backdrop-blur-xl rounded-2xl text-white border border-white/30">
-                      {program.iconComponent}
+                      {renderServiceIcon(program)}
                     </div>
                   </div>
                 </div>
 
                 <div className="p-8 flex-grow flex flex-col">
                   <div className="flex items-center gap-3 mb-4">
-                    <img src={program.icon} alt="" className="w-7 h-7 object-contain" />
+                    {program.iconImage && (
+                      <img src={program.iconImage} alt="" className="w-7 h-7 object-contain" />
+                    )}
                     <h3 className="text-2xl font-bold text-slate-900">{program.title}</h3>
                   </div>
                   
@@ -196,7 +141,7 @@ const ServicesPage = () => {
             <div className="p-10 lg:p-16">
               <div className="flex flex-col md:flex-row items-start md:items-center gap-6 mb-10">
                 <div className="p-5 bg-blue-50 rounded-[2rem] text-blue-600 shadow-inner">
-                  {selectedProgram.iconComponent}
+                  {renderServiceIcon(selectedProgram)}
                 </div>
                 <div>
                   <h2 className="text-4xl font-extrabold text-slate-900 mb-2">{selectedProgram.title}</h2>

@@ -1,38 +1,12 @@
 import React from 'react';
 import './Products.css';
-import Driver from '../../assets/Driver.jpg';
-import Phone from '../../assets/Phone.jpg';
-import Pc from '../../assets/Pc.jpg';
-import { ArrowRight, Code, Smartphone, Monitor } from 'lucide-react';
+import { ArrowRight } from 'lucide-react';
+import { products as fallbackProducts } from '../../data/products';
+import { getIcon } from '../../data/iconRegistry';
+import { useContent } from '../../lib/api';
 
 const Products = () => {
-  const products = [
-    {
-      id: 1,
-      image: Driver,
-      title: 'Software Management System',
-      description: 'Comprehensive fleet management solution for modern businesses',
-      icon: <Code className="w-6 h-6" />,
-      category: 'Software Solutions',
-    },
-    {
-      id: 2,
-      image: Phone,
-      title: 'Mobile Applications',
-      description: 'Cross-platform mobile apps built with cutting-edge technology',
-      icon: <Smartphone className="w-6 h-6" />,
-      category: 'Mobile Development',
-    },
-    {
-      id: 3,
-      image: Pc,
-      title: 'Desktop Applications',
-      description: 'Powerful desktop solutions for enterprise and personal use',
-      icon: <Monitor className="w-6 h-6" />,
-      category: 'Desktop Development',
-    },
-  ];
-
+  const products = useContent('products', fallbackProducts);
   return (
     <section className="products-section">
       <div className="products-container">
@@ -46,12 +20,14 @@ const Products = () => {
 
         {/* Products Grid */}
         <div className="products-grid">
-          {products.map((product) => (
+          {products.filter((p) => p.published).map((product) => {
+            const Icon = getIcon(product.iconName);
+            return (
             <div key={product.id} className="product-card">
               <div className="product-image-container">
                 <img src={product.image} alt={product.title} className="product-image" />
                 <div className="product-overlay">
-                  <div className="product-icon">{product.icon}</div>
+                  <div className="product-icon">{Icon ? <Icon className="w-6 h-6" /> : null}</div>
                 </div>
               </div>
 
@@ -66,7 +42,8 @@ const Products = () => {
                 </button>
               </div>
             </div>
-          ))}
+            );
+          })}
         </div>
       </div>
     </section>
