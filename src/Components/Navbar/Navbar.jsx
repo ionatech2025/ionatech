@@ -30,7 +30,7 @@ const Navbar = () => {
   const navItems = [
     { to: 'hero', label: 'Home' },
     { to: 'programs', label: 'Services' }, // Pointing to the merged section ID
-    { to: 'MyProducts', label: 'Products' },
+    { to: 'MyProducts', label: 'Our Focus' },
     { to: 'testimonials-section', label: 'Team' }
   ]
 
