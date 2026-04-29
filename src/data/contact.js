@@ -1,9 +1,9 @@
 /** @type {import('./schema').ContactInfo} */
 export const contact = {
   email: 'ionatec002@gmail.com',
-  phone: '',
+  phone: '+256767896608',
   address: 'Kampala, Uganda',
-  whatsappNumber: '256700966715',
+  whatsappNumber: '256767896608',
   // NOTE: This access key is read by the frontend during Phase 1 because the contact form
   // posts directly to web3forms from the browser. After Phase 2 the form should post through
   // an /api/contact handler so this value never ships to the client.

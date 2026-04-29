@@ -1,3 +1,4 @@
+
 # iONA Tech Website
 
 The official marketing site for iONA Tech. React 18 + Vite SPA, deployed on Vercel.
@@ -114,3 +115,13 @@ database branch per preview.
 
 The duplicate `iona-tech/` subdirectory is a frozen historical copy from a
 2025-11 merge — do not edit. It will be removed in a separate cleanup commit.
+=======
+# React + Vite
+
+This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+
+Currently, two official plugins are available:
+
+- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
+- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+>>>>>>> origin/first_improvements

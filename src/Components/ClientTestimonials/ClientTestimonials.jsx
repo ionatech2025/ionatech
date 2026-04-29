@@ -1,73 +1,86 @@
 import React from "react";
-
-// ClientTestimonials.jsx
-// A responsive testimonials component using TailwindCSS.
-// Props:
-// - testimonials: array of { id, name, title, company, image, quote }
-// - className: optional extra classes to wrapper
-// - columns: number of columns on large screens (default 3)
+import { Quote, Star, CheckCircle2 } from "lucide-react";
 
 const ClientTestimonials = ({
   testimonials = [
     {
       id: 1,
       name: "Mutebi Christopher",
-      title: "Marketing Manager",
+      role: "Marketing Manager",
       company: "City Sites",
       image: "/images/chris.jpg",
-      quote:
-        "The team at Iona Tech exceeded our expectations in every way. Their expertise and professionalism made the entire process seamless.",
+      quote: "The team at Iona Tech exceeded our expectations in every way. Their expertise and professionalism made the entire process seamless.",
     },
     {
       id: 2,
       name: "Aisha Namutebi",
-      title: "Project Lead",
+      role: "Project Lead",
       company: "GreenGrid",
       image: "/assets/aisha.jpg",
-      quote:
-        "They delivered ahead of schedule and kept communication crystal clear. Highly recommend for any web project.",
+      quote: "They delivered ahead of schedule and kept communication crystal clear. Highly recommend for any project.",
     },
     {
       id: 3,
       name: "John Okello",
-      title: "CTO",
+      role: "CTO",
       company: "FinConnect",
       image: "/assets/john.jpg",
-      quote:
-        "Solid engineering and a friendly team. We saw measurable improvements in performance and conversion.",
+      quote: "Solid engineering and a friendly team. We saw measurable improvements in performance and conversion.",
     },
   ],
-  className = "",
-  columns = 3,
 }) => {
-  // Tailwind grid column class based on `columns` prop
-  const colsClass = columns === 1 ? "grid-cols-1" : columns === 2 ? "md:grid-cols-2" : "md:grid-cols-3";
-
   return (
-    <section className={`py-8 px-4 sm:px-6 lg:px-8 ${className}`} aria-label="Client testimonials">
-      <div className="max-w-7xl mx-auto">
-        <header className="mb-6 text-center">
-          <h2 className="text-2xl font-semibold">What our clients say</h2>
-          <p className="mt-2 text-sm text-gray-600">Real feedback from customers who trusted us.</p>
+    <section
+      id="testimonials"
+      className="relative py-24 overflow-hidden"
+      style={{ backgroundColor: '#020617' }} // Forced Slate-950
+    >
+      {/* Glow Effect */}
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-blue-600/10 rounded-full blur-[120px] pointer-events-none" />
+
+      <div className="max-w-7xl mx-auto px-6 relative z-10">
+        <header className="mb-16">
+          <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">
+            Trusted in <span className="text-blue-500">Kampala</span>
+          </h2>
+          <p className="text-slate-400 text-lg max-w-xl">
+            Real feedback from partners who have scaled with our engineering.
+          </p>
         </header>
 
-        <div className={`grid gap-6 sm:grid-cols-1 ${colsClass}`}>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {testimonials.map((t) => (
-            <article key={t.id} className="bg-white dark:bg-slate-800 border border-gray-100 dark:border-slate-700 rounded-2xl p-6 shadow-sm hover:shadow-md transition-shadow">
-              <blockquote className="text-gray-700 dark:text-gray-200 text-base leading-relaxed">“{t.quote}”</blockquote>
+            <div
+              key={t.id}
+              className="p-8 rounded-3xl border border-white/10 backdrop-blur-md transition-all duration-300 hover:scale-[1.02] hover:border-blue-500/40"
+              style={{ background: 'rgba(255, 255, 255, 0.03)' }}
+            >
+              <div className="flex gap-1 mb-6">
+                {[...Array(5)].map((_, i) => (
+                  <Star key={i} size={16} className="text-blue-500 fill-blue-500" />
+                ))}
+              </div>
 
-              <div className="mt-4 flex items-center gap-3">
-                <img
-                  src={t.image}
-                  alt={`${t.name} avatar`}
-                  className="w-12 h-12 rounded-full object-cover border border-gray-200 dark:border-slate-700"
-                />
+              <p className="text-slate-200 text-lg leading-relaxed mb-8 font-medium">
+                "{t.quote}"
+              </p>
+
+              <div className="flex items-center gap-4 pt-6 border-t border-white/5">
+                <div className="relative">
+                  <img
+                    src={t.image}
+                    alt={t.name}
+                    className="w-12 h-12 rounded-full object-cover grayscale hover:grayscale-0 transition-all"
+                    onError={(e) => { e.target.src = "https://ui-avatars.com/api/?name=" + t.name; }}
+                  />
+                  <CheckCircle2 className="absolute -bottom-1 -right-1 text-blue-500 bg-slate-950 rounded-full" size={16} />
+                </div>
                 <div>
-                  <p className="text-sm font-medium text-gray-900 dark:text-white">{t.name}</p>
-                  <p className="text-xs text-gray-500">{t.title} — {t.company}</p>
+                  <h4 className="text-white font-bold">{t.name}</h4>
+                  <p className="text-slate-500 text-xs uppercase tracking-widest">{t.company}</p>
                 </div>
               </div>
-            </article>
+            </div>
           ))}
         </div>
       </div>

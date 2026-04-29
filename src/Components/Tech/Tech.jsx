@@ -1,13 +1,105 @@
-import React from 'react'
+import React, { useEffect, useRef } from 'react'
 import './Tech.css'
-import { Sparkles, ArrowRight, Rocket, Users, Target } from 'lucide-react'
+import { Sparkles, ArrowRight, Rocket, Users, Target, Briefcase, Clock, Award } from 'lucide-react'
 import { Link } from 'react-scroll'
 
 const Tech = () => {
+  const canvasRef = useRef(null)
+
+  // Network particle animation
+  useEffect(() => {
+    const canvas = canvasRef.current
+    if (!canvas) return
+
+    const ctx = canvas.getContext('2d')
+    let animationFrameId
+    let particles = []
+
+    const resizeCanvas = () => {
+      canvas.width = canvas.offsetWidth
+      canvas.height = canvas.offsetHeight
+    }
+
+    resizeCanvas()
+    window.addEventListener('resize', resizeCanvas)
+
+    // Particle class
+    class Particle {
+      constructor() {
+        this.x = Math.random() * canvas.width
+        this.y = Math.random() * canvas.height
+        this.vx = (Math.random() - 0.5) * 0.3
+        this.vy = (Math.random() - 0.5) * 0.3
+        this.radius = Math.random() * 1.5 + 0.5
+      }
+
+      update() {
+        this.x += this.vx
+        this.y += this.vy
+
+        if (this.x < 0 || this.x > canvas.width) this.vx *= -1
+        if (this.y < 0 || this.y > canvas.height) this.vy *= -1
+      }
+
+      draw() {
+        ctx.beginPath()
+        ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2)
+        ctx.fillStyle = 'rgba(0, 204, 255, 0.4)'
+        ctx.fill()
+      }
+    }
+
+    // Create particles
+    const particleCount = Math.min(80, Math.floor((canvas.width * canvas.height) / 15000))
+    for (let i = 0; i < particleCount; i++) {
+      particles.push(new Particle())
+    }
+
+    // Draw connections
+    const drawConnections = () => {
+      for (let i = 0; i < particles.length; i++) {
+        for (let j = i + 1; j < particles.length; j++) {
+          const dx = particles[i].x - particles[j].x
+          const dy = particles[i].y - particles[j].y
+          const distance = Math.sqrt(dx * dx + dy * dy)
+
+          if (distance < 120) {
+            ctx.beginPath()
+            ctx.moveTo(particles[i].x, particles[i].y)
+            ctx.lineTo(particles[j].x, particles[j].y)
+            ctx.strokeStyle = `rgba(0, 204, 255, ${0.15 * (1 - distance / 120)})`
+            ctx.lineWidth = 0.5
+            ctx.stroke()
+          }
+        }
+      }
+    }
+
+    // Animation loop
+    const animate = () => {
+      ctx.clearRect(0, 0, canvas.width, canvas.height)
+
+      particles.forEach(particle => {
+        particle.update()
+        particle.draw()
+      })
+
+      drawConnections()
+      animationFrameId = requestAnimationFrame(animate)
+    }
+
+    animate()
+
+    return () => {
+      window.removeEventListener('resize', resizeCanvas)
+      cancelAnimationFrame(animationFrameId)
+    }
+  }, [])
+
   const scrollToAbout = () => {
     const aboutSection = document.getElementById('about')
     if (aboutSection) {
-      aboutSection.scrollIntoView({ 
+      aboutSection.scrollIntoView({
         behavior: 'smooth',
         block: 'start'
       })
@@ -35,12 +127,35 @@ const Tech = () => {
     }
   ]
 
+  const stats = [
+    {
+      icon: <Briefcase className="w-5 h-5" />,
+      number: "50+",
+      label: "Projects Completed"
+    },
+    {
+      icon: <Clock className="w-5 h-5" />,
+      number: "5+",
+      label: "Years Experience"
+    },
+    {
+      icon: <Award className="w-5 h-5" />,
+      number: "100%",
+      label: "Client Satisfaction"
+    }
+  ]
+
   return (
     <section className="tech-section">
+      {/* Deep charcoal background with gradient glow */}
       <div className="tech-background">
-        <div className="tech-overlay"></div>
+        <div className="tech-gradient-glow tech-gradient-glow-1"></div>
+        <div className="tech-gradient-glow tech-gradient-glow-2"></div>
       </div>
-      
+
+      {/* Network particle canvas */}
+      <canvas ref={canvasRef} className="tech-particles-canvas"></canvas>
+
       <div className="tech-container">
         <div className="tech-content">
           {/* Header */}
@@ -49,16 +164,16 @@ const Tech = () => {
               <Sparkles className="w-4 h-4" />
               <span>iONA Tech</span>
             </div>
-            
+
             <h1 className="tech-title">
-              Let's create something 
-              <span className="tech-accent"> extraordinary</span> 
-              <span className="tech-accent">  </span> 
-               together!
+              Let&apos;s create something
+              <span className="tech-accent"> extraordinary</span>
+              <span className="tech-accent">  </span>
+              together!
             </h1>
-            
+
             <p className="tech-description">
-              At iONA Tech, we believe in turning ideas into reality. Whether you're a startup, a growing business, 
+              At iONA Tech, we believe in turning ideas into reality. Whether you&apos;re a startup, a growing business,
               or an established brand, we are here to help you stand out, connect, and thrive in the digital space.
             </p>
           </div>
@@ -94,20 +209,21 @@ const Tech = () => {
               <span>Explore More</span>
               <ArrowRight className="w-5 h-5" />
             </button>
-            
+
+            {/* Enhanced Stats Cards with Glassmorphism */}
             <div className="tech-stats">
-              <div className="stat-item">
-                <span className="stat-number">50+</span>
-                <span className="stat-label">Projects Completed</span>
-              </div>
-              <div className="stat-item">
-                <span className="stat-number">5+</span>
-                <span className="stat-label">Years Experience</span>
-              </div>
-              <div className="stat-item">
-                <span className="stat-number">100%</span>
-                <span className="stat-label">Client Satisfaction</span>
-              </div>
+              {stats.map((stat, index) => (
+                <div key={index} className="stat-card">
+                  <div className="stat-card-glow"></div>
+                  <div className="stat-card-content">
+                    <div className="stat-icon">
+                      {stat.icon}
+                    </div>
+                    <span className="stat-number">{stat.number}</span>
+                    <span className="stat-label">{stat.label}</span>
+                  </div>
+                </div>
+              ))}
             </div>
           </div>
         </div>

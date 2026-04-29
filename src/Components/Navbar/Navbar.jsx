@@ -29,8 +29,8 @@ const Navbar = () => {
   // Updated Navigation Items
   const navItems = [
     { to: 'hero', label: 'Home' },
-    { to: 'programs', label: 'Services Page' }, // Pointing to the merged section ID
-    { to: 'MyProducts', label: 'Products' },
+    { to: 'programs', label: 'Services' }, // Pointing to the merged section ID
+    { to: 'MyProducts', label: 'Our Focus' },
     { to: 'testimonials-section', label: 'Team' }
   ]
 
@@ -47,10 +47,10 @@ const Navbar = () => {
         <ul className="navbar-menu">
           {navItems.map((item) => (
             <li key={item.to} className="navbar-item">
-              <Link 
-                to={item.to} 
-                smooth={true} 
-                offset={-80} 
+              <Link
+                to={item.to}
+                smooth={true}
+                offset={-80}
                 duration={500}
                 className="navbar-link"
                 onClick={closeMobileMenu}
@@ -63,11 +63,11 @@ const Navbar = () => {
 
         {/* Contact Button */}
         <div className="navbar-cta">
-          <Link 
-            to='contact_us' 
-            smooth={true} 
-            offset={-80} 
-            duration={500} 
+          <Link
+            to='contact_us'
+            smooth={true}
+            offset={-80}
+            duration={500}
             className='contact-button'
             onClick={closeMobileMenu}
           >
@@ -85,11 +85,11 @@ const Navbar = () => {
       <div className={`mobile-menu ${mobileMenu ? 'active' : ''}`}>
         <div className="mobile-menu-content">
           {navItems.map((item) => (
-            <Link 
+            <Link
               key={item.to}
-              to={item.to} 
-              smooth={true} 
-              offset={-80} 
+              to={item.to}
+              smooth={true}
+              offset={-80}
               duration={500}
               className="mobile-menu-link"
               onClick={closeMobileMenu}
@@ -97,11 +97,11 @@ const Navbar = () => {
               {item.label}
             </Link>
           ))}
-          <Link 
-            to='contact_us' 
-            smooth={true} 
-            offset={-80} 
-            duration={500} 
+          <Link
+            to='contact_us'
+            smooth={true}
+            offset={-80}
+            duration={500}
             className='mobile-contact-button'
             onClick={closeMobileMenu}
           >
