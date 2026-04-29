@@ -3,10 +3,11 @@ import './Products.css';
 import { ArrowRight } from 'lucide-react';
 import { products as fallbackProducts } from '../../data/products';
 import { getIcon } from '../../data/iconRegistry';
-import { useContent } from '../../lib/api';
+import { useContent, mergeBySlug } from '../../lib/api';
 
 const Products = () => {
-  const products = useContent('products', fallbackProducts);
+  const live = useContent('products', null);
+  const products = live ? mergeBySlug(live, fallbackProducts) : fallbackProducts;
   return (
     <section className="products-section">
       <div className="products-container">

@@ -24,9 +24,13 @@ export function useResourceList(basePath) {
 
 /**
  * Loads a single resource (or a fresh blank one if creating). Returns helpers
- * for save and delete that navigate back to the list on success.
+ * for save and delete that navigate back to the SPA list route on success.
+ *
+ * Pages must pass both:
+ *   - apiPath: e.g. '/api/admin/products' (where CRUD requests go)
+ *   - uiPath:  e.g. '/admin/products'     (where to navigate after save/delete)
  */
-export function useResourceItem(basePath, blank) {
+export function useResourceItem(apiPath, uiPath, blank) {
   const { id } = useParams()
   const nav = useNavigate()
   const isNew = id === undefined
@@ -37,22 +41,22 @@ export function useResourceItem(basePath, blank) {
 
   useEffect(() => {
     if (isNew) return
-    adminFetch(`${basePath}/${id}`)
+    adminFetch(`${apiPath}/${id}`)
       .then(setItem)
       .catch((err) => setError(err.message))
       .finally(() => setLoading(false))
-  }, [basePath, id, isNew])
+  }, [apiPath, id, isNew])
 
   const save = async (data) => {
     setSaving(true)
     setError('')
     try {
       if (isNew) {
-        await adminFetch(basePath, { method: 'POST', body: JSON.stringify(data) })
+        await adminFetch(apiPath, { method: 'POST', body: JSON.stringify(data) })
       } else {
-        await adminFetch(`${basePath}/${id}`, { method: 'PATCH', body: JSON.stringify(data) })
+        await adminFetch(`${apiPath}/${id}`, { method: 'PATCH', body: JSON.stringify(data) })
       }
-      nav(basePath)
+      nav(uiPath)
     } catch (err) {
       setError(err.body?.error || err.message)
     } finally {
@@ -64,8 +68,8 @@ export function useResourceItem(basePath, blank) {
     if (isNew) return
     if (!window.confirm('Delete this item?')) return
     try {
-      await adminFetch(`${basePath}/${id}`, { method: 'DELETE' })
-      nav(basePath)
+      await adminFetch(`${apiPath}/${id}`, { method: 'DELETE' })
+      nav(uiPath)
     } catch (err) {
       setError(err.body?.error || err.message)
     }
