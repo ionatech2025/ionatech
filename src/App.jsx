@@ -1,7 +1,7 @@
 import React from 'react'
 import Navbar from './Components/Navbar/Navbar'
 import Tech from './Components/Tech/Tech'
-import About from './Components/About/About'
+import Mission from './Components/Mission/Mission'
 import Products from './Components/Products/Products'
 import Testimonials from './Components/Testimonials/Testimonials'
 import Contacts from './Components/Contacts/Contacts'
@@ -19,17 +19,17 @@ const App = () => {
         <Tech />
       </section>
 
+      {/* Mission Section */}
+      <section id="mission">
+        <Mission />
+      </section>
+
       {/* Services Section */}
       <section id="descrip">
         <ServicesPage />
       </section>
 
   
-
-      {/* About Section */}
-      <section id="about">
-        <About />
-      </section>
 
       {/* Products Section */}
       <section id="MyProducts">

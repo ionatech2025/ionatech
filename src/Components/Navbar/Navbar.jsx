@@ -29,7 +29,7 @@ const Navbar = () => {
   // Updated Navigation Items
   const navItems = [
     { to: 'hero', label: 'Home' },
-    { to: 'programs', label: 'Services Page' }, // Pointing to the merged section ID
+    { to: 'programs', label: 'Services' }, // Pointing to the merged section ID
     { to: 'MyProducts', label: 'Products' },
     { to: 'testimonials-section', label: 'Team' }
   ]
