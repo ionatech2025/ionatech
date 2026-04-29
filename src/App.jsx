@@ -1,6 +1,7 @@
 import React from 'react'
 import Navbar from './Components/Navbar/Navbar'
 import Tech from './Components/Tech/Tech'
+import Mission from './Components/Mission/Mission'
 import About from './Components/About/About'
 import Products from './Components/Products/Products'
 import Testimonials from './Components/Testimonials/Testimonials'
@@ -17,6 +18,11 @@ const App = () => {
       {/* Hero Section */}
       <section id="hero">
         <Tech />
+      </section>
+
+      {/* Mission Section */}
+      <section id="mission">
+        <Mission />
       </section>
 
       {/* Services Section */}
