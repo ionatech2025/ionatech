@@ -1,5 +1,4 @@
 import React from "react";
-import Afrikan from "../../assets/Afrikan.jpg";
 import { Trophy, Rocket, ShieldCheck, ArrowRight, Quote } from "lucide-react";
 
 const About = () => {
@@ -23,7 +22,7 @@ const About = () => {
             <div className="relative">
               <img
                 className="w-full h-[400px] lg:h-[600px] object-cover rounded-3xl shadow-2xl transition-transform duration-500 group-hover:scale-[1.01]"
-                src={Afrikan}
+                src="/images/team_of_developers.jpg"
                 alt="iONA Tech team collaborating"
               />
               {/* Floating Stat Card */}

@@ -1,5 +1,3 @@
-import Afrikan from '../assets/Afrikan.jpg';
-
 /** @type {import('./schema').AboutContent} */
 export const about = {
   eyebrow: 'Who We Are',
@@ -7,7 +5,7 @@ export const about = {
   titleHighlight: 'Powerful Software.',
   description:
     "At iONA Tech, we don't just write code; we architect digital futures. We understand that in a crowded market, your technology needs to be your greatest competitive advantage. We bridge the gap between creative design and robust engineering to help you <strong>make it big.</strong>",
-  image: Afrikan,
+  image: "/images/team-of-developers.jpeg",
   statBadgeValue: '100%',
   statBadgeLabel: 'Client Commitment',
   stats: [

@@ -14,24 +14,24 @@ const Mission = () => {
     <section className="mission-section">
       <div className="mission-container">
         <div className="mission-grid">
-          
+
           {/* Left Side: Visual */}
           <div className="mission-visual">
             {/* Blue accent bar */}
             <div className="mission-accent-bar" />
-            
+
             {/* Outer glow */}
             <div className="mission-image-glow" />
-            
+
             {/* Image container */}
             <div className="mission-image-wrapper">
-              <img 
-                className="mission-image" 
-                src={Afrikan} 
-                alt="iONA Tech team collaborating in a modern workspace" 
+              <img
+                className="mission-image"
+                src='/images/team_of_developers.jpg'
+                alt="iONA Tech team collaborating in a modern workspace"
               />
             </div>
-            
+
             {/* Floating stat badge */}
             <div className="mission-stat-badge">
               <div className="mission-stat-badge-inner">
@@ -45,18 +45,18 @@ const Mission = () => {
           <div className="mission-content">
             {/* Eyebrow */}
             <span className="mission-eyebrow">Who We Are</span>
-            
+
             {/* Main Heading */}
             <h2 className="mission-heading">
               Turning Complex Ideas into{" "}
               <span className="mission-heading-gradient">Powerful Software.</span>
             </h2>
-            
+
             {/* Body Text */}
             <p className="mission-text">
-              At iONA Tech, we don&apos;t just write code; we architect digital futures. 
-              We understand that in a crowded market, your technology needs to be your 
-              greatest competitive advantage. We bridge the gap between creative design 
+              At iONA Tech, we don&apos;t just write code; we architect digital futures.
+              We understand that in a crowded market, your technology needs to be your
+              greatest competitive advantage. We bridge the gap between creative design
               and robust engineering to help you <strong>make it big.</strong>
             </p>
 
@@ -76,7 +76,7 @@ const Mission = () => {
             </div>
 
             {/* CTA Link */}
-            <a 
+            <a
               href="#contact_us"
               className="mission-cta"
               onClick={(e) => {
