@@ -13,7 +13,7 @@ const Products = () => {
   const focusAreas = [
     {
       id: 1,
-      image: 'https://images.unsplash.com/photo-1522202176988-66273c2fd55f?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80',
+      image: 'https://images.unsplash.com/photo-1509062522246-3755977927d7?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80',
       title: 'Transformative Education',
       subtitle: 'EdTech',
       description: 'Build collaborative hubs and mentorship platforms that scale human capital. We architect the next generation of digital learning for Africa\'s youth, leveraging frameworks like Scholaria to create immersive educational ecosystems.',
@@ -23,7 +23,7 @@ const Products = () => {
     },
     {
       id: 2,
-      image: 'https://images.unsplash.com/photo-1677442136019-21780ecad995?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80',
+      image: 'https://images.unsplash.com/photo-1531482615713-2afd69097998?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80',
       title: 'AI-Inclusive Systems',
       subtitle: 'Intelligent Automation',
       description: 'Integrate intelligent automation into local business workflows and research. We deliver accessible AI solutions that solve real-world operational bottlenecks, tailored for the regional context and scalable across industries.',
@@ -33,7 +33,7 @@ const Products = () => {
     },
     {
       id: 3,
-      image: 'https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80',
+      image: 'https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80',
       title: 'Digital Health & Data Security',
       subtitle: 'Health Informatics',
       description: 'Develop secure, resilient health informatics and patient data systems. Our advanced software architecture ensures data integrity through robust encryption protocols, improving regional healthcare delivery and compliance.',
@@ -43,7 +43,7 @@ const Products = () => {
     },
     {
       id: 4,
-      image: 'https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80',
+      image: 'https://images.unsplash.com/photo-1604689598793-b8bf1dc445a1?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80',
       title: 'Next-Gen eCommerce & Agri-Fintech',
       subtitle: 'Digital Economies',
       description: 'Beyond simple storefronts, we architect integrated digital economies. Build secure middleware for cross-border transactions and value-chain automation, empowering the agriculture sector with fintech innovation.',
