@@ -62,7 +62,7 @@ const teamMembers = [
     tag: "Backend",
     description:
       "A passionate Java Developer dedicated to crafting software that inspires progress. Samuel combines technical expertise in desktop and web applications with a heart for service and collaboration.",
-    skills: ["Java", "Desktop Apps", "System Design"],
+    skills: ["Spring Boot", "JavaFX", "React Ecosystem", "Product Design"],
   },
 ]
 
