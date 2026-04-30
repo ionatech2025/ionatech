@@ -26,7 +26,7 @@ const PublicSite = () => {
         <About />
       </section>
 
-      <section id="MyProducts">
+      <section id="OurFocus">
         <Products />
       </section>
 
