@@ -125,11 +125,11 @@ const Products = () => {
                   ))}
                 </div>
 
-                {/* CTA */}
-                <button className="industry-card-cta">
+                {/* CTA - temporarily commented out, until products are ready*/}
+                {/* <button className="industry-card-cta">
                   <span>Explore Solution</span>
                   <ArrowRight className="w-4 h-4" />
-                </button>
+                </button> */}
               </div>
             </article>
           ))}

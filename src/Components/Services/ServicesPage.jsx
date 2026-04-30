@@ -26,8 +26,8 @@ const ServicesPage = () => {
   }
 
   const stats = [
-    { icon: <Users className="w-5 h-5" />, value: "200+", label: "Clients Served" },
-    { icon: <Zap className="w-5 h-5" />, value: "500+", label: "Projects Delivered" },
+    { icon: <Users className="w-5 h-5" />, value: "30+", label: "Clients Served" },
+    { icon: <Zap className="w-5 h-5" />, value: "50+", label: "Projects Delivered" },
     { icon: <TrendingUp className="w-5 h-5" />, value: "98%", label: "Client Satisfaction" },
   ]
 
