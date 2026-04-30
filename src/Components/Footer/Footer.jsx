@@ -1,19 +1,24 @@
-import React, { useState } from "react";
+import React from "react";
+import { useState } from "react";
 import { Github, Mail, MessageCircle, ArrowRight, MapPin, Zap } from "lucide-react";
 import Iona from '../../assets/Iona.jpg'
+
+import { useContactForm } from "../../hooks/useContactForm";
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
   const [email, setEmail] = useState("")
   const [subscribed, setSubscribed] = useState(false)
 
+  const { formData, setFormData, isLoading, result, submitForm } = useContactForm({
+    email: ""
+  });
+
   const handleSubscribe = (e) => {
-    e.preventDefault()
-    if (email) {
-      setSubscribed(true)
-      setEmail("")
-    }
-  }
+    e.preventDefault();
+    // You can add a default name or subject suffix here if needed
+    submitForm({ ...formData, name: "Send Updates" });
+  };
 
   const services = [
     { label: "Web Development", href: "#" },
@@ -166,19 +171,21 @@ const Footer = () => {
                 <form onSubmit={handleSubscribe} className="space-y-3">
                   <input
                     type="email"
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                    placeholder="your@email.com"
+                    value={formData.email}
+                    onChange={(e) => setFormData({ email: e.target.value })}
+                    placeholder="Enter email"
                     required
                     className="w-full bg-white/5 border border-white/10 rounded-xl py-3 px-4 text-white text-sm placeholder:text-slate-600 focus:outline-none focus:border-indigo-500/60 focus:bg-white/8 transition-all"
                   />
-                  <button
+                  <button disabled={isLoading}
                     type="submit"
                     className="group w-full flex items-center justify-center gap-2 bg-indigo-600 hover:bg-indigo-500 text-white text-sm font-bold py-3 rounded-xl transition-all duration-200 hover:-translate-y-0.5"
                   >
-                    Subscribe
+                    {isLoading ? "Subscribing..." : "Subscribe"}
                     <ArrowRight size={14} className="group-hover:translate-x-0.5 transition-transform" />
                   </button>
+                  {result === "success" && <p className="text-emerald-400 text-sm">{result}</p>}
+                  {result === "error" && <p className="text-red-400 text-sm">{result}</p>}
                 </form>
               )}
             </div>

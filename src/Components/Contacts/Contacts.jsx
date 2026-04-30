@@ -1,24 +1,35 @@
 "use client"
 
 import { useState } from "react"
+import { useContactForm } from "../../hooks/useContactForm";
 import {
   Mail, MapPin, Send, CheckCircle,
   AlertCircle, MessageCircle, ArrowUpRight,
   Zap, Clock, Shield
 } from "lucide-react"
 
-const Contacts = () => {
-  const [result, setResult] = useState("")
-  const [isLoading, setIsLoading] = useState(false)
-  const [focused, setFocused] = useState("")
-  const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    phone: "",
-    message: "",
-  })
 
-  const WHATSAPP_NUMBER = "256700966715"
+const Contacts = () => {
+  // const [result, setResult] = useState("")
+  // const [isLoading, setIsLoading] = useState(false)
+  // const [focused, setFocused] = useState("")
+  // const [formData, setFormData] = useState({
+  //   name: "",
+  //   email: "",
+  //   phone: "",
+  //   message: "",
+  // })
+
+  const { formData, setFormData, isLoading, result, submitForm } = useContactForm({
+    name: "", email: "", phone: "", message: ""
+  });
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    submitForm(formData);
+  };
+
+  const WHATSAPP_NUMBER = "256767896608"
 
   const handleInputChange = (e) => {
     const { name, value } = e.target
@@ -30,37 +41,39 @@ const Contacts = () => {
     window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${text}`, "_blank")
   }
 
-  const onSubmit = async (event) => {
-    event.preventDefault()
-    setIsLoading(true)
-    setResult("sending")
+  // const onSubmit = async (event) => {
+  //   event.preventDefault()
+  //   setIsLoading(true)
+  //   setResult("sending")
 
-    const payload = {
-      ...formData,
-      access_key: "059244e1-534a-434e-a22d-7add58b68447",
-      subject: `New iONA Tech Inquiry: ${formData.name}`,
-    }
+  //   const payload = {
+  //     ...formData,
+  //     access_key: "059244e1-534a-434e-a22d-7add58b68447",
+  //     subject: `New iONA Tech Inquiry: ${formData.name}`,
+  //   }
 
-    try {
-      const response = await fetch("https://api.web3forms.com/submit", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(payload),
-      })
-      const data = await response.json()
-      if (data.success) {
-        setResult("success")
-        setFormData({ name: "", email: "", phone: "", message: "" })
-      } else {
-        setResult("error")
-      }
-    } catch {
-      setResult("error")
-    } finally {
-      setIsLoading(false)
-      setTimeout(() => setResult(""), 6000)
-    }
-  }
+  //   try {
+  //     const response = await fetch("https://api.web3forms.com/submit", {
+  //       method: "POST",
+  //       headers: { "Content-Type": "application/json" },
+  //       body: JSON.stringify(payload),
+  //     })
+  //     const data = await response.json()
+  //     if (data.success) {
+  //       setResult("success")
+  //       setFormData({ name: "", email: "", phone: "", message: "" })
+  //     } else {
+  //       setResult("error")
+  //     }
+  //   } catch {
+  //     setResult("error")
+  //   } finally {
+  //     setIsLoading(false)
+  //     setTimeout(() => setResult(""), 6000)
+  //   }
+  // }
+
+
 
   const inputBase =
     "w-full bg-[#0d0d1a]/[0.03] border border-slate-200 rounded-xl px-5 py-3.5 text-sm text-slate-800 placeholder:text-slate-400 outline-none transition-all duration-200 focus:border-indigo-500 focus:bg-white focus:ring-4 focus:ring-indigo-500/8"
@@ -191,7 +204,7 @@ const Contacts = () => {
                 <p className="text-sm text-slate-400 mt-1">We'll put together a tailored proposal for you.</p>
               </div>
 
-              <form onSubmit={onSubmit} className="space-y-5">
+              <form onSubmit={handleSubmit} className="space-y-5">
 
                 <div className="grid sm:grid-cols-2 gap-5">
                   <div className="space-y-1.5">
