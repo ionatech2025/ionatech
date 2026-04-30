@@ -178,7 +178,7 @@ const ServicesPage = () => {
         <div className="container mx-auto px-6">
           <div className="text-center mb-16">
             <span className="inline-block px-4 py-1.5 rounded-full bg-blue-50 text-blue-600 text-sm font-semibold mb-4">
-              Our Programs
+              Our Services
             </span>
             <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4 text-slate-900">
               What We Build

@@ -97,7 +97,7 @@ const Tech = () => {
   }, [])
 
   const scrollToAbout = () => {
-    const aboutSection = document.getElementById('about')
+    const aboutSection = document.getElementById('ourFocus')
     if (aboutSection) {
       aboutSection.scrollIntoView({
         behavior: 'smooth',
@@ -123,7 +123,7 @@ const Tech = () => {
       icon: <Target className="w-6 h-6" />,
       title: "Results Driven",
       description: "Focused on delivering measurable outcomes and business value",
-      linkTo: "MyProducts"
+      linkTo: "OurFocus"
     }
   ]
 

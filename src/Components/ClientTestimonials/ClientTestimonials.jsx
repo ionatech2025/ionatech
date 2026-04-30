@@ -9,19 +9,19 @@ const ClientTestimonials = ({
       role: "Marketing Manager",
       company: "City Sites",
       image: "/images/chris.jpg",
-      quote: "The team at Iona Tech exceeded our expectations in every way. Their expertise and professionalism made the entire process seamless.",
+      quote: "The team at iONA Tech exceeded our expectations in every way. Their expertise and professionalism made the entire process seamless.",
     },
     {
       id: 2,
-      name: "Aisha Namutebi",
-      role: "Project Lead",
-      company: "GreenGrid",
-      image: "/assets/aisha.jpg",
-      quote: "They delivered ahead of schedule and kept communication crystal clear. Highly recommend for any project.",
+      name: "Paul Lwanawetaase",
+      role: "Founder",
+      company: "PrintforAChild Foundation",
+      image: "/images/paul.jpeg",
+      quote: "It's a team of professionals, efficient, effective and very good at communication. They worked on our project and delivered on time, and it's always a pleasure working with them.",
     },
     {
       id: 3,
-      name: "John Okello",
+      name: "Mirembe Esther",
       role: "CTO",
       company: "FinConnect",
       image: "/assets/john.jpg",
@@ -77,7 +77,7 @@ const ClientTestimonials = ({
                 </div>
                 <div>
                   <h4 className="text-white font-bold">{t.name}</h4>
-                  <p className="text-slate-500 text-xs uppercase tracking-widest">{t.company}</p>
+                  <p className="text-slate-500 text-xs uppercase tracking-widest">{t.company} | {t.role}</p>
                 </div>
               </div>
             </div>

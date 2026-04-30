@@ -1,5 +1,4 @@
 import React from "react";
-import Afrikan from "../../assets/Afrikan.jpg";
 import { Trophy, Rocket, ShieldCheck, ArrowRight } from "lucide-react";
 import "./Mission.css";
 

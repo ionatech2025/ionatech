@@ -54,7 +54,7 @@ const Products = () => {
   ];
 
   return (
-    <section className="industry-section">
+    <section className="industry-section" id='ourFocus'>
       {/* Background Elements */}
       <div className="industry-bg-gradient" />
       <div className="industry-bg-glow industry-bg-glow-1" />
