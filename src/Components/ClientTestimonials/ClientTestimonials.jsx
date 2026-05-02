@@ -21,11 +21,11 @@ const ClientTestimonials = ({
     },
     {
       id: 3,
-      name: "Mirembe Esther",
-      role: "CTO",
-      company: "FinConnect",
-      image: "/assets/john.jpg",
-      quote: "Solid engineering and a friendly team. We saw measurable improvements in performance and conversion.",
+      name: "Richard Musumba",
+      role: "Director",
+      company: "Makland Institute",
+      image: "/images/makland_boss.png",
+      quote: "We found the team at iONA spot on. They effectively delivered our project on time tailored on great ideas.",
     },
   ],
 }) => {
