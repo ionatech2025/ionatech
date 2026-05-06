@@ -1,0 +1,663 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>iONA Tech Uganda | Professional Pricing Plans</title>
+  <!-- Google Fonts & smooth rendering -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    /* Modern design system – clean, professional, graphics‑first */
+    :root {
+      /* Light mode (default) */
+      --bg-page: #F7F9FC;
+      --card-white: #FFFFFF;
+      --card-mid: #FCFDFF;
+      --border-light: #E9EDF2;
+      --border-strong: #DCE2EA;
+      --text-primary: #1A2C3E;
+      --text-secondary: #4A5B6E;
+      --text-tertiary: #7F8D9F;
+      --text-inverse: #FFFFFF;
+      --accent-starter: #8C8D91;
+      --accent-growth: #2266CC;
+      --accent-pro: #1B9C6F;
+      --badge-starter-bg: #F0F2F5;
+      --badge-starter-text: #3A4A5C;
+      --badge-growth-bg: #E8F0FE;
+      --badge-growth-text: #165CB0;
+      --badge-pro-bg: #E0F5EE;
+      --badge-pro-text: #0E6B4C;
+      --popular-bg: #FFF3E5;
+      --popular-text: #C75A00;
+      --check-circle: #E1F3E1;
+      --check-stroke: #2B7E3A;
+      --shadow-sm: 0 4px 12px rgba(0, 0, 0, 0.03), 0 1px 2px rgba(0, 0, 0, 0.05);
+      --shadow-md: 0 12px 28px rgba(0, 0, 0, 0.08);
+      --radius-card: 28px;
+      --radius-element: 16px;
+      --radius-pill: 40px;
+      --transition: all 0.25s ease;
+    }
+
+    [data-theme="dark"] {
+      --bg-page: #0F1217;
+      --card-white: #181E26;
+      --card-mid: #1F262F;
+      --border-light: #2A323C;
+      --border-strong: #37404A;
+      --text-primary: #EDF2F7;
+      --text-secondary: #B0C0D0;
+      --text-tertiary: #7C8B9C;
+      --accent-starter: #9BA0A8;
+      --accent-growth: #4B8FEC;
+      --accent-pro: #2DBA8C;
+      --badge-starter-bg: #282F38;
+      --badge-starter-text: #D0DCE8;
+      --badge-growth-bg: #1A2B44;
+      --badge-growth-text: #7CACF5;
+      --badge-pro-bg: #15352C;
+      --badge-pro-text: #4CDBA5;
+      --popular-bg: #2E241F;
+      --popular-text: #F7A35C;
+      --check-circle: #1F3825;
+      --check-stroke: #5DBA7A;
+      --shadow-sm: 0 4px 12px rgba(0, 0, 0, 0.3);
+      --shadow-md: 0 16px 32px rgba(0, 0, 0, 0.5);
+    }
+
+    body {
+      background: var(--bg-page);
+      font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      padding: 2rem 1.5rem;
+      color: var(--text-primary);
+      transition: background 0.2s, color 0.2s;
+    }
+
+    /* premium container */
+    .pricing-container {
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+
+    /* header + subhead: refined */
+     /* ============================================
+       PROMINENT HEADER DESIGN — Premium & Bold
+    ============================================ */
+    .price-header {
+      text-align: center;
+      margin-bottom: 3rem;
+      position: relative;
+    }
+
+    /* Main headline treatment — massive, commanding, refined */
+    .main-headline {
+      font-size: 4rem;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      background: linear-gradient(135deg, #1E2F5A 0%, #2B4A7A 40%, #F27B2A 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      margin-bottom: 0.75rem;
+      line-height: 1.2;
+      text-shadow: 0 2px 5px rgba(0,0,0,0.02);
+      position: relative;
+      display: inline-block;
+      padding: 0 0.5rem;
+    }
+
+    /* underline accent — premium flourish */
+    .main-headline::after {
+      content: '';
+      position: absolute;
+      bottom: -12px;
+      left: 10%;
+      width: 80%;
+      height: 4px;
+      background: linear-gradient(90deg, #F27B2A, #FFB347, #F27B2A);
+      border-radius: 4px;
+      opacity: 0.7;
+    }
+
+    /* tagline / subhead with elevated style */
+    .subhead {
+      font-size: 1.25rem;
+      font-weight: 500;
+      color: #2C3E66;
+      background: rgba(255, 255, 255, 0.75);
+      backdrop-filter: blur(2px);
+      display: inline-block;
+      padding: 0.6rem 2rem;
+      border-radius: 60px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03), 0 1px 2px rgba(0, 0, 0, 0.05);
+      border: 1px solid rgba(242, 123, 42, 0.2);
+      margin-top: 1rem;
+      letter-spacing: -0.2px;
+    }
+
+    /* optional: add a subtle badge/glow behind header */
+    .price-header .glow-badge {
+      display: inline-block;
+      background: #FEF5E8;
+      border-radius: 40px;
+      padding: 0.25rem 1rem;
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: #F27B2A;
+      margin-bottom: 1rem;
+      letter-spacing: 0.3px;
+      text-transform: uppercase;
+      border: 1px solid #FFE0B5;
+    }
+
+    /* responsive: tablet */
+    @media (max-width: 780px) {
+      .main-headline {
+        font-size: 2.8rem;
+      }
+      .subhead {
+        font-size: 1rem;
+        padding: 0.4rem 1.2rem;
+      }
+    }
+
+    @media (max-width: 550px) {
+      .main-headline {
+        font-size: 2.2rem;
+      }
+      .subhead {
+        font-size: 0.85rem;
+      }
+    }
+
+
+    /* grid with depth & separation */
+    .pricing-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.75rem;
+      align-items: stretch;
+      margin: 1rem 0 2rem;
+    }
+
+    @media (max-width: 1000px) {
+      .pricing-grid {
+        gap: 1.5rem;
+      }
+    }
+
+    @media (max-width: 880px) {
+      .pricing-grid {
+        grid-template-columns: 1fr;
+        max-width: 540px;
+        margin-left: auto;
+        margin-right: auto;
+      }
+    }
+
+    /* card premium style – like a high‑end design mockup */
+    .price-card {
+      background: var(--card-white);
+      border-radius: var(--radius-card);
+      transition: var(--transition);
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      border: 1px solid var(--border-light);
+      box-shadow: var(--shadow-sm);
+      backdrop-filter: blur(0px);
+      overflow: hidden;
+    }
+
+    .price-card:hover {
+      transform: translateY(-6px);
+      box-shadow: var(--shadow-md);
+      border-color: var(--border-strong);
+    }
+
+    /* top accent bar (graphic signature) */
+    .card-accent {
+      height: 6px;
+      width: 100%;
+      display: block;
+    }
+
+    .card-content {
+      padding: 1.8rem 1.8rem 2rem;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* badge row + popular pill */
+    .badge-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1rem;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+
+    .plan-badge {
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.02em;
+      padding: 0.25rem 0.85rem;
+      border-radius: 40px;
+      background: var(--badge-starter-bg);
+      color: var(--badge-starter-text);
+      text-transform: uppercase;
+    }
+
+    .popular-tag {
+      font-size: 0.7rem;
+      font-weight: 700;
+      background: var(--popular-bg);
+      color: var(--popular-text);
+      padding: 0.25rem 0.7rem;
+      border-radius: 30px;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      letter-spacing: -0.2px;
+    }
+
+    .popular-tag::before {
+      content: "★";
+      font-size: 0.7rem;
+      font-weight: normal;
+    }
+
+    .plan-name {
+      font-size: 1.75rem;
+      font-weight: 700;
+      line-height: 1.2;
+      margin: 0.5rem 0 0.25rem;
+      color: var(--text-primary);
+    }
+
+    .plan-desc {
+      font-size: 0.85rem;
+      color: var(--text-secondary);
+      line-height: 1.45;
+      margin-bottom: 1.5rem;
+      border-left: 3px solid var(--border-strong);
+      padding-left: 0.8rem;
+    }
+
+    .divider-light {
+      height: 1px;
+      background: var(--border-light);
+      margin: 1rem 0 1rem;
+    }
+
+    .section-label {
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      color: var(--text-tertiary);
+      margin: 0.5rem 0 0.75rem;
+    }
+
+    /* feature list */
+    .feature-list {
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .feature-item {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      font-size: 0.85rem;
+      color: var(--text-secondary);
+      line-height: 1.4;
+    }
+
+    .check-icon {
+      flex-shrink: 0;
+      width: 18px;
+      height: 18px;
+    }
+
+    .no-icon {
+      opacity: 0.5;
+      filter: grayscale(0.2);
+    }
+
+    /* cost card inside (elevated) */
+    .cost-widget {
+      background: var(--card-mid);
+      border-radius: 20px;
+      padding: 1.25rem;
+      margin-top: auto;
+      border: 1px solid var(--border-light);
+      transition: var(--transition);
+    }
+
+    .price-big {
+      font-size: 1.9rem;
+      font-weight: 800;
+      color: var(--text-primary);
+      line-height: 1;
+      letter-spacing: -0.02em;
+    }
+
+    .price-period {
+      font-size: 0.75rem;
+      color: var(--text-tertiary);
+      margin-top: 4px;
+      margin-bottom: 0.9rem;
+    }
+
+    .cost-row {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.75rem;
+      margin-bottom: 0.5rem;
+      color: var(--text-secondary);
+    }
+
+    .cost-row.highlight {
+      border-top: 1px solid var(--border-strong);
+      margin-top: 0.6rem;
+      padding-top: 0.7rem;
+      font-weight: 700;
+      color: var(--text-primary);
+      font-size: 0.8rem;
+    }
+
+    .cost-value {
+      font-weight: 600;
+    }
+
+    .footnote {
+      font-size: 0.7rem;
+      color: var(--text-tertiary);
+      margin-top: 0.8rem;
+      line-height: 1.4;
+    }
+
+    .mtn-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      background: #FDF4E6;
+      color: #B45F1B;
+      padding: 0.2rem 0.7rem;
+      border-radius: 50px;
+      font-size: 0.7rem;
+      font-weight: 600;
+      margin-top: 0.9rem;
+    }
+    [data-theme="dark"] .mtn-pill {
+      background: #2E2A24;
+      color: #F0B27A;
+    }
+
+    /* bottom info panel */
+    .info-panel {
+      background: var(--card-white);
+      border-radius: 20px;
+      padding: 1rem 1.5rem;
+      border: 1px solid var(--border-light);
+      font-size: 0.75rem;
+      color: var(--text-secondary);
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1rem;
+      margin-top: 1.5rem;
+    }
+
+    .action-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.9rem;
+      margin-top: 1.2rem;
+      justify-content: center;
+    }
+
+    .action-btn {
+      background: transparent;
+      border: 1px solid var(--border-strong);
+      padding: 0.6rem 1.3rem;
+      border-radius: 40px;
+      font-size: 0.8rem;
+      font-weight: 500;
+      color: var(--text-primary);
+      cursor: pointer;
+      transition: 0.2s;
+      font-family: inherit;
+      backdrop-filter: blur(2px);
+    }
+
+    .action-btn:hover {
+      background: var(--accent-growth);
+      border-color: var(--accent-growth);
+      color: white;
+      transform: translateY(-2px);
+    }
+
+    /* Theme toggle (professional detail) */
+    .theme-toggle {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      background: var(--card-white);
+      border: 1px solid var(--border-light);
+      border-radius: 60px;
+      padding: 0.6rem 1rem;
+      font-size: 0.8rem;
+      font-weight: 500;
+      cursor: pointer;
+      z-index: 1000;
+      backdrop-filter: blur(8px);
+      box-shadow: var(--shadow-sm);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      color: var(--text-primary);
+    }
+
+    /* responsive fine-tune */
+    @media (max-width: 580px) {
+      body {
+        padding: 1rem;
+      }
+      .card-content {
+        padding: 1.4rem;
+      }
+      .plan-name {
+        font-size: 1.5rem;
+      }
+      .price-big {
+        font-size: 1.6rem;
+      }
+    }
+
+    /* extra shine */
+    .price-card.mid-card .card-accent {
+      background: linear-gradient(90deg, var(--accent-growth), #4791FF);
+    }
+  </style>
+</head>
+<body>
+
+<div class="pricing-container">
+  <div class="price-header">
+    <!-- optional eye-catching badge (makes it more premium) -->
+    <div class="glow-badge">✦ premium packages ✦</div>
+    
+    <!-- main heading: dynamic gradient + prominent size -->
+    <h1 class="main-headline">
+      iONA Tech Premium Web Solution Packages
+    </h1>
+    
+    <!-- enriched subhead: descriptive, professional, engaging -->
+    <p class="subhead">
+      Tailored for impact · Built for growth · Powered by Uganda innovation
+    </p>
+  </div>
+
+  <div class="pricing-grid">
+    
+    <!-- STARTER card (We manage everything) -->
+    <div class="price-card">
+      <div class="card-accent" style="background: var(--accent-starter);"></div>
+      <div class="card-content">
+        <div class="badge-row">
+          <span class="plan-badge" style="background:var(--badge-starter-bg); color:var(--badge-starter-text);">Starter</span>
+        </div>
+        <div class="plan-name">We manage<br>everything</div>
+        <div class="plan-desc">Best for small businesses, salons, shops, and individuals launching their first site.</div>
+        <div class="divider-light"></div>
+        <div class="section-label">Included</div>
+        <div class="feature-list">
+          <div class="feature-item"><svg class="check-icon" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="9" fill="var(--check-circle)" stroke="none"/><path d="M6 10L9 13L14 7" stroke="var(--check-stroke)" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>Free website build — up to 5 pages</div>
+          <div class="feature-item"><svg class="check-icon" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="9" fill="var(--check-circle)" stroke="none"/><path d="M6 10L9 13L14 7" stroke="var(--check-stroke)" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>Mobile-first responsive design</div>
+          <div class="feature-item"><svg class="check-icon" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="9" fill="var(--check-circle)" stroke="none"/><path d="M6 10L9 13L14 7" stroke="var(--check-stroke)" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>Basic SEO setup</div>
+          <div class="feature-item"><svg class="check-icon" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="9" fill="var(--check-circle)" stroke="none"/><path d="M6 10L9 13L14 7" stroke="var(--check-stroke)" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>Updates handled by our team</div>
+          <div class="feature-item"><svg class="check-icon no-icon" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="9" fill="var(--border-light)" stroke="none"/><path d="M7 7L13 13M13 7L7 13" stroke="var(--text-tertiary)" stroke-width="1.5" stroke-linecap="round"/></svg>No client dashboard / CMS</div>
+        </div>
+        <div class="cost-widget">
+          <div class="section-label" style="margin:0 0 4px 0;">Estimated yearly cost</div>
+          <div class="price-big">UGX 174,000 – 443,000</div>
+          <div class="price-period">per year</div>
+          <div class="cost-row"><span>Domain Registration (year 1)</span><span class="cost-value">UGX 26,000 – 295,000</span></div>
+          <div class="cost-row"><span>Domain Renewal (yearly)</span><span class="cost-value">UGX 37,000 – 295,000</span></div>
+          <div class="cost-row"><span>Hosting (per year)</span><span class="cost-value">UGX 148,000</span></div>
+          <div class="cost-row"><span>Website build</span><span class="cost-value" style="color:var(--text-secondary);">Free</span></div>
+          <div class="cost-row highlight"><span>Total / year</span><span class="cost-value">UGX 174K – 443K</span></div>
+          <div class="footnote">≈ UGX 26,000 – 57,000/month. Content updates billed per request or optional bundle.</div>
+          <div class="mtn-pill">NOTE: Costs depend on domain & hosting choices</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- GROWTH card (Most popular) - refined highlight -->
+    <div class="price-card mid-card" style="border-top: 2px solid var(--accent-growth);">
+      <div class="card-accent" style="background: var(--accent-growth); height: 6px;"></div>
+      <div class="card-content">
+        <div class="badge-row">
+          <span class="plan-badge" style="background:var(--badge-growth-bg); color:var(--badge-growth-text);">Growth</span>
+          <span class="popular-tag">Most popular</span>
+        </div>
+        <div class="plan-name">You manage<br>your website</div>
+        <div class="plan-desc">Best for schools, NGOs, and growing businesses that want to update content without calling us.</div>
+        <div class="divider-light"></div>
+        <div class="section-label">Everything in Starter, plus</div>
+        <div class="feature-list">
+          <div class="feature-item"><svg class="check-icon" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="9" fill="var(--check-circle)" stroke="none"/><path d="M6 10L9 13L14 7" stroke="var(--check-stroke)" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>Admin dashboard / CMS access</div>
+          <div class="feature-item"><svg class="check-icon" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="9" fill="var(--check-circle)" stroke="none"/><path d="M6 10L9 13L14 7" stroke="var(--check-stroke)" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>Edit text, images, blog posts freely</div>
+          <div class="feature-item"><svg class="check-icon" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="9" fill="var(--check-circle)" stroke="none"/><path d="M6 10L9 13L14 7" stroke="var(--check-stroke)" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>1 onboarding training session</div>
+          <div class="feature-item"><svg class="check-icon" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="9" fill="var(--check-circle)" stroke="none"/><path d="M6 10L9 13L14 7" stroke="var(--check-stroke)" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>Priority technical support</div>
+          <div class="feature-item"><svg class="check-icon" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="9" fill="var(--check-circle)" stroke="none"/><path d="M6 10L9 13L14 7" stroke="var(--check-stroke)" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>WhatsApp support line included</div>
+        </div>
+        <div class="cost-widget">
+          <div class="section-label" style="margin:0 0 4px 0;">Estimated yearly cost</div>
+          <div class="price-big">UGX 674,000 – 943,000</div>
+          <div class="price-period">per year · save up to 20% paying annually</div>
+          <div class="cost-row"><span>Domain Registration (year 1)</span><span class="cost-value">UGX 26,000 – 295,000</span></div>
+          <div class="cost-row"><span>Domain Renewal (yearly)</span><span class="cost-value">UGX 37,000 – 295,000</span></div>
+          <div class="cost-row"><span>Hosting (per year)</span><span class="cost-value">UGX 148,000</span></div>
+          <div class="cost-row"><span>Dashboard Build</span><span class="cost-value">UGX 500,000</span></div>
+          <div class="cost-row"><span>Website Build</span><span class="cost-value" style="color:var(--text-secondary);">Free</span></div>
+          <div class="cost-row highlight"><span>Total / year</span><span class="cost-value">UGX 674K – 943K</span></div>
+          <div class="footnote">Annual plan unlocks 15–20% off.</div>
+          <div class="mtn-pill">NOTE: Ongoing Dashboard Maintenance fees optionally apply per request or per month</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- PRO card (fully custom) -->
+    <div class="price-card">
+      <div class="card-accent" style="background: var(--accent-pro);"></div>
+      <div class="card-content">
+        <div class="badge-row">
+          <span class="plan-badge" style="background:var(--badge-pro-bg); color:var(--badge-pro-text);">Pro</span>
+        </div>
+        <div class="plan-name">Fully custom,<br>fully yours</div>
+        <div class="plan-desc">Best for companies, churches, hotels, and organisations that need a serious online presence.</div>
+        <div class="divider-light"></div>
+        <div class="section-label">Everything in Growth, plus</div>
+        <div class="feature-list">
+          <div class="feature-item"><svg class="check-icon" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="9" fill="var(--check-circle)" stroke="none"/><path d="M6 10L9 13L14 7" stroke="var(--check-stroke)" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>Custom design — unlimited pages</div>
+          <div class="feature-item"><svg class="check-icon" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="9" fill="var(--check-circle)" stroke="none"/><path d="M6 10L9 13L14 7" stroke="var(--check-stroke)" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>Advanced UI/UX + performance pass</div>
+          <div class="feature-item"><svg class="check-icon" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="9" fill="var(--check-circle)" stroke="none"/><path d="M6 10L9 13L14 7" stroke="var(--check-stroke)" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>Full SEO optimisation</div>
+          <div class="feature-item"><svg class="check-icon" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="9" fill="var(--check-circle)" stroke="none"/><path d="M6 10L9 13L14 7" stroke="var(--check-stroke)" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>Admin & Other User dashboards included</div>
+          <div class="feature-item"><svg class="check-icon" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="9" fill="var(--check-circle)" stroke="none"/><path d="M6 10L9 13L14 7" stroke="var(--check-stroke)" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>Dedicated support + maintenance plan</div>
+          <div class="feature-item"><svg class="check-icon" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="9" fill="var(--check-circle)" stroke="none"/><path d="M6 10L9 13L14 7" stroke="var(--check-stroke)" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>Secure User Authentication & Authorization</div>
+          <div class="feature-item"><svg class="check-icon" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="9" fill="var(--check-circle)" stroke="none"/><path d="M6 10L9 13L14 7" stroke="var(--check-stroke)" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>API Integration</div>
+          <div class="feature-item"><svg class="check-icon" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="9" fill="var(--check-circle)" stroke="none"/><path d="M6 10L9 13L14 7" stroke="var(--check-stroke)" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>Custom Functionality</div>
+          <div class="feature-item"><svg class="check-icon" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="9" fill="var(--check-circle)" stroke="none"/><path d="M6 10L9 13L14 7" stroke="var(--check-stroke)" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>Custom Reporting & Analytics</div>
+
+        </div>
+        <div class="cost-widget">
+          <div class="section-label" style="margin:0 0 4px 0;">Estimated yearly cost (year 1)</div>
+          <div class="price-big">UGX 3,174,000 – 26,195,000</div>
+          <div class="price-period">first year, includes one-time build fee</div>
+          <div class="cost-row"><span>One-time build fee</span><span class="cost-value">UGX 3M – 25M</span></div>
+          <div class="cost-row"><span>Domain Registration (year 1)</span><span class="cost-value">UGX 26,000 – 295,000</span></div>
+          <div class="cost-row"><span>Domain Renewal (yearly)</span><span class="cost-value">UGX 37,000 – 295,000</span></div>
+          <div class="cost-row"><span>Hosting (per year)</span><span class="cost-value">UGX 148,000 - 900,000</span></div>
+          <div class="cost-row highlight"><span>Total yr 1</span><span class="cost-value">UGX 3.174M – 26.195M</span></div>
+          <div class="footnote">No build costs from Year 2. Maintenance keeps site secure and updated.</div>
+          <div class="mtn-pill">NOTE: Ongoing Dashboard Maintenance fees optionally apply per request or per month</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- fine print & benchmarking panel -->
+  <div class="info-panel">
+    <span>📊 Rate used: UGX 3,700 per USD</span>
+    <span>🔐 Contacts: ionatec002@gmail.com | 0767 896 608</span>
+    <span>📄 All figures approximate and exclusive of 18% VAT if applicable</span>
+    <span>© 2026 iONA Tech. All rights reserved.</span>
+  </div>
+
+</div>
+
+<!-- theme toggle (graphics artifact + dark mode) -->
+<button class="theme-toggle" id="themeToggleBtn">🌓 Switch to Dark Mode</button>
+
+<script>
+  (function() {
+    const storageKey = 'iona_theme_pref';
+    const getSystemTheme = () => window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+    const setTheme = (theme) => {
+      document.documentElement.setAttribute('data-theme', theme);
+      const btn = document.getElementById('themeToggleBtn');
+      if (btn) {
+        btn.innerHTML = theme === 'dark' ? '☀️ Switch to Light Mode' : '🌙 Switch to Dark Mode';
+      }
+      localStorage.setItem(storageKey, theme);
+    };
+    const savedTheme = localStorage.getItem(storageKey);
+    const initialTheme = savedTheme || getSystemTheme();
+    setTheme(initialTheme);
+    const toggleBtn = document.getElementById('themeToggleBtn');
+    if (toggleBtn) {
+      toggleBtn.addEventListener('click', () => {
+        const current = document.documentElement.getAttribute('data-theme');
+        const next = current === 'dark' ? 'light' : 'dark';
+        setTheme(next);
+      });
+    }
+  })();
+</script>
+</body>
+</html>
