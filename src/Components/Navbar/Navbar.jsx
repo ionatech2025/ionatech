@@ -31,6 +31,7 @@ const Navbar = () => {
     { to: 'hero', label: 'Home' },
     { to: 'programs', label: 'Services' }, // Pointing to the merged section ID
     { to: 'OurFocus', label: 'Our Focus' },
+    { to: 'pricing', label: 'Pricing' },
     { to: 'testimonials-section', label: 'Team' }
   ]
 
