@@ -8,6 +8,7 @@ import Contacts from './Components/Contacts/Contacts'
 import Footer from './Components/Footer/Footer'
 import ClientTestimonials from './Components/ClientTestimonials/ClientTestimonials'
 import ServicesPage from './Components/Services/ServicesPage'
+import Pricing from './Components/Pricing/Pricing'
 
 const PublicSite = () => {
   return (
@@ -28,6 +29,10 @@ const PublicSite = () => {
 
       <section id="OurFocus">
         <Products />
+      </section>
+
+      <section id="pricing">
+        <Pricing />
       </section>
 
       <section id="testimonials-section">
