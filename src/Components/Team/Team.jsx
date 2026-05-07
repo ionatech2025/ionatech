@@ -198,7 +198,6 @@ export default function Team() {
                   decoding="async"
                   style={styles.profileImg}
                 />
-                <div style={styles.imageAccent} />
               </div>
 
               <div style={styles.profileInfo}>
@@ -431,27 +430,21 @@ const styles = {
   },
   imageWrap: {
     position: "relative",
-    flexShrink: 0,
+    flex: "0 0 180px",
+    width: 180,
+    height: 180,
+    borderRadius: 8,
+    overflow: "hidden",
+    border: "1px solid rgba(148,163,184,0.24)",
+    background: "#0f172a",
   },
   profileImg: {
-    width: 140,
-    height: 160,
+    width: "100%",
+    height: "100%",
     objectFit: "cover",
+    objectPosition: "center top",
     borderRadius: 8,
     display: "block",
-    position: "relative",
-    zIndex: 1,
-  },
-  imageAccent: {
-    position: "absolute",
-    bottom: -8,
-    right: -8,
-    width: 140,
-    height: 160,
-    borderRadius: 8,
-    border: "2px solid #22d3ee",
-    opacity: 0.22,
-    zIndex: 0,
   },
   profileInfo: {
     flex: 1,
