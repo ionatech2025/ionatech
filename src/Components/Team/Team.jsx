@@ -9,7 +9,7 @@ const teamMembers = [
     image: "/images/elijah.jpg",
     tag: "Leadership",
     description:
-      "With a rich background in journalism, public health, and digital marketing communication, Elijah leads iONA Tech with a focus on digital transformation and high-quality software development.",
+      "With a rich background in journalism, public health, and digital marketing communication, Elijah leads IONATECH with a focus on digital transformation and high-quality software development.",
     skills: ["Digital Strategy", "Public Health Tech", "Marketing"],
   },
   {
@@ -122,7 +122,7 @@ export default function Team() {
 
         {/* Header */}
         <div style={styles.header}>
-          <p style={styles.eyebrow}>The people behind iONA</p>
+          <p style={styles.eyebrow}>The people behind IONATECH</p>
           <h2 style={styles.heading}>Built by founders,<br />driven by purpose</h2>
         </div>
 

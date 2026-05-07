@@ -37,4 +37,4 @@ jobs:
       - name: Build
         run: npm run build
         env:
-          VITE_SITE_URL: https://www.ionatech.co
+          VITE_SITE_URL: https://ionatec.com

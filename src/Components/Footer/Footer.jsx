@@ -19,17 +19,19 @@ const Footer = () => {
   };
 
   const services = [
-    { label: "Web Development", href: "#" },
-    { label: "AI Integration", href: "#" },
-    { label: "Health Systems", href: "#" },
-    { label: "Cloud Solutions", href: "#" },
+    { label: "Web Development", href: "/services/web-development" },
+    { label: "Mobile App Development", href: "/services/mobile-app-development" },
+    { label: "AI/ML & Deep Learning", href: "/services/ai-ml-deep-learning" },
+    { label: "Agentic AI Modelling", href: "/services/agentic-ai-modelling" },
+    { label: "KPI Dashboards", href: "/services/kpi-monitoring-dashboards" },
+    { label: "Custom Software Builds", href: "/services/custom-software-development" },
   ]
 
   const focus = [
-    { label: "Education", href: "#" },
-    { label: "Digital Health", href: "#" },
-    { label: "Agri-Fintech", href: "#" },
-    { label: "Impact in Uganda", href: "#" },
+    { label: "Education", href: "/#OurFocus" },
+    { label: "Digital Health", href: "/#OurFocus" },
+    { label: "Agri-Fintech", href: "/#OurFocus" },
+    { label: "Impact in Uganda", href: "/#OurFocus" },
   ]
 
   const socials = [
@@ -81,15 +83,15 @@ const Footer = () => {
             {/* Logo */}
             <div className="flex items-center gap-3">
               <div className="w-10 h-10 rounded-xl overflow-hidden ring-1 ring-white/10">
-                <img src={Iona} alt="iONA Tech" loading="lazy" decoding="async" className="w-full h-full object-cover" />
+                <img src={Iona} alt="IONATECH" loading="lazy" decoding="async" className="w-full h-full object-cover" />
               </div>
               <span className="text-xl font-black text-white tracking-tight">
-                iONA <span className="text-indigo-400">Tech</span>
+                IONA<span className="text-indigo-400">TECH</span>
               </span>
             </div>
 
             <p className="text-slate-400 text-sm leading-relaxed max-w-xs">
-              Architecting digital futures in Uganda through high-impact EdTech, Health, and AI-inclusive engineering.
+              Web development, mobile app development, AI/ML, KPI dashboards and custom software engineering from Kampala, Uganda.
             </p>
 
             {/* Location badge */}
@@ -197,7 +199,7 @@ const Footer = () => {
         {/* Bottom bar */}
         <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
           <p className="text-slate-600 text-xs">
-            © {currentYear} iONA Tech Ltd. Built with purpose in Kampala, Uganda.
+            © {currentYear} IONATECH. Built with purpose in Kampala, Uganda.
           </p>
           <div className="flex items-center gap-6">
             {["Privacy Policy", "Terms of Service"].map((item) => (

@@ -2,17 +2,26 @@ import { useEffect, useState } from 'react'
 import {
   Sparkles, ArrowRight, Code, Smartphone,
   Palette, Monitor, X, CheckCircle,
-  Star, Clock, Award, Zap, Users, TrendingUp
+  Star, Clock, Award, Zap, Users, TrendingUp,
+  BrainCircuit, Bot, BarChart3, Cloud
 } from 'lucide-react'
+import { seoServices } from '../../data/seo'
 
-// Asset Imports
-import coda from '../../assets/coda.jpg'
-import mobile from '../../assets/mobile.jpeg'
-import graphics from '../../assets/graphics.jpeg'
-import Pc from '../../assets/Pc.jpg'
-import AppDev from '../../assets/AppDev.png'
-import phoneApp from '../../assets/phoneApp.png'
-import ManDesk from '../../assets/ManDesk.png'
+const iconMap = {
+  BarChart3,
+  Bot,
+  BrainCircuit,
+  Cloud,
+  Code,
+  Monitor,
+  Palette,
+  Smartphone,
+}
+
+function ServiceIcon({ name, className = 'w-6 h-6' }) {
+  const Icon = iconMap[name] || Code
+  return <Icon className={className} aria-hidden="true" />
+}
 
 const ServicesPage = () => {
   const [selectedProgram, setSelectedProgram] = useState(null)
@@ -37,81 +46,15 @@ const ServicesPage = () => {
   }
 
   const stats = [
-    { icon: <Users className="w-5 h-5" />, value: "30+", label: "Clients Served" },
+    { icon: <Users className="w-5 h-5" />, value: "8", label: "Service Lines" },
     { icon: <Zap className="w-5 h-5" />, value: "50+", label: "Projects Delivered" },
     { icon: <TrendingUp className="w-5 h-5" />, value: "98%", label: "Client Satisfaction" },
   ]
 
-  const programs = [
-    {
-      id: 1,
-      image: coda,
-      icon: AppDev,
-      title: "Web Development",
-      tagline: "Build Your Digital Presence",
-      description: "Modern, responsive websites and web applications built with cutting-edge technologies that scale with your business.",
-      features: ["React & Next.js", "Node.js Backend", "Database Design", "API Integration"],
-      iconComponent: <Code className="w-6 h-6" />,
-      accentColor: "from-blue-500 to-cyan-500",
-      bgAccent: "bg-blue-500",
-      details: {
-        overview: "Transform your digital presence with our comprehensive web development services. We focus on speed, security, and scalability to deliver solutions that drive real business results.",
-        technologies: ["React.js", "Next.js", "Node.js", "Tailwind CSS", "PostgreSQL", "AWS"],
-        benefits: ["Responsive Design", "SEO Optimized", "Fast Loading", "Secure & Scalable"]
-      }
-    },
-    {
-      id: 2,
-      image: mobile,
-      icon: phoneApp,
-      title: "Mobile Development",
-      tagline: "Apps That Users Love",
-      description: "Cross-platform mobile applications for iOS and Android that deliver seamless experiences and drive engagement.",
-      features: ["React Native", "Flutter", "App Store Deployment", "Push Notifications"],
-      iconComponent: <Smartphone className="w-6 h-6" />,
-      accentColor: "from-violet-500 to-purple-500",
-      bgAccent: "bg-violet-500",
-      details: {
-        overview: "Build powerful mobile applications that engage users and drive results. We handle everything from design to App Store launch with a focus on performance and user experience.",
-        technologies: ["React Native", "Flutter", "Firebase", "Swift", "Kotlin"],
-        benefits: ["Native Performance", "Offline Capabilities", "User-Centric UX", "Analytics Built-in"]
-      }
-    },
-    {
-      id: 3,
-      image: graphics,
-      icon: ManDesk,
-      title: "Graphics Design",
-      tagline: "Design That Converts",
-      description: "Creative visual solutions including branding, UI/UX design, and marketing materials that capture attention.",
-      features: ["Brand Identity", "UI/UX Design", "Digital Marketing", "Motion Graphics"],
-      iconComponent: <Palette className="w-6 h-6" />,
-      accentColor: "from-rose-500 to-pink-500",
-      bgAccent: "bg-rose-500",
-      details: {
-        overview: "Create stunning visual experiences that captivate your audience and build brand authority. Our designs are strategic, not just aesthetic.",
-        technologies: ["Figma", "Adobe Creative Suite", "After Effects", "Blender"],
-        benefits: ["Brand Consistency", "Professional Quality", "Modern Aesthetics", "Conversion Focused"]
-      }
-    },
-    {
-      id: 4,
-      image: Pc,
-      icon: ManDesk,
-      title: "Desktop Applications",
-      tagline: "Enterprise-Grade Software",
-      description: "Powerful software solutions for Windows, macOS, and Linux built for performance and reliability.",
-      features: ["Cross-Platform", "Native Performance", "System Integration", "Auto-Updates"],
-      iconComponent: <Monitor className="w-6 h-6" />,
-      accentColor: "from-emerald-500 to-teal-500",
-      bgAccent: "bg-emerald-500",
-      details: {
-        overview: "Develop robust desktop applications designed for heavy performance and deep system integration. Perfect for enterprise workflows and specialized tools.",
-        technologies: ["Electron", "Tauri", "Python", "C++", "Rust"],
-        benefits: ["Data Security", "Native Feel", "Offline Reliability", "Enterprise Ready"]
-      }
-    }
-  ]
+  const programs = seoServices.map((service) => ({
+    ...service,
+    iconComponent: <ServiceIcon name={service.iconName} />,
+  }))
 
   return (
     <div className="min-h-screen bg-slate-50 font-sans text-slate-900">
@@ -141,16 +84,16 @@ const ServicesPage = () => {
               <span>Professional Services</span>
             </button>
 
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight mb-6 leading-tight text-white">
-              Solutions That Drive{' '}
+            <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight mb-6 leading-tight text-white">
+              Web, Mobile, AI and Dashboard Services That Drive{' '}
               <span className="bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent">
                 Real Results
               </span>
-            </h1>
+            </h2>
 
             <p className="text-lg md:text-xl text-slate-400 mb-10 leading-relaxed max-w-2xl mx-auto">
-              We build digital products that transform businesses. From concept to launch,
-              our team delivers excellence at every step.
+              We build search-ready websites, native and Flutter mobile apps, AI/ML systems,
+              agentic workflows, KPI dashboards and custom software products for growing teams.
             </p>
 
             {/* Stats Row */}
@@ -193,17 +136,18 @@ const ServicesPage = () => {
               Our Services
             </span>
             <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4 text-slate-900">
-              What We Build
+              What We Build for Companies
             </h2>
-            <p className="text-slate-500 max-w-xl mx-auto text-lg">
-              Tailored development services designed to meet the unique challenges of your industry.
+            <p className="text-slate-500 max-w-3xl mx-auto text-lg">
+              Tailored technology services for web development, mobile app development, AI/ML,
+              deep learning, monitoring dashboards, APIs, cloud systems and custom business tools.
             </p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8 max-w-6xl mx-auto">
             {programs.map((program) => (
               <div
-                key={program.id}
+                key={program.slug}
                 className="group relative bg-white rounded-2xl overflow-hidden border border-slate-200 hover:border-slate-300 transition-all duration-500 hover:shadow-2xl hover:shadow-slate-200/50"
               >
                 {/* Card Content */}
@@ -212,7 +156,7 @@ const ServicesPage = () => {
                   <div className="relative w-full md:w-2/5 h-48 md:h-auto overflow-hidden">
                     <img
                       src={program.image}
-                      alt={program.title}
+                      alt={`${program.title} services by IONATECH`}
                       className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
                       loading="lazy"
                       decoding="async"
@@ -252,17 +196,53 @@ const ServicesPage = () => {
                       </div>
                     </div>
 
-                    <button
-                      onClick={() => setSelectedProgram(program)}
-                      className={`w-full flex items-center justify-center gap-2 py-3.5 rounded-xl bg-gradient-to-r ${program.accentColor} text-white font-semibold transition-all shadow-lg opacity-90 hover:opacity-100 hover:shadow-xl group/btn`}
-                    >
-                      View Details
-                      <ArrowRight size={16} className="group-hover/btn:translate-x-1 transition-transform" />
-                    </button>
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                      <button
+                        onClick={() => setSelectedProgram(program)}
+                        className={`flex items-center justify-center gap-2 py-3.5 rounded-xl bg-gradient-to-r ${program.accentColor} text-white font-semibold transition-all shadow-lg opacity-90 hover:opacity-100 hover:shadow-xl group/btn`}
+                      >
+                        Quick View
+                        <ArrowRight size={16} className="group-hover/btn:translate-x-1 transition-transform" />
+                      </button>
+                      <a
+                        href={program.path}
+                        className="flex items-center justify-center gap-2 py-3.5 rounded-xl border border-slate-200 text-slate-800 font-semibold transition-all hover:border-slate-300 hover:bg-slate-50"
+                      >
+                        Service Page
+                      </a>
+                    </div>
                   </div>
                 </div>
               </div>
             ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="py-16 bg-slate-50">
+        <div className="container mx-auto px-6">
+          <div className="max-w-6xl mx-auto grid gap-8 lg:grid-cols-[0.85fr_1.15fr] items-start">
+            <div>
+              <span className="inline-block px-4 py-1.5 rounded-full bg-cyan-50 text-cyan-700 text-sm font-semibold mb-4">
+                2026 Search-Ready Engineering
+              </span>
+              <h2 className="text-3xl md:text-4xl font-bold text-slate-900">
+                Built for discovery, speed and measurable business outcomes.
+              </h2>
+            </div>
+            <div className="grid gap-4 sm:grid-cols-2">
+              {[
+                'Technical SEO for company websites, service pages and landing pages',
+                'Native Android, Kotlin, iOS, Swift, Flutter and React Native app builds',
+                'AI/ML, deep learning, agentic AI modelling and workflow automation',
+                'KPI dashboards, monitoring dashboards, reporting systems and custom builds',
+              ].map((item) => (
+                <div key={item} className="flex gap-3 rounded-xl border border-slate-200 bg-white p-4">
+                  <CheckCircle size={18} className="mt-0.5 shrink-0 text-emerald-600" />
+                  <p className="text-sm leading-6 text-slate-700">{item}</p>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </section>
@@ -275,7 +255,7 @@ const ServicesPage = () => {
               Ready to Start Your Project?
             </h2>
             <p className="text-slate-400 mb-8 text-lg">
-              Let&apos;s discuss how we can help transform your ideas into reality.
+              Let&apos;s discuss your web, mobile, AI, dashboard or custom software project.
             </p>
             <button
               onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
@@ -343,7 +323,7 @@ const ServicesPage = () => {
                   <Star size={18} className="text-amber-500 fill-amber-500" /> Overview
                 </h3>
                 <p className="text-slate-600 leading-relaxed">
-                  {selectedProgram.details.overview}
+                  {selectedProgram.summary}
                 </p>
               </div>
 
@@ -355,7 +335,7 @@ const ServicesPage = () => {
                     Technologies
                   </h3>
                   <div className="flex flex-wrap gap-2">
-                    {selectedProgram.details.technologies.map((tech, i) => (
+                    {selectedProgram.technologies.map((tech, i) => (
                       <span
                         key={i}
                         className="px-3 py-1.5 bg-slate-100 rounded-lg text-sm font-medium text-slate-700"
@@ -370,7 +350,7 @@ const ServicesPage = () => {
                 <div>
                   <h3 className="text-lg font-bold mb-4 text-slate-800">Key Benefits</h3>
                   <div className="space-y-2">
-                    {selectedProgram.details.benefits.map((benefit, i) => (
+                    {selectedProgram.outcomes.map((benefit, i) => (
                       <div
                         key={i}
                         className="flex items-center gap-3 text-slate-600"

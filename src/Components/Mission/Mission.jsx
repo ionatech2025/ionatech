@@ -26,7 +26,7 @@ const Mission = () => {
               <img
                 className="mission-image"
                 src='/images/team_of_developers.jpg'
-                alt="iONA Tech team collaborating in a modern workspace"
+                alt="IONATECH team collaborating in a modern workspace"
                 loading="lazy"
                 decoding="async"
               />
@@ -54,7 +54,7 @@ const Mission = () => {
 
             {/* Body Text */}
             <p className="mission-text">
-              At iONA Tech, we don&apos;t just write code; we architect digital futures.
+              At IONATECH, we don&apos;t just write code; we architect digital futures.
               We understand that in a crowded market, your technology needs to be your
               greatest competitive advantage. We bridge the gap between creative design
               and robust engineering to help you <strong>make it big.</strong>

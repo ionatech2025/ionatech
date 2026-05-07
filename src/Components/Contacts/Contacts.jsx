@@ -31,7 +31,7 @@ const Contacts = () => {
   }
 
   const sendToWhatsApp = () => {
-    const text = `Hi iONA Tech! My name is ${formData.name}.%0A%0A*Message:* ${formData.message}`
+    const text = `Hi IONATECH! My name is ${formData.name}.%0A%0A*Message:* ${formData.message}`
     window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${text}`, "_blank")
   }
 

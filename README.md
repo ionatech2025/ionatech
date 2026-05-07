@@ -1,7 +1,7 @@
 
-# iONA Tech Website
+# IONATECH Website
 
-The official marketing site for iONA Tech. React 18 + Vite SPA, deployed on Vercel.
+The official marketing site for IONATECH. React 18 + Vite SPA, deployed on Vercel.
 
 ## Local development
 
@@ -54,7 +54,7 @@ admin form's icon dropdown auto-derives from `iconNames`.
 ## Admin panel
 
 Visit `/admin` and sign in. From there you can edit products (with client,
-project URL, and tech stack — useful for showcasing real iONA work),
+project URL, and tech stack — useful for showcasing real IONATECH work),
 services, team members, the about block, and contact info. Image fields
 support either pasting a path/URL or uploading a file (stored in Vercel
 Blob).

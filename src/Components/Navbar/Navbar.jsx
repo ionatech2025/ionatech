@@ -1,7 +1,6 @@
 import { useState, useEffect } from 'react'
 import './Navbar.css'
 import Iona from '../../assets/Iona.jpg'
-import { Link } from 'react-scroll'
 import { Menu, X } from 'lucide-react'
 
 const Navbar = () => {
@@ -26,14 +25,34 @@ const Navbar = () => {
     setMobileMenu(false)
   }
 
-  // Updated Navigation Items
   const navItems = [
-    { to: 'hero', label: 'Home' },
-    { to: 'programs', label: 'Services' }, // Pointing to the merged section ID
-    { to: 'OurFocus', label: 'Our Focus' },
-    { to: 'pricing', label: 'Pricing' },
-    { to: 'testimonials-section', label: 'Team' }
+    { href: '/', label: 'Home' },
+    { href: '/services', label: 'Services' },
+    { href: '/#OurFocus', label: 'Our Focus' },
+    { href: '/#pricing', label: 'Pricing' },
+    { href: '/#testimonials-section', label: 'Team' }
   ]
+
+  const handleNavClick = (event, href) => {
+    const isHome = window.location.pathname === '/'
+
+    if (href === '/' && isHome) {
+      event.preventDefault()
+      window.scrollTo({ top: 0, behavior: 'smooth' })
+      window.history.pushState(null, '', '/')
+    }
+
+    if (href.startsWith('/#') && isHome) {
+      const target = document.getElementById(href.slice(2))
+      if (target) {
+        event.preventDefault()
+        target.scrollIntoView({ behavior: 'smooth', block: 'start' })
+        window.history.pushState(null, '', href)
+      }
+    }
+
+    closeMobileMenu()
+  }
 
   return (
     <nav
@@ -41,43 +60,37 @@ const Navbar = () => {
       role="navigation"
       aria-label="Primary"
     >
-      <div className="navbar-container">
-        {/* Logo */}
-        <div className="navbar-logo">
+        <div className="navbar-container">
+          {/* Logo */}
+        <a href="/" className="navbar-logo" onClick={(event) => handleNavClick(event, '/')}>
           <img src={Iona} alt="" aria-hidden="true" className="logo" />
-          <span className="logo-text">iONA Tech</span>
-        </div>
+          <span className="logo-text">IONATECH</span>
+        </a>
 
         {/* Desktop Navigation */}
         <ul className="navbar-menu">
           {navItems.map((item) => (
-            <li key={item.to} className="navbar-item">
-              <Link
-                to={item.to}
-                smooth={true}
-                offset={-80}
-                duration={500}
+            <li key={item.href} className="navbar-item">
+              <a
+                href={item.href}
                 className="navbar-link"
-                onClick={closeMobileMenu}
+                onClick={(event) => handleNavClick(event, item.href)}
               >
                 {item.label}
-              </Link>
+              </a>
             </li>
           ))}
         </ul>
 
         {/* Contact Button */}
         <div className="navbar-cta">
-          <Link
-            to='contact_us'
-            smooth={true}
-            offset={-80}
-            duration={500}
+          <a
+            href="/#contact_us"
             className='contact-button'
-            onClick={closeMobileMenu}
+            onClick={(event) => handleNavClick(event, '/#contact_us')}
           >
             Contact Us
-          </Link>
+          </a>
         </div>
 
         {/* Mobile Menu Button */}
@@ -101,28 +114,22 @@ const Navbar = () => {
       >
         <div className="mobile-menu-content">
           {navItems.map((item) => (
-            <Link
-              key={item.to}
-              to={item.to}
-              smooth={true}
-              offset={-80}
-              duration={500}
+            <a
+              key={item.href}
+              href={item.href}
               className="mobile-menu-link"
-              onClick={closeMobileMenu}
+              onClick={(event) => handleNavClick(event, item.href)}
             >
               {item.label}
-            </Link>
+            </a>
           ))}
-          <Link
-            to='contact_us'
-            smooth={true}
-            offset={-80}
-            duration={500}
+          <a
+            href="/#contact_us"
             className='mobile-contact-button'
-            onClick={closeMobileMenu}
+            onClick={(event) => handleNavClick(event, '/#contact_us')}
           >
             Contact Us
-          </Link>
+          </a>
         </div>
       </div>
     </nav>

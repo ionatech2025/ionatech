@@ -8,7 +8,7 @@ const ClientTestimonials = ({
       role: "Marketing Manager",
       company: "City Sites",
       image: "/images/chris.jpg",
-      quote: "The team at iONA Tech exceeded our expectations in every way. Their expertise and professionalism made the entire process seamless.",
+      quote: "The team at IONATECH exceeded our expectations in every way. Their expertise and professionalism made the entire process seamless.",
     },
     {
       id: 2,
@@ -24,7 +24,7 @@ const ClientTestimonials = ({
       role: "Director",
       company: "Makland Institute",
       image: "/images/makland_boss.png",
-      quote: "We found the team at iONA spot on. They effectively delivered our project on time tailored on great ideas.",
+      quote: "We found the team at IONATECH spot on. They effectively delivered our project on time tailored on great ideas.",
     },
   ],
 }) => {

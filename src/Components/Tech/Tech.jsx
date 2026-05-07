@@ -97,7 +97,7 @@ const Tech = () => {
   }, [])
 
   const scrollToAbout = () => {
-    const aboutSection = document.getElementById('ourFocus')
+    const aboutSection = document.getElementById('OurFocus')
     if (aboutSection) {
       aboutSection.scrollIntoView({
         behavior: 'smooth',
@@ -109,21 +109,21 @@ const Tech = () => {
   const features = [
     {
       icon: <Rocket className="w-6 h-6" />,
-      title: "Innovation First",
-      description: "Cutting-edge technology solutions that drive your business forward",
+      title: "Web Development & SEO",
+      description: "Fast company websites, web apps and service pages built for discovery",
       linkTo: "programs"
     },
     {
       icon: <Users className="w-6 h-6" />,
-      title: "Expert Team",
-      description: "Skilled professionals with years of experience in digital transformation",
-      linkTo: "testimonials-section"
+      title: "Mobile App Development",
+      description: "Native Android, iOS, Kotlin, Flutter and cross-platform app builds",
+      linkTo: "programs"
     },
     {
       icon: <Target className="w-6 h-6" />,
-      title: "Results Driven",
-      description: "Focused on delivering measurable outcomes and business value",
-      linkTo: "OurFocus"
+      title: "AI, Dashboards & Automation",
+      description: "AI/ML systems, KPI dashboards, monitoring tools and custom software",
+      linkTo: "programs"
     }
   ]
 
@@ -162,19 +162,20 @@ const Tech = () => {
           <div className="tech-header">
             <div className="tech-badge">
               <Sparkles className="w-4 h-4" />
-              <span>iONA Tech</span>
+              <span>IONATECH</span>
             </div>
 
             <h1 className="tech-title">
-              Let&apos;s create something
-              <span className="tech-accent"> extraordinary</span>
+              Web Development, Mobile Apps,
+              <span className="tech-accent"> AI and Dashboards</span>
               <span className="tech-accent">  </span>
-              together!
+              for growing teams
             </h1>
 
             <p className="tech-description">
-              At iONA Tech, we believe in turning ideas into reality. Whether you&apos;re a startup, a growing business,
-              or an established brand, we are here to help you stand out, connect, and thrive in the digital space.
+              IONATECH builds SEO-ready websites, native and Flutter mobile apps, AI/ML
+              systems, KPI monitoring dashboards and custom software for companies in Uganda
+              and beyond.
             </p>
           </div>
 

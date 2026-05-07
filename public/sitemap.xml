@@ -1,38 +1,63 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://www.ionatech.co/</loc>
+    <loc>https://ionatec.com/</loc>
+    <lastmod>2026-05-07</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://www.ionatech.co/#mission</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
+    <loc>https://ionatec.com/services</loc>
+    <lastmod>2026-05-07</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.95</priority>
   </url>
   <url>
-    <loc>https://www.ionatech.co/#descrip</loc>
+    <loc>https://ionatec.com/services/web-development</loc>
+    <lastmod>2026-05-07</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
+    <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://www.ionatech.co/#OurFocus</loc>
+    <loc>https://ionatec.com/services/mobile-app-development</loc>
+    <lastmod>2026-05-07</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
+    <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://www.ionatech.co/#pricing</loc>
+    <loc>https://ionatec.com/services/ai-ml-deep-learning</loc>
+    <lastmod>2026-05-07</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
+    <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://www.ionatech.co/#testimonials-section</loc>
+    <loc>https://ionatec.com/services/agentic-ai-modelling</loc>
+    <lastmod>2026-05-07</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
+    <priority>0.88</priority>
   </url>
   <url>
-    <loc>https://www.ionatech.co/#contact_us</loc>
+    <loc>https://ionatec.com/services/kpi-monitoring-dashboards</loc>
+    <lastmod>2026-05-07</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
+    <priority>0.88</priority>
+  </url>
+  <url>
+    <loc>https://ionatec.com/services/custom-software-development</loc>
+    <lastmod>2026-05-07</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.88</priority>
+  </url>
+  <url>
+    <loc>https://ionatec.com/services/cloud-api-integrations</loc>
+    <lastmod>2026-05-07</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.82</priority>
+  </url>
+  <url>
+    <loc>https://ionatec.com/services/ui-ux-graphic-design</loc>
+    <lastmod>2026-05-07</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.82</priority>
   </url>
 </urlset>

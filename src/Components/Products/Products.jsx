@@ -69,7 +69,7 @@ const Products = () => {
             Industry <span className="industry-title-accent">Focus Areas</span>
           </h2>
           <p className="industry-subtitle">
-            Positioning iONA Tech as an elite engineering partner, delivering transformative
+            Positioning IONATECH as an elite engineering partner, delivering transformative
             solutions across Uganda&apos;s most critical sectors.
           </p>
         </div>
