@@ -1,61 +1,15 @@
-import Navbar from './Components/Navbar/Navbar'
-import Tech from './Components/Tech/Tech'
-import Mission from './Components/Mission/Mission'
-import Products from './Components/Products/Products'
-import Team from './Components/Team/Team'
-import Contacts from './Components/Contacts/Contacts'
-import Footer from './Components/Footer/Footer'
-import ClientTestimonials from './Components/ClientTestimonials/ClientTestimonials'
-import ServicesPage from './Components/Services/ServicesPage'
-import Pricing from './Components/Pricing/Pricing'
+import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import PublicSite from './PublicSite'
+import AdminApp from './admin/AdminApp'
 
 const App = () => {
   return (
-    <div>
-      <Navbar />
-
-      {/* Hero Section */}
-      <section id="hero">
-        <Tech />
-      </section>
-
-      {/* Mission Section */}
-      <section id="mission">
-        <Mission />
-      </section>
-
-      {/* Services Section */}
-      <section id="descrip">
-        <ServicesPage />
-      </section>
-
-
-
-      {/* Products Section */}
-      <section id="OurFocus">
-        <Products />
-      </section>
-
-      {/* Pricing Section */}
-      <section id="pricing">
-        <Pricing />
-      </section>
-
-      {/* Team Section */}
-      <section id="testimonials-section">
-        <Team />
-      </section>
-
-      {/* Contact Section */}
-      <section id="contact_us">
-        <Contacts />
-      </section>
-
-      {/*ClientTestimonials Section*/}
-      <ClientTestimonials />
-
-      <Footer />
-    </div>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/admin/*" element={<AdminApp />} />
+        <Route path="/*" element={<PublicSite />} />
+      </Routes>
+    </BrowserRouter>
   )
 }
 

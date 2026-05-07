@@ -1,8 +1,8 @@
 import Navbar from './Components/Navbar/Navbar'
 import Tech from './Components/Tech/Tech'
-import About from './Components/About/About'
+import Mission from './Components/Mission/Mission'
 import Products from './Components/Products/Products'
-import Testimonials from './Components/Testimonials/Testimonials'
+import Team from './Components/Team/Team'
 import Contacts from './Components/Contacts/Contacts'
 import Footer from './Components/Footer/Footer'
 import ClientTestimonials from './Components/ClientTestimonials/ClientTestimonials'
@@ -18,12 +18,12 @@ const PublicSite = () => {
         <Tech />
       </section>
 
-      <section id="descrip">
-        <ServicesPage />
+      <section id="mission">
+        <Mission />
       </section>
 
-      <section id="about">
-        <About />
+      <section id="descrip">
+        <ServicesPage />
       </section>
 
       <section id="OurFocus">
@@ -35,7 +35,7 @@ const PublicSite = () => {
       </section>
 
       <section id="testimonials-section">
-        <Testimonials />
+        <Team />
       </section>
 
       <section id="contact_us">
