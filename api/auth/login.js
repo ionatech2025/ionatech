@@ -3,9 +3,10 @@ import { json, methodNotAllowed, badRequest, serverError, tooManyRequests } from
 import { verifyPassword, signToken, setAuthCookie, readJson } from '../_lib/auth.js';
 import { rateLimit } from '../_lib/rate-limit.js';
 
-// Two-tier rate limit: a per-IP burst cap (cheap defence against drive-by
-// scanners) and a slower per-(IP, email) cap so a single user doesn't lock
-// themselves out from a typo while still blocking targeted brute force.
+// Two-tier rate limit (fixed-window counters; see api/_lib/rate-limit.js):
+// a per-IP burst cap (cheap defence against drive-by scanners) and a slower
+// per-(IP, email) cap so a single user doesn't lock themselves out from a
+// typo while still blocking targeted brute force.
 const BURST = { limit: 20, windowMs: 60_000 };
 const PER_EMAIL = { limit: 5, windowMs: 15 * 60_000 };
 

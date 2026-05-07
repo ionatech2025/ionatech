@@ -3,9 +3,9 @@ import { sanitizeRichText, sanitizePlainText } from './sanitize-server.js';
 
 /**
  * Shared Zod schemas for admin write endpoints. Each schema models the JSON
- * body the admin form posts. Strings are trimmed and length-bounded; rich-text
- * fields are passed through sanitizeRichText so stored content cannot contain
- * <script>/<style>/href/style attributes regardless of what the client sent.
+ * body the admin form posts. Strings are sanitized first (HTML stripped or
+ * narrowed to an allow-list) and *then* length-checked, so a payload like
+ * "<b></b>" cannot satisfy a min(1) field by virtue of the markup.
  *
  * `.partial()` versions accept the same shape with every field optional —
  * suitable for PATCH endpoints that update only a subset of fields.
@@ -13,13 +13,33 @@ import { sanitizeRichText, sanitizePlainText } from './sanitize-server.js';
 
 const SLUG_RE = /^[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$/;
 
-const slug = z.string().trim().min(1).max(80).regex(SLUG_RE, 'invalid_slug');
-const title = z.string().trim().min(1).max(200).transform(sanitizePlainText);
+// Data-URL allow-list. Explicitly excludes `data:image/svg+xml` because SVG
+// can carry script payloads (the same reason we reject SVG uploads).
+const SAFE_DATA_URL_RE = /^data:image\/(?:jpeg|png|gif|webp|avif);(?:[a-z0-9-]+;)*base64,/i;
+
+const trimToString = (v) => (typeof v === 'string' ? v.trim() : '');
+
+const slug = z.preprocess(trimToString, z.string().min(1).max(80).regex(SLUG_RE, 'invalid_slug'));
+
+const title = z.preprocess(
+  (v) => sanitizePlainText(typeof v === 'string' ? v.trim() : ''),
+  z.string().min(1).max(200),
+);
+
 const shortText = (max) =>
-  z.string().trim().max(max).transform(sanitizePlainText);
+  z.preprocess(
+    (v) => sanitizePlainText(typeof v === 'string' ? v.trim() : ''),
+    z.string().max(max),
+  );
+
 const richText = (max) =>
-  z.string().trim().max(max).transform(sanitizeRichText);
+  z.preprocess(
+    (v) => sanitizeRichText(typeof v === 'string' ? v.trim() : ''),
+    z.string().max(max),
+  );
+
 const url = z.string().trim().max(2048).url().or(z.literal('').transform(() => ''));
+
 const pathOrUrl = z
   .string()
   .trim()
@@ -30,13 +50,17 @@ const pathOrUrl = z
       v.startsWith('/') ||
       /^https?:\/\//i.test(v) ||
       v.startsWith('blob:') ||
-      v.startsWith('data:image/'),
+      SAFE_DATA_URL_RE.test(v),
     'invalid_image_url',
   );
+
 const sortOrder = z.number().int().min(-32_768).max(32_767);
 const published = z.boolean();
 
-const techStackEntry = z.string().trim().min(1).max(40).transform(sanitizePlainText);
+const techStackEntry = z.preprocess(
+  (v) => sanitizePlainText(typeof v === 'string' ? v.trim() : ''),
+  z.string().min(1).max(40),
+);
 
 export const ProductCreate = z.object({
   slug,

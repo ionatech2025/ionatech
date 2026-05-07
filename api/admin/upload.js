@@ -17,6 +17,16 @@ const ALLOWED_MIME = new Set([
   'image/avif',
 ]);
 
+// Canonical extension for each detected MIME — used to normalize the
+// uploaded filename so we never store .png bytes under a .jpg name.
+const MIME_TO_EXT = {
+  'image/jpeg': 'jpg',
+  'image/png': 'png',
+  'image/gif': 'gif',
+  'image/webp': 'webp',
+  'image/avif': 'avif',
+};
+
 // First-bytes magic numbers. Trusting Content-Type from the client alone is
 // unsafe — a .php pretending to be image/png still uploads. Inspecting the
 // file header gives us a real check that the bytes match an image format we
@@ -75,8 +85,18 @@ export default async function handler(req, res) {
       throw e;
     }
 
-    const headerType = String(req.headers['content-type'] || '').toLowerCase().split(';')[0].trim();
-    if (headerType && !ALLOWED_MIME.has(headerType)) {
+    // The Content-Type header is advisory only — browsers send
+    // `application/octet-stream` for files where File.type is empty, and we
+    // can't trust client-set types anyway. Magic-byte detection on the
+    // buffered body is the real allow-list. We do, however, reject up front
+    // when the client *claims* a type that isn't an allowed image (lets us
+    // fail fast on obvious misuse without buffering the body).
+    const headerType = String(req.headers['content-type'] || '')
+      .toLowerCase()
+      .split(';')[0]
+      .trim();
+    const headerIsClaimedImage = headerType.startsWith('image/');
+    if (headerIsClaimedImage && !ALLOWED_MIME.has(headerType)) {
       return badRequest(res, 'unsupported_content_type');
     }
 
@@ -93,11 +113,23 @@ export default async function handler(req, res) {
 
     const detected = detectMime(buffer);
     if (!detected) return badRequest(res, 'unrecognized_image');
-    if (headerType && headerType !== detected) {
+    // Only enforce a header/body match when the client gave us a real image
+    // MIME; octet-stream / empty / non-image headers are tolerated.
+    if (headerIsClaimedImage && headerType !== detected) {
       return badRequest(res, 'content_type_mismatch');
     }
 
-    const blob = await put(filename, buffer, {
+    // Normalize the stored filename to the canonical extension for the
+    // detected type so we never end up with foo.jpg holding PNG bytes.
+    const dot = filename.lastIndexOf('.');
+    const claimedExt = filename.slice(dot + 1).toLowerCase();
+    const canonicalExt = MIME_TO_EXT[detected];
+    const expectedAliases = canonicalExt === 'jpg' ? ['jpg', 'jpeg'] : [canonicalExt];
+    const finalFilename = expectedAliases.includes(claimedExt)
+      ? filename
+      : `${filename.slice(0, dot)}.${canonicalExt}`;
+
+    const blob = await put(finalFilename, buffer, {
       access: 'public',
       addRandomSuffix: true,
       contentType: detected,
