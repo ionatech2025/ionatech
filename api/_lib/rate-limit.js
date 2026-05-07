@@ -1,5 +1,7 @@
 /**
- * Tiny in-memory token bucket keyed by IP+identifier (e.g. "ip|email").
+ * Tiny in-memory fixed-window counter keyed by IP+identifier (e.g.
+ * "ip|email"). Each bucket counts requests in a `windowMs` window that
+ * resets when the next request arrives after the window has elapsed.
  *
  * Caveats:
  *   - Per-instance only. Vercel Functions reuse instances under Fluid Compute,
@@ -7,6 +9,9 @@
  *     this is enough; promote to Upstash/Edge Config if abuse is observed.
  *   - Memory grows with unique keys; we evict entries that have not been seen
  *     within the window so the table cannot grow unbounded.
+ *   - Fixed windows allow a boundary burst (up to 2× `limit` in 2× `windowMs`).
+ *     For a login endpoint with bcrypt this is acceptable; swap in a sliding
+ *     window if tighter accounting is needed.
  */
 
 const buckets = new Map();
