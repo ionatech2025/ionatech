@@ -23,7 +23,7 @@ export default function ProductEdit() {
       onSubmit={(e) => { e.preventDefault(); save(item) }}
       className="space-y-5 bg-white p-8 rounded-2xl border border-slate-100"
     >
-      <PageHeader title={isNew ? 'New product' : 'Edit product'} subtitle="Showcase real IONATECH work — fill in the client and links to make it a case study." />
+      <PageHeader title={isNew ? 'New product' : 'Edit product'} subtitle="Showcase real iONA TECH work — fill in the client and links to make it a case study." />
 
       <Field label="Slug" hint="URL-safe identifier. Must be unique."><TextInput value={item.slug} onChange={(v) => set({ slug: v })} required /></Field>
       <Field label="Title"><TextInput value={item.title} onChange={(v) => set({ title: v })} required /></Field>

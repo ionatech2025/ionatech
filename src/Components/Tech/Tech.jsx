@@ -150,7 +150,7 @@ export default function Tech() {
           </h1>
 
           <p className="tech-description">
-            IONATECH builds SEO-ready websites, native and Flutter mobile apps, AI/ML
+            iONA TECH builds SEO-ready websites, native and Flutter mobile apps, AI/ML
             systems, agentic workflows, KPI monitoring dashboards and custom software
             for teams in Uganda and beyond.
           </p>
@@ -174,7 +174,7 @@ export default function Tech() {
           <div className="tech-project-panel">
             <div className="tech-panel-topline">
               <span>Project router</span>
-              <span>IONATECH</span>
+              <span>iONA TECH</span>
             </div>
             <div className="tech-route-grid">
               {projectRoutes.map((route) => (
