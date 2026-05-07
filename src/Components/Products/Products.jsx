@@ -52,16 +52,17 @@ const Products = () => {
   ];
 
   return (
-    <section className="industry-section" id='ourFocus'>
+    <section className="industry-section ion-section" id='ourFocus'>
       {/* Background Elements */}
       <div className="industry-bg-gradient" />
-      <div className="industry-bg-glow industry-bg-glow-1" />
-      <div className="industry-bg-glow industry-bg-glow-2" />
+      <div className="ion-aurora" aria-hidden="true" />
+      <div className="ion-aurora ion-aurora-right" aria-hidden="true" />
 
       <div className="industry-container">
         {/* Header */}
         <div className="industry-header">
-          <div className="industry-badge">
+          <div className="industry-badge ion-badge">
+            <span className="ion-live-dot" />
             <Sparkles className="w-4 h-4" />
             <span>Uganda&apos;s Digital Transformation</span>
           </div>
@@ -69,7 +70,7 @@ const Products = () => {
             Industry <span className="industry-title-accent">Focus Areas</span>
           </h2>
           <p className="industry-subtitle">
-            Positioning iONA Tech as an elite engineering partner, delivering transformative
+            Positioning IONATECH as an elite engineering partner, delivering transformative
             solutions across Uganda&apos;s most critical sectors.
           </p>
         </div>
@@ -79,7 +80,7 @@ const Products = () => {
           {focusAreas.map((area, index) => (
             <article
               key={area.id}
-              className="industry-card"
+              className="industry-card ion-card"
               style={{ animationDelay: `${index * 0.15}s` }}
             >
               {/* Strategic Impact Tag */}
@@ -88,7 +89,7 @@ const Products = () => {
               </div>
 
               {/* Image */}
-              <div className="industry-card-image-wrapper">
+              <div className="industry-card-image-wrapper ion-image-frame">
                 <img
                   src={area.image}
                   alt={area.title}
@@ -102,7 +103,7 @@ const Products = () => {
               <div className="industry-card-content">
                 {/* Icon & Subtitle */}
                 <div className="industry-card-meta">
-                  <div className="industry-card-icon">
+                  <div className="industry-card-icon ion-icon-tile">
                     {area.icon}
                   </div>
                   <span className="industry-card-subtitle">{area.subtitle}</span>

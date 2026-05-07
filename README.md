@@ -1,7 +1,7 @@
 
-# iONA Tech Website
+# IONATECH Website
 
-The official marketing site for iONA Tech. React 18 + Vite SPA, deployed on Vercel.
+The official marketing site for IONATECH. React 18 + Vite SPA, deployed on Vercel.
 
 ## Local development
 
@@ -54,7 +54,7 @@ admin form's icon dropdown auto-derives from `iconNames`.
 ## Admin panel
 
 Visit `/admin` and sign in. From there you can edit products (with client,
-project URL, and tech stack — useful for showcasing real iONA work),
+project URL, and tech stack — useful for showcasing real IONATECH work),
 services, team members, the about block, and contact info. Image fields
 support either pasting a path/URL or uploading a file (stored in Vercel
 Blob).
@@ -115,13 +115,3 @@ database branch per preview.
 
 The duplicate `iona-tech/` subdirectory is a frozen historical copy from a
 2025-11 merge — do not edit. It will be removed in a separate cleanup commit.
-=======
-# React + Vite
-
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
-
-Currently, two official plugins are available:
-
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
->>>>>>> origin/first_improvements

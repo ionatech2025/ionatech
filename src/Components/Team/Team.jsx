@@ -9,7 +9,7 @@ const teamMembers = [
     image: "/images/elijah.jpg",
     tag: "Leadership",
     description:
-      "With a rich background in journalism, public health, and digital marketing communication, Elijah leads iONA Tech with a focus on digital transformation and high-quality software development.",
+      "With a rich background in journalism, public health, and digital marketing communication, Elijah leads IONATECH with a focus on digital transformation and high-quality software development.",
     skills: ["Digital Strategy", "Public Health Tech", "Marketing"],
   },
   {
@@ -65,11 +65,11 @@ const teamMembers = [
 ]
 
 const tagColors = {
-  Leadership: { bg: "#e8f4fd", text: "#1a6fa8", dot: "#2490d6" },
-  Frontend: { bg: "#edf7ee", text: "#1a6b35", dot: "#28a745" },
-  Fullstack: { bg: "#f0ecfe", text: "#5a35b8", dot: "#7c5cbf" },
-  "ML & Cloud": { bg: "#fff4e5", text: "#a05c00", dot: "#e08a00" },
-  Backend: { bg: "#fdecea", text: "#a3302b", dot: "#e53935" },
+  Leadership: { bg: "rgba(34, 211, 238, 0.12)", text: "#67e8f9", dot: "#22d3ee" },
+  Frontend: { bg: "rgba(52, 211, 153, 0.12)", text: "#86efac", dot: "#34d399" },
+  Fullstack: { bg: "rgba(56, 189, 248, 0.12)", text: "#7dd3fc", dot: "#38bdf8" },
+  "ML & Cloud": { bg: "rgba(247, 201, 72, 0.12)", text: "#f7c948", dot: "#f7c948" },
+  Backend: { bg: "rgba(96, 165, 250, 0.12)", text: "#93c5fd", dot: "#60a5fa" },
 }
 
 export default function Team() {
@@ -114,7 +114,9 @@ export default function Team() {
   const tag = tagColors[member.tag] || tagColors["Frontend"]
 
   return (
-    <section style={styles.section}>
+    <section className="ion-section" style={styles.section}>
+      <div className="ion-aurora" aria-hidden="true" />
+      <div className="ion-aurora ion-aurora-right" aria-hidden="true" />
       {/* Background grid */}
       <div style={styles.gridBg} aria-hidden />
 
@@ -122,7 +124,7 @@ export default function Team() {
 
         {/* Header */}
         <div style={styles.header}>
-          <p style={styles.eyebrow}>The people behind iONA</p>
+          <p style={styles.eyebrow}>The people behind IONATECH</p>
           <h2 style={styles.heading}>Built by founders,<br />driven by purpose</h2>
         </div>
 
@@ -139,8 +141,8 @@ export default function Team() {
                   onClick={() => pick(i)}
                   style={{
                     ...styles.sidebarItem,
-                    background: i === active ? "#f8f9ff" : "transparent",
-                    borderLeft: i === active ? "3px solid #3d5afe" : "3px solid transparent",
+                    background: i === active ? "rgba(56, 189, 248, 0.1)" : "transparent",
+                    borderLeft: i === active ? "3px solid #22d3ee" : "3px solid transparent",
                   }}
                 >
                   <div style={styles.avatarSmall}>
@@ -154,7 +156,7 @@ export default function Team() {
                     {i === active && <div style={styles.avatarRing} />}
                   </div>
                   <div style={styles.sidebarText}>
-                    <p style={{ ...styles.sidebarName, color: i === active ? "#1a1a2e" : "#666" }}>
+                    <p style={{ ...styles.sidebarName, color: i === active ? "#ffffff" : "rgba(226,232,240,0.64)" }}>
                       {m.name}
                     </p>
                     <span style={{ ...styles.tagPill, background: t.bg, color: t.text }}>
@@ -196,7 +198,6 @@ export default function Team() {
                   decoding="async"
                   style={styles.profileImg}
                 />
-                <div style={styles.imageAccent} />
               </div>
 
               <div style={styles.profileInfo}>
@@ -230,7 +231,7 @@ export default function Team() {
               <span style={{
                 ...styles.autoplayDot,
                 background: isPlaying ? "#3d5afe" : "#ccc",
-                boxShadow: isPlaying ? "0 0 0 3px rgba(61,90,254,0.15)" : "none",
+                boxShadow: isPlaying ? "0 0 0 5px rgba(247,201,72,0.12)" : "none",
               }} />
               {isPlaying ? "Auto-advancing" : "Paused"}
             </button>
@@ -245,7 +246,7 @@ export default function Team() {
               onClick={() => pick(i)}
               style={{
                 ...styles.dot,
-                background: i === active ? "#3d5afe" : "#d1d5db",
+                background: i === active ? "#22d3ee" : "rgba(148,163,184,0.3)",
                 width: i === active ? 28 : 8,
               }}
               aria-label={`Go to ${teamMembers[i].name}`}
@@ -262,18 +263,14 @@ const styles = {
   section: {
     position: "relative",
     padding: "96px 0",
-    background: "#fafafa",
-    fontFamily: "'DM Sans', 'Segoe UI', sans-serif",
+    background: "transparent",
+    fontFamily: "'Outfit', 'Segoe UI', sans-serif",
     overflow: "hidden",
   },
   gridBg: {
     position: "absolute",
     inset: 0,
-    backgroundImage: `
-      linear-gradient(rgba(61,90,254,0.04) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(61,90,254,0.04) 1px, transparent 1px)
-    `,
-    backgroundSize: "48px 48px",
+    display: "none",
     pointerEvents: "none",
   },
   container: {
@@ -287,20 +284,20 @@ const styles = {
   },
   eyebrow: {
     fontSize: 12,
-    fontWeight: 600,
-    letterSpacing: "0.12em",
-    textTransform: "uppercase",
-    color: "#3d5afe",
+    fontWeight: 800,
+    letterSpacing: 0,
+    textTransform: "none",
+    color: "#22d3ee",
     marginBottom: 12,
     margin: "0 0 12px",
   },
   heading: {
     fontSize: "clamp(32px, 4vw, 52px)",
-    fontWeight: 700,
-    color: "#0d0d1a",
+    fontWeight: 800,
+    color: "#f8fafc",
     lineHeight: 1.15,
     margin: 0,
-    letterSpacing: "-0.02em",
+    letterSpacing: 0,
   },
   layout: {
     display: "flex",
@@ -319,7 +316,7 @@ const styles = {
     alignItems: "center",
     gap: 12,
     padding: "12px 14px",
-    borderRadius: 12,
+    borderRadius: 8,
     border: "none",
     cursor: "pointer",
     textAlign: "left",
@@ -352,7 +349,7 @@ const styles = {
   },
   sidebarName: {
     fontSize: 13,
-    fontWeight: 600,
+    fontWeight: 800,
     margin: "0 0 4px",
     whiteSpace: "nowrap",
     overflow: "hidden",
@@ -364,9 +361,9 @@ const styles = {
     alignItems: "center",
     gap: 5,
     fontSize: 11,
-    fontWeight: 600,
+    fontWeight: 800,
     padding: "2px 8px",
-    borderRadius: 20,
+    borderRadius: 8,
   },
   tagDot: {
     width: 6,
@@ -376,28 +373,29 @@ const styles = {
   },
   card: {
     flex: 1,
-    background: "#fff",
-    borderRadius: 24,
-    border: "1px solid #e8eaf6",
+    background: "linear-gradient(180deg, rgba(15, 23, 42, 0.82), rgba(8, 13, 24, 0.74))",
+    borderRadius: 8,
+    border: "1px solid rgba(148,163,184,0.22)",
     overflow: "hidden",
-    boxShadow: "0 4px 40px rgba(61,90,254,0.06)",
+    boxShadow: "0 26px 60px -34px rgba(56,189,248,0.55)",
+    backdropFilter: "blur(18px)",
   },
   cardTop: {
     display: "flex",
     justifyContent: "space-between",
     alignItems: "center",
     padding: "20px 28px",
-    borderBottom: "1px solid #f0f0f0",
+    borderBottom: "1px solid rgba(148,163,184,0.16)",
   },
   tagBig: {
     display: "inline-flex",
     alignItems: "center",
     gap: 6,
     fontSize: 12,
-    fontWeight: 700,
+    fontWeight: 800,
     padding: "5px 12px",
-    borderRadius: 20,
-    letterSpacing: "0.04em",
+    borderRadius: 8,
+    letterSpacing: 0,
   },
   navRow: {
     display: "flex",
@@ -407,20 +405,20 @@ const styles = {
   navBtn: {
     width: 34,
     height: 34,
-    borderRadius: 10,
-    border: "1px solid #e0e0e0",
-    background: "#fff",
+    borderRadius: 8,
+    border: "1px solid rgba(255,255,255,0.14)",
+    background: "rgba(255,255,255,0.06)",
     cursor: "pointer",
     display: "flex",
     alignItems: "center",
     justifyContent: "center",
-    color: "#555",
+    color: "#f8fafc",
     transition: "all 0.2s",
   },
   counter: {
     fontSize: 12,
-    fontWeight: 600,
-    color: "#999",
+    fontWeight: 800,
+    color: "rgba(226,232,240,0.58)",
     minWidth: 40,
     textAlign: "center",
   },
@@ -432,27 +430,21 @@ const styles = {
   },
   imageWrap: {
     position: "relative",
-    flexShrink: 0,
+    flex: "0 0 180px",
+    width: 180,
+    height: 180,
+    borderRadius: 8,
+    overflow: "hidden",
+    border: "1px solid rgba(148,163,184,0.24)",
+    background: "#0f172a",
   },
   profileImg: {
-    width: 140,
-    height: 160,
+    width: "100%",
+    height: "100%",
     objectFit: "cover",
-    borderRadius: 16,
+    objectPosition: "center top",
+    borderRadius: 8,
     display: "block",
-    position: "relative",
-    zIndex: 1,
-  },
-  imageAccent: {
-    position: "absolute",
-    bottom: -8,
-    right: -8,
-    width: 140,
-    height: 160,
-    borderRadius: 16,
-    border: "2px solid #3d5afe",
-    opacity: 0.2,
-    zIndex: 0,
   },
   profileInfo: {
     flex: 1,
@@ -460,23 +452,23 @@ const styles = {
   },
   memberName: {
     fontSize: 26,
-    fontWeight: 700,
-    color: "#0d0d1a",
+    fontWeight: 800,
+    color: "#ffffff",
     margin: "0 0 4px",
-    letterSpacing: "-0.02em",
+    letterSpacing: 0,
   },
   memberRole: {
     fontSize: 13,
-    fontWeight: 600,
-    color: "#3d5afe",
+    fontWeight: 800,
+    color: "#22d3ee",
     margin: "0 0 16px",
-    textTransform: "uppercase",
-    letterSpacing: "0.06em",
+    textTransform: "none",
+    letterSpacing: 0,
   },
   memberDesc: {
     fontSize: 15,
     lineHeight: 1.7,
-    color: "#555",
+    color: "rgba(226,232,240,0.72)",
     margin: "0 0 20px",
   },
   skills: {
@@ -486,20 +478,21 @@ const styles = {
   },
   skillChip: {
     fontSize: 12,
-    fontWeight: 600,
-    color: "#3d5afe",
-    background: "#eef0ff",
+    fontWeight: 800,
+    color: "rgba(226,232,240,0.82)",
+    background: "rgba(15,23,42,0.52)",
     padding: "5px 12px",
-    borderRadius: 20,
+    borderRadius: 8,
+    border: "1px solid rgba(148,163,184,0.18)",
   },
   progressBar: {
     height: 3,
-    background: "#f0f0f0",
+    background: "rgba(148,163,184,0.18)",
     margin: "0 28px",
   },
   progressFill: {
     height: "100%",
-    background: "#3d5afe",
+    background: "linear-gradient(90deg, #22d3ee, #f7c948)",
     borderRadius: 2,
     transition: "width 0.4s ease",
   },
@@ -512,10 +505,10 @@ const styles = {
     border: "none",
     cursor: "pointer",
     fontSize: 11,
-    fontWeight: 600,
-    color: "#999",
-    letterSpacing: "0.06em",
-    textTransform: "uppercase",
+    fontWeight: 800,
+    color: "rgba(226,232,240,0.58)",
+    letterSpacing: 0,
+    textTransform: "none",
     padding: 0,
   },
   autoplayDot: {

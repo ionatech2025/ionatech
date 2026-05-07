@@ -1,5 +1,14 @@
 {
   "rewrites": [
+    { "source": "/services", "destination": "/services/index.html" },
+    { "source": "/services/web-development", "destination": "/services/web-development/index.html" },
+    { "source": "/services/mobile-app-development", "destination": "/services/mobile-app-development/index.html" },
+    { "source": "/services/ai-ml-deep-learning", "destination": "/services/ai-ml-deep-learning/index.html" },
+    { "source": "/services/agentic-ai-modelling", "destination": "/services/agentic-ai-modelling/index.html" },
+    { "source": "/services/kpi-monitoring-dashboards", "destination": "/services/kpi-monitoring-dashboards/index.html" },
+    { "source": "/services/custom-software-development", "destination": "/services/custom-software-development/index.html" },
+    { "source": "/services/cloud-api-integrations", "destination": "/services/cloud-api-integrations/index.html" },
+    { "source": "/services/ui-ux-graphic-design", "destination": "/services/ui-ux-graphic-design/index.html" },
     { "source": "/(.*)", "destination": "/" }
   ],
   "headers": [

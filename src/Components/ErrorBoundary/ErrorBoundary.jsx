@@ -45,8 +45,8 @@ class ErrorBoundary extends Component {
           </h1>
           <p style={{ marginBottom: '1.5rem', color: '#94a3b8', lineHeight: 1.5 }}>
             The page hit an unexpected error. Try reloading — if the issue persists, please email{' '}
-            <a href="mailto:hello@ionatech.co" style={{ color: '#60a5fa', textDecoration: 'underline' }}>
-              hello@ionatech.co
+            <a href="mailto:ionatec002@gmail.com" style={{ color: '#60a5fa', textDecoration: 'underline' }}>
+              ionatec002@gmail.com
             </a>
             .
           </p>

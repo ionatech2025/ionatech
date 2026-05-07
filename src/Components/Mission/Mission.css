@@ -1,316 +1,211 @@
-/* Mission Section - Premium Tech-Focused Layout */
 .mission-section {
-  position: relative;
   padding: 6rem 1.5rem;
-  background: linear-gradient(180deg, #f8fafc 0%, #ffffff 100%);
-  overflow: hidden;
-}
-
-@media (min-width: 1024px) {
-  .mission-section {
-    padding: 8rem 2rem;
-  }
 }
 
 .mission-container {
-  max-width: 1280px;
+  width: min(100% - 2rem, 1180px);
   margin: 0 auto;
+  position: relative;
+  z-index: 1;
 }
 
 .mission-grid {
   display: grid;
-  grid-template-columns: 1fr;
+  grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr);
   gap: 3rem;
   align-items: center;
 }
 
-@media (min-width: 1024px) {
-  .mission-grid {
-    grid-template-columns: 1fr 1fr;
-    gap: 5rem;
-  }
-}
-
-/* Left Side: Visual */
 .mission-visual {
   position: relative;
   padding-left: 1rem;
 }
 
-@media (min-width: 1024px) {
-  .mission-visual {
-    padding-left: 1.5rem;
-  }
-}
-
-/* Blue accent bar */
 .mission-accent-bar {
   position: absolute;
   left: 0;
-  top: 2rem;
-  bottom: 2rem;
-  width: 6px;
-  background: linear-gradient(180deg, #3b82f6 0%, #2563eb 50%, #1d4ed8 100%);
-  border-radius: 3px;
-  box-shadow: 0 0 20px rgba(59, 130, 246, 0.4);
+  top: 1.25rem;
+  bottom: 1.25rem;
+  width: 4px;
+  border-radius: 8px;
+  background: linear-gradient(180deg, var(--ion-cyan), var(--ion-gold));
+  box-shadow: 0 0 24px rgba(34, 211, 238, 0.3);
 }
 
-/* Outer glow */
 .mission-image-glow {
   position: absolute;
   inset: -1rem;
-  background: radial-gradient(ellipse at center, rgba(59, 130, 246, 0.08) 0%, transparent 70%);
-  border-radius: 2rem;
+  border-radius: 8px;
+  background: linear-gradient(110deg, rgba(56, 189, 248, 0.12), rgba(247, 201, 72, 0.08), transparent);
+  filter: blur(28px);
   pointer-events: none;
 }
 
-/* Image container */
 .mission-image-wrapper {
-  position: relative;
-  border-radius: 1.5rem;
-  overflow: hidden;
-  box-shadow: 
-    0 25px 50px -12px rgba(0, 0, 0, 0.15),
-    0 0 0 1px rgba(0, 0, 0, 0.05);
+  aspect-ratio: 0.9;
 }
 
 .mission-image {
-  width: 100%;
-  height: 400px;
-  object-fit: cover;
-  display: block;
-  transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-@media (min-width: 1024px) {
-  .mission-image {
-    height: 520px;
-  }
+  transition: transform 0.6s ease;
 }
 
 .mission-image-wrapper:hover .mission-image {
   transform: scale(1.02);
 }
 
-/* Floating stat badge */
 .mission-stat-badge {
   position: absolute;
-  bottom: -1.5rem;
-  left: 50%;
-  transform: translateX(-50%);
-  z-index: 10;
-}
-
-@media (min-width: 768px) {
-  .mission-stat-badge {
-    bottom: -1rem;
-    left: auto;
-    right: -1rem;
-    transform: none;
-  }
+  right: -1rem;
+  bottom: -1rem;
+  z-index: 2;
 }
 
 .mission-stat-badge-inner {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  padding: 1.25rem 2.5rem;
-  background: linear-gradient(135deg, #3b82f6 0%, #2563eb 50%, #1d4ed8 100%);
-  border-radius: 1rem;
-  box-shadow: 
-    0 20px 40px -10px rgba(37, 99, 235, 0.4),
-    0 0 0 1px rgba(255, 255, 255, 0.1) inset;
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
+  min-width: 190px;
+  padding: 1rem 1.25rem;
+  text-align: center;
 }
 
 .mission-stat-number {
-  font-size: 2.25rem;
-  font-weight: 700;
-  color: white;
-  letter-spacing: -0.02em;
+  display: block;
+  color: #ffffff;
+  font-size: 2rem;
+  font-weight: 800;
   line-height: 1;
+  letter-spacing: 0;
 }
 
 .mission-stat-label {
-  font-size: 0.75rem;
-  font-weight: 500;
-  color: rgba(255, 255, 255, 0.85);
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
+  display: block;
   margin-top: 0.25rem;
+  color: var(--ion-muted);
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: 0;
 }
 
-/* Right Side: Content */
 .mission-content {
   display: flex;
   flex-direction: column;
-  gap: 1.5rem;
+  align-items: flex-start;
+  gap: 1.45rem;
 }
 
-@media (min-width: 1024px) {
-  .mission-content {
-    gap: 2rem;
-    padding-right: 1rem;
-  }
-}
-
-/* Eyebrow */
 .mission-eyebrow {
-  display: inline-block;
-  font-size: 0.8rem;
-  font-weight: 700;
-  color: #3b82f6;
-  text-transform: uppercase;
-  letter-spacing: 0.15em;
+  color: rgba(241, 245, 249, 0.9);
+  text-transform: none;
 }
 
-/* Main Heading */
 .mission-heading {
-  font-size: 2.25rem;
-  font-weight: 700;
-  color: #0f172a;
-  line-height: 1.15;
-  letter-spacing: -0.025em;
+  max-width: 680px;
   margin: 0;
-}
-
-@media (min-width: 768px) {
-  .mission-heading {
-    font-size: 2.75rem;
-  }
-}
-
-@media (min-width: 1024px) {
-  .mission-heading {
-    font-size: 3.25rem;
-  }
+  color: var(--ion-text);
+  font-size: clamp(2.2rem, 4vw, 3.85rem);
+  line-height: 1.06;
+  font-weight: 800;
+  letter-spacing: 0;
 }
 
 .mission-heading-gradient {
-  background: linear-gradient(135deg, #3b82f6 0%, #2563eb 50%, #1d4ed8 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+  background: none;
+  -webkit-text-fill-color: currentColor;
 }
 
-/* Body Text */
 .mission-text {
-  font-size: 1.0625rem;
-  line-height: 1.75;
-  color: #475569;
+  max-width: 640px;
   margin: 0;
+  color: var(--ion-muted);
+  font-size: 1.05rem;
+  line-height: 1.75;
 }
 
 .mission-text strong {
-  color: #1e293b;
-  font-weight: 600;
+  color: #ffffff;
+  font-weight: 800;
 }
 
-/* Feature Grid */
 .mission-features {
   display: grid;
-  grid-template-columns: 1fr;
+  width: 100%;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 0.75rem;
-  margin-top: 0.5rem;
-}
-
-@media (min-width: 640px) {
-  .mission-features {
-    grid-template-columns: repeat(3, 1fr);
-    gap: 1rem;
-  }
+  margin-top: 0.25rem;
 }
 
 .mission-feature-card {
   display: flex;
   flex-direction: column;
-  gap: 0.75rem;
-  padding: 1.25rem;
-  background: rgba(248, 250, 252, 0.8);
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
-  border: 1px solid rgba(226, 232, 240, 0.8);
-  border-radius: 1rem;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.mission-feature-card:hover {
-  background: rgba(255, 255, 255, 0.95);
-  border-color: rgba(59, 130, 246, 0.2);
-  box-shadow: 0 8px 24px -8px rgba(59, 130, 246, 0.12);
-  transform: translateY(-2px);
+  gap: 0.8rem;
+  min-height: 150px;
+  padding: 1rem;
 }
 
 .mission-feature-icon {
-  color: #3b82f6;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 2.5rem;
-  height: 2.5rem;
-  background: rgba(59, 130, 246, 0.08);
-  border-radius: 0.625rem;
+  width: 42px;
+  height: 42px;
 }
 
 .mission-feature-text {
   display: flex;
   flex-direction: column;
-  gap: 0.125rem;
+  gap: 0.2rem;
 }
 
 .mission-feature-label {
-  font-size: 0.9375rem;
-  font-weight: 600;
-  color: #0f172a;
+  color: #ffffff;
+  font-size: 0.95rem;
+  font-weight: 800;
+  letter-spacing: 0;
 }
 
 .mission-feature-detail {
-  font-size: 0.8125rem;
-  color: #64748b;
+  color: rgba(226, 232, 240, 0.62);
+  font-size: 0.82rem;
+  line-height: 1.5;
 }
 
-/* CTA Link */
 .mission-cta {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-  font-size: 1rem;
-  font-weight: 600;
-  color: #3b82f6;
-  text-decoration: none;
-  margin-top: 0.5rem;
-  position: relative;
   width: fit-content;
-  transition: gap 0.3s ease;
+  margin-top: 0.35rem;
 }
 
-.mission-cta::after {
-  content: '';
-  position: absolute;
-  bottom: -4px;
-  left: 0;
-  width: 0;
-  height: 2px;
-  background: linear-gradient(90deg, #3b82f6 0%, #2563eb 100%);
-  border-radius: 1px;
-  transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+@media (max-width: 1024px) {
+  .mission-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .mission-content {
+    align-items: center;
+    text-align: center;
+  }
+
+  .mission-text {
+    margin: 0 auto;
+  }
 }
 
-.mission-cta:hover {
-  gap: 0.75rem;
-  color: #2563eb;
-}
+@media (max-width: 720px) {
+  .mission-section {
+    padding: 4.5rem 0.75rem;
+  }
 
-.mission-cta:hover::after {
-  width: calc(100% - 1.5rem);
-}
+  .mission-container {
+    width: min(100% - 1.25rem, 1180px);
+  }
 
-.mission-cta svg {
-  transition: transform 0.3s ease;
-}
+  .mission-features {
+    grid-template-columns: 1fr;
+  }
 
-.mission-cta:hover svg {
-  transform: translateX(2px);
+  .mission-stat-badge {
+    position: relative;
+    right: auto;
+    bottom: auto;
+    margin: -1rem auto 0;
+    width: min(100%, 260px);
+  }
+
+  .mission-stat-badge-inner {
+    min-width: 0;
+  }
 }
