@@ -37,46 +37,34 @@ const Contacts = () => {
 
 
   const inputBase =
-    "w-full bg-[#0d0d1a]/[0.03] border border-slate-200 rounded-xl px-5 py-3.5 text-sm text-slate-800 placeholder:text-slate-400 outline-none transition-all duration-200 focus:border-indigo-500 focus:bg-white focus:ring-4 focus:ring-indigo-500/8"
+    "w-full bg-white/[0.055] border border-white/10 rounded-[8px] px-5 py-3.5 text-sm text-slate-100 placeholder:text-slate-500 outline-none transition-all duration-200 focus:border-cyan-300/60 focus:bg-white/[0.075] focus:ring-4 focus:ring-cyan-300/10"
 
   return (
     <section
       id="contact"
-      className="relative py-28 overflow-hidden"
-      style={{ background: "#f7f8fc" }}
+      className="ion-section relative py-28 overflow-hidden"
+      style={{ background: "transparent" }}
     >
-      {/* Subtle dot grid background */}
-      <div
-        className="absolute inset-0 pointer-events-none"
-        style={{
-          backgroundImage: `radial-gradient(circle, #c7caff 1px, transparent 1px)`,
-          backgroundSize: "32px 32px",
-          opacity: 0.35,
-        }}
-      />
-
-      {/* Accent blobs */}
-      <div className="absolute top-0 right-0 w-[480px] h-[480px] rounded-full pointer-events-none"
-        style={{ background: "radial-gradient(circle, rgba(99,102,241,0.08) 0%, transparent 70%)", transform: "translate(30%, -30%)" }} />
-      <div className="absolute bottom-0 left-0 w-[360px] h-[360px] rounded-full pointer-events-none"
-        style={{ background: "radial-gradient(circle, rgba(16,185,129,0.07) 0%, transparent 70%)", transform: "translate(-30%, 30%)" }} />
+      <div className="ion-aurora" aria-hidden="true" />
+      <div className="ion-aurora ion-aurora-right" aria-hidden="true" />
 
       <div className="relative container mx-auto px-6 max-w-6xl">
 
         {/* Header */}
         <div className="mb-20">
-          <div className="inline-flex items-center gap-2 bg-indigo-50 border border-indigo-100 text-indigo-600 text-xs font-bold uppercase tracking-widest px-4 py-2 rounded-full mb-6">
+          <div className="ion-badge mb-6">
+            <span className="ion-live-dot" />
             <Zap size={11} />
             Get in touch
           </div>
           <h2
-            className="text-5xl lg:text-6xl font-black text-slate-900 mb-5 leading-tight"
-            style={{ letterSpacing: "-0.03em", fontFamily: "'Syne', sans-serif" }}
+            className="ion-heading mb-5"
+            style={{ letterSpacing: 0 }}
           >
             Let's build<br />
-            <span className="text-indigo-600">something great.</span>
+            <span className="ion-heading-accent">something great.</span>
           </h2>
-          <p className="text-slate-500 text-lg max-w-xl leading-relaxed">
+          <p className="ion-copy max-w-xl">
             Tell us about your project. We respond to every inquiry within 24 hours — or ping us directly on WhatsApp for an instant reply.
           </p>
         </div>
@@ -93,61 +81,61 @@ const Contacts = () => {
             ].map(({ icon, label, value, color }) => (
               <div
                 key={label}
-                className="flex items-center gap-4 bg-white border border-slate-100 rounded-2xl px-6 py-5 shadow-sm"
+                className="ion-card flex items-center gap-4 px-6 py-5"
               >
-                <div className={`w-10 h-10 rounded-xl flex items-center justify-center shrink-0 ${color === "indigo" ? "bg-indigo-50 text-indigo-600" : "bg-emerald-50 text-emerald-600"
+                <div className={`ion-icon-tile shrink-0 ${color === "indigo" ? "text-cyan-300" : "text-emerald-300"
                   }`}>
                   {icon}
                 </div>
                 <div>
-                  <p className="text-xs font-bold text-slate-400 uppercase tracking-widest">{label}</p>
-                  <p className="text-sm font-semibold text-slate-800 mt-0.5">{value}</p>
+                  <p className="text-xs font-bold text-slate-400">{label}</p>
+                  <p className="text-sm font-semibold text-white mt-0.5">{value}</p>
                 </div>
               </div>
             ))}
 
             {/* Direct contacts */}
-            <div className="bg-white border border-slate-100 rounded-2xl p-6 shadow-sm space-y-2">
-              <p className="text-xs font-bold text-slate-400 uppercase tracking-widest mb-4">Direct lines</p>
+            <div className="ion-panel p-6 space-y-2">
+              <p className="text-xs font-bold text-slate-400 mb-4">Direct lines</p>
 
               <a
                 href={`mailto:${EMAIL}`}
-                className="group flex items-center gap-4 p-3 rounded-xl hover:bg-indigo-50 transition-colors"
+                className="group flex items-center gap-4 p-3 rounded-[8px] hover:bg-cyan-300/10 transition-colors"
               >
-                <div className="w-9 h-9 bg-indigo-50 group-hover:bg-indigo-100 rounded-lg flex items-center justify-center text-indigo-600 transition-colors shrink-0">
+                <div className="ion-icon-tile w-9 h-9 shrink-0">
                   <Mail size={16} />
                 </div>
                 <div className="min-w-0">
                   <p className="text-xs text-slate-400 font-medium">Email</p>
-                  <p className="text-sm font-semibold text-slate-800 truncate">{EMAIL}</p>
+                  <p className="text-sm font-semibold text-white truncate">{EMAIL}</p>
                 </div>
-                <ArrowUpRight size={14} className="ml-auto text-slate-300 group-hover:text-indigo-500 transition-colors shrink-0" />
+                <ArrowUpRight size={14} className="ml-auto text-slate-500 group-hover:text-cyan-300 transition-colors shrink-0" />
               </a>
 
               {PHONES.map((p, i) => (
                 <a
                   key={p.tel}
                   href={`tel:${p.tel}`}
-                  className="group flex items-center gap-4 p-3 rounded-xl hover:bg-indigo-50 transition-colors"
+                  className="group flex items-center gap-4 p-3 rounded-[8px] hover:bg-cyan-300/10 transition-colors"
                 >
-                  <div className="w-9 h-9 bg-indigo-50 group-hover:bg-indigo-100 rounded-lg flex items-center justify-center text-indigo-600 transition-colors shrink-0">
+                  <div className="ion-icon-tile w-9 h-9 shrink-0">
                     <Phone size={16} />
                   </div>
                   <div className="min-w-0">
                     <p className="text-xs text-slate-400 font-medium">{i === 0 ? "Phone" : "Phone (alt.)"}</p>
-                    <p className="text-sm font-semibold text-slate-800 truncate">{p.display}</p>
+                    <p className="text-sm font-semibold text-white truncate">{p.display}</p>
                   </div>
-                  <ArrowUpRight size={14} className="ml-auto text-slate-300 group-hover:text-indigo-500 transition-colors shrink-0" />
+                  <ArrowUpRight size={14} className="ml-auto text-slate-500 group-hover:text-cyan-300 transition-colors shrink-0" />
                 </a>
               ))}
 
-              <div className="flex items-center gap-4 p-3 rounded-xl">
-                <div className="w-9 h-9 bg-slate-50 rounded-lg flex items-center justify-center text-slate-500 shrink-0">
+              <div className="flex items-center gap-4 p-3 rounded-[8px]">
+                <div className="ion-icon-tile w-9 h-9 shrink-0">
                   <MapPin size={16} />
                 </div>
                 <div>
                   <p className="text-xs text-slate-400 font-medium">Location</p>
-                  <p className="text-sm font-semibold text-slate-800">Kampala, Uganda</p>
+                  <p className="text-sm font-semibold text-white">Kampala, Uganda</p>
                 </div>
               </div>
             </div>
@@ -155,10 +143,10 @@ const Contacts = () => {
             {/* WhatsApp CTA */}
             <button
               onClick={sendToWhatsApp}
-              className="group relative w-full overflow-hidden bg-[#128c7e] hover:bg-[#075e54] text-white rounded-2xl px-6 py-5 font-bold text-sm flex items-center justify-between transition-all duration-300 shadow-lg shadow-emerald-900/10"
+              className="group relative w-full overflow-hidden bg-[#128c7e] hover:bg-[#075e54] text-white rounded-[8px] px-6 py-5 font-bold text-sm flex items-center justify-between transition-all duration-300 shadow-lg shadow-emerald-900/10"
             >
               <div className="flex items-center gap-3">
-                <div className="w-9 h-9 bg-white/10 rounded-xl flex items-center justify-center">
+                <div className="w-9 h-9 bg-white/10 rounded-[8px] flex items-center justify-center">
                   <MessageCircle size={18} />
                 </div>
                 <div className="text-left">
@@ -173,10 +161,10 @@ const Contacts = () => {
 
           {/* RIGHT COLUMN — form */}
           <div className="lg:col-span-3">
-            <div className="bg-white border border-slate-100 rounded-3xl p-8 lg:p-10 shadow-xl shadow-slate-200/60">
+            <div className="ion-panel p-8 lg:p-10">
 
               <div className="mb-8">
-                <h3 className="text-xl font-bold text-slate-900" style={{ letterSpacing: "-0.02em" }}>
+                <h3 className="text-xl font-bold text-white" style={{ letterSpacing: 0 }}>
                   Send an official inquiry
                 </h3>
                 <p className="text-sm text-slate-400 mt-1">We'll put together a tailored proposal for you.</p>
@@ -186,7 +174,7 @@ const Contacts = () => {
 
                 <div className="grid sm:grid-cols-2 gap-5">
                   <div className="space-y-1.5">
-                    <label htmlFor="contact-name" className="text-xs font-bold text-slate-500 uppercase tracking-widest">
+                    <label htmlFor="contact-name" className="text-xs font-bold text-slate-300">
                       Full name
                     </label>
                     <input
@@ -200,7 +188,7 @@ const Contacts = () => {
                     />
                   </div>
                   <div className="space-y-1.5">
-                    <label htmlFor="contact-email" className="text-xs font-bold text-slate-500 uppercase tracking-widest">
+                    <label htmlFor="contact-email" className="text-xs font-bold text-slate-300">
                       Email address
                     </label>
                     <input
@@ -217,7 +205,7 @@ const Contacts = () => {
                 </div>
 
                 <div className="space-y-1.5">
-                  <label htmlFor="contact-phone" className="text-xs font-bold text-slate-500 uppercase tracking-widest">
+                  <label htmlFor="contact-phone" className="text-xs font-bold text-slate-300">
                     Phone number
                   </label>
                   <input
@@ -233,7 +221,7 @@ const Contacts = () => {
                 </div>
 
                 <div className="space-y-1.5">
-                  <label htmlFor="contact-message" className="text-xs font-bold text-slate-500 uppercase tracking-widest">
+                  <label htmlFor="contact-message" className="text-xs font-bold text-slate-300">
                     Project details
                   </label>
                   <textarea
@@ -250,13 +238,13 @@ const Contacts = () => {
 
                 {/* Status messages */}
                 {result === "success" && (
-                  <div className="flex items-center gap-3 p-4 bg-emerald-50 text-emerald-700 rounded-xl border border-emerald-100 text-sm font-medium">
+                  <div className="flex items-center gap-3 p-4 bg-emerald-500/10 text-emerald-300 rounded-[8px] border border-emerald-500/20 text-sm font-medium">
                     <CheckCircle size={16} className="shrink-0" />
                     Message sent! We'll be in touch within 24 hours.
                   </div>
                 )}
                 {result === "error" && (
-                  <div className="flex items-center gap-3 p-4 bg-red-50 text-red-600 rounded-xl border border-red-100 text-sm font-medium">
+                  <div className="flex items-center gap-3 p-4 bg-red-500/10 text-red-300 rounded-[8px] border border-red-500/20 text-sm font-medium">
                     <AlertCircle size={16} className="shrink-0" />
                     Something went wrong. Try WhatsApp instead?
                   </div>
@@ -265,7 +253,7 @@ const Contacts = () => {
                 <button
                   type="submit"
                   disabled={isLoading}
-                  className="group w-full flex items-center justify-center gap-3 bg-indigo-600 hover:bg-indigo-700 disabled:opacity-60 disabled:cursor-not-allowed text-white font-bold text-sm py-4 rounded-xl transition-all duration-200 shadow-lg shadow-indigo-200 hover:shadow-indigo-300 hover:-translate-y-0.5 active:translate-y-0"
+                  className="ion-primary-btn group w-full disabled:opacity-60 disabled:cursor-not-allowed"
                 >
                   {isLoading ? (
                     <>
@@ -283,7 +271,7 @@ const Contacts = () => {
                   )}
                 </button>
 
-                <p className="text-center text-xs text-slate-400 pt-1">
+                <p className="text-center text-xs text-slate-500 pt-1">
                   No spam, ever. We only use your info to respond to your inquiry.
                 </p>
 

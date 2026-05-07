@@ -31,18 +31,21 @@ const ClientTestimonials = ({
   return (
     <section
       id="testimonials"
-      className="relative py-24 overflow-hidden"
-      style={{ backgroundColor: '#020617' }} // Forced Slate-950
+      className="ion-section relative py-24 overflow-hidden"
     >
-      {/* Glow Effect */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-blue-600/10 rounded-full blur-[120px] pointer-events-none" />
+      <div className="ion-aurora" aria-hidden="true" />
+      <div className="ion-aurora ion-aurora-right" aria-hidden="true" />
 
       <div className="max-w-7xl mx-auto px-6 relative z-10">
         <header className="mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">
-            Trusted in <span className="text-blue-500">Kampala</span>
+          <div className="ion-badge mb-5">
+            <span className="ion-live-dot" />
+            Client feedback
+          </div>
+          <h2 className="ion-heading text-4xl md:text-5xl mb-4">
+            Trusted in <span className="ion-heading-accent">Kampala</span>
           </h2>
-          <p className="text-slate-400 text-lg max-w-xl">
+          <p className="ion-copy max-w-xl">
             Real feedback from partners who have scaled with our engineering.
           </p>
         </header>
@@ -51,12 +54,11 @@ const ClientTestimonials = ({
           {testimonials.map((t) => (
             <div
               key={t.id}
-              className="p-8 rounded-3xl border border-white/10 backdrop-blur-md transition-all duration-300 hover:scale-[1.02] hover:border-blue-500/40"
-              style={{ background: 'rgba(255, 255, 255, 0.03)' }}
+              className="ion-card p-8 transition-all duration-300"
             >
               <div className="flex gap-1 mb-6">
                 {[...Array(5)].map((_, i) => (
-                  <Star key={i} size={16} className="text-blue-500 fill-blue-500" />
+                  <Star key={i} size={16} className="text-amber-300 fill-amber-300" />
                 ))}
               </div>
 
@@ -64,7 +66,7 @@ const ClientTestimonials = ({
                 "{t.quote}"
               </p>
 
-              <div className="flex items-center gap-4 pt-6 border-t border-white/5">
+              <div className="flex items-center gap-4 pt-6 border-t border-white/10">
                 <div className="relative">
                   <img
                     src={t.image}
@@ -74,11 +76,11 @@ const ClientTestimonials = ({
                     className="w-12 h-12 rounded-full object-cover grayscale hover:grayscale-0 transition-all"
                     onError={(e) => { e.target.src = "https://ui-avatars.com/api/?name=" + encodeURIComponent(t.name); }}
                   />
-                  <CheckCircle2 className="absolute -bottom-1 -right-1 text-blue-500 bg-slate-950 rounded-full" size={16} />
+                  <CheckCircle2 className="absolute -bottom-1 -right-1 text-cyan-300 bg-slate-950 rounded-full" size={16} />
                 </div>
                 <div>
                   <h4 className="text-white font-bold">{t.name}</h4>
-                  <p className="text-slate-500 text-xs uppercase tracking-widest">{t.company} | {t.role}</p>
+                  <p className="text-slate-500 text-xs">{t.company} | {t.role}</p>
                 </div>
               </div>
             </div>

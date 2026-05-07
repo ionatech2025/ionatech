@@ -9,7 +9,9 @@ const Mission = () => {
   ];
 
   return (
-    <section className="mission-section">
+    <section className="mission-section ion-section">
+      <div className="ion-aurora" aria-hidden="true" />
+      <div className="ion-aurora ion-aurora-right" aria-hidden="true" />
       <div className="mission-container">
         <div className="mission-grid">
 
@@ -22,7 +24,7 @@ const Mission = () => {
             <div className="mission-image-glow" />
 
             {/* Image container */}
-            <div className="mission-image-wrapper">
+            <div className="mission-image-wrapper ion-image-frame">
               <img
                 className="mission-image"
                 src='/images/team_of_developers.jpg'
@@ -34,7 +36,7 @@ const Mission = () => {
 
             {/* Floating stat badge */}
             <div className="mission-stat-badge">
-              <div className="mission-stat-badge-inner">
+              <div className="mission-stat-badge-inner ion-panel">
                 <span className="mission-stat-number">100%</span>
                 <span className="mission-stat-label">Client Commitment</span>
               </div>
@@ -44,12 +46,15 @@ const Mission = () => {
           {/* Right Side: Content */}
           <div className="mission-content">
             {/* Eyebrow */}
-            <span className="mission-eyebrow">Who We Are</span>
+            <span className="mission-eyebrow ion-badge">
+              <span className="ion-live-dot" />
+              Who We Are
+            </span>
 
             {/* Main Heading */}
             <h2 className="mission-heading">
               Turning Complex Ideas into{" "}
-              <span className="mission-heading-gradient">Powerful Software.</span>
+                  <span className="mission-heading-gradient ion-heading-accent">Powerful Software.</span>
             </h2>
 
             {/* Body Text */}
@@ -63,8 +68,8 @@ const Mission = () => {
             {/* Feature Grid */}
             <div className="mission-features">
               {features.map((feature, index) => (
-                <div key={index} className="mission-feature-card">
-                  <div className="mission-feature-icon">
+                <div key={index} className="mission-feature-card ion-card">
+                  <div className="mission-feature-icon ion-icon-tile">
                     {feature.icon}
                   </div>
                   <div className="mission-feature-text">
@@ -78,7 +83,7 @@ const Mission = () => {
             {/* CTA Link */}
             <a
               href="#contact_us"
-              className="mission-cta"
+              className="mission-cta ion-primary-btn"
               onClick={(e) => {
                 e.preventDefault();
                 document.getElementById('contact_us')?.scrollIntoView({ behavior: 'smooth' });

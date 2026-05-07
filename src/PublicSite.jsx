@@ -11,7 +11,7 @@ import Pricing from './Components/Pricing/Pricing'
 
 const PublicSite = () => {
   return (
-    <div>
+    <div className="site-theme">
       <Navbar />
 
       <section id="hero">

@@ -90,10 +90,13 @@ const websitePricing = [
 
 const Pricing = () => {
   return (
-    <div className="pricing-section">
+    <div className="pricing-section ion-section">
+      <div className="ion-aurora" aria-hidden="true" />
+      <div className="ion-aurora ion-aurora-right" aria-hidden="true" />
       <div className="pricing-container">
         <div className="price-header">
           <div className="eyebrow-chip">
+            <span className="ion-live-dot" />
             <Sparkles size={13} />
             Uganda's #1 Web Studio
           </div>

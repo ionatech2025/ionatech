@@ -54,7 +54,7 @@ const App = () => {
   }
 
   return (
-    <div>
+    <div className="site-theme">
       <SEOHead
         title={homeSeo.metaTitle}
         description={homeSeo.metaDescription}

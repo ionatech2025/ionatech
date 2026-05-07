@@ -57,41 +57,33 @@ const ServicesPage = () => {
   }))
 
   return (
-    <div className="min-h-screen bg-slate-50 font-sans text-slate-900">
+    <div className="bg-[#02040a] font-sans text-slate-100">
 
       {/* Hero Section */}
-      <section className="relative overflow-hidden py-20 lg:py-32 bg-gradient-to-b from-slate-900 via-slate-900 to-slate-800">
-        {/* Background Pattern */}
-        <div className="absolute inset-0 opacity-30">
-          <div className="absolute inset-0" style={{
-            backgroundImage: `radial-gradient(circle at 1px 1px, rgba(255,255,255,0.15) 1px, transparent 0)`,
-            backgroundSize: '40px 40px'
-          }} />
-        </div>
-
-        {/* Gradient Orbs */}
-        <div className="absolute top-0 right-0 -translate-y-1/4 translate-x-1/4 w-[600px] h-[600px] bg-blue-500/20 rounded-full blur-[120px]" />
-        <div className="absolute bottom-0 left-0 translate-y-1/4 -translate-x-1/4 w-[500px] h-[500px] bg-violet-500/20 rounded-full blur-[120px]" />
+      <section className="ion-section py-20 lg:py-28">
+        <div className="ion-aurora" aria-hidden="true" />
+        <div className="ion-aurora ion-aurora-right" aria-hidden="true" />
 
         <div className="container mx-auto px-6 relative z-10">
           <div className="max-w-4xl mx-auto text-center">
             <button
               type="button"
               onClick={() => scrollToSection('programs')}
-              className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 backdrop-blur-sm border border-white/10 text-blue-300 text-sm font-medium mb-8 cursor-pointer hover:bg-white/15 transition-all"
+              className="ion-badge mb-8 cursor-pointer hover:bg-white/10"
             >
+              <span className="ion-live-dot" />
               <Sparkles size={14} />
               <span>Professional Services</span>
             </button>
 
-            <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight mb-6 leading-tight text-white">
+            <h2 className="ion-heading mb-6 text-white">
               Web, Mobile, AI and Dashboard Services That Drive{' '}
-              <span className="bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent">
+              <span className="ion-heading-accent">
                 Real Results
               </span>
             </h2>
 
-            <p className="text-lg md:text-xl text-slate-400 mb-10 leading-relaxed max-w-2xl mx-auto">
+            <p className="ion-copy mb-10 max-w-2xl mx-auto">
               We build search-ready websites, native and Flutter mobile apps, AI/ML systems,
               agentic workflows, KPI dashboards and custom software products for growing teams.
             </p>
@@ -99,12 +91,12 @@ const ServicesPage = () => {
             {/* Stats Row */}
             <div className="flex flex-wrap justify-center gap-6 md:gap-12 mb-12">
               {stats.map((stat, idx) => (
-                <div key={idx} className="text-center">
-                  <div className="flex items-center justify-center gap-2 text-blue-400 mb-1">
+                <div key={idx} className="ion-card flex min-w-[150px] flex-col items-center justify-center gap-1 p-4 text-center">
+                  <div className="flex items-center justify-center gap-2 text-cyan-300">
                     {stat.icon}
                     <span className="text-2xl md:text-3xl font-bold text-white">{stat.value}</span>
                   </div>
-                  <p className="text-sm text-slate-500">{stat.label}</p>
+                  <p className="text-sm text-slate-400">{stat.label}</p>
                 </div>
               ))}
             </div>
@@ -112,14 +104,14 @@ const ServicesPage = () => {
             <div className="flex flex-col sm:flex-row justify-center gap-4">
               <button
                 onClick={() => scrollToSection('programs')}
-                className="group flex items-center justify-center gap-2 bg-white text-slate-900 px-8 py-4 rounded-xl font-semibold hover:bg-slate-100 transition-all shadow-lg shadow-white/10"
+                className="ion-primary-btn group"
               >
                 Explore Services
                 <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
               </button>
               <button
                 onClick={() => scrollToSection('about')}
-                className="flex items-center justify-center gap-2 bg-white/5 backdrop-blur-sm border border-white/10 text-white px-8 py-4 rounded-xl font-semibold hover:bg-white/10 transition-all"
+                className="ion-secondary-btn"
               >
                 Learn More
               </button>
@@ -129,16 +121,18 @@ const ServicesPage = () => {
       </section>
 
       {/* Programs Section */}
-      <section id="programs" className="py-20 lg:py-28 bg-white">
+      <section id="programs" className="ion-section py-20 lg:py-28">
+        <div className="ion-aurora ion-aurora-right" aria-hidden="true" />
         <div className="container mx-auto px-6">
           <div className="text-center mb-16">
-            <span className="inline-block px-4 py-1.5 rounded-full bg-blue-50 text-blue-600 text-sm font-semibold mb-4">
+            <span className="ion-badge mb-4">
+              <span className="ion-live-dot" />
               Our Services
             </span>
-            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4 text-slate-900">
+            <h2 className="ion-heading mb-4">
               What We Build for Companies
             </h2>
-            <p className="text-slate-500 max-w-3xl mx-auto text-lg">
+            <p className="ion-copy max-w-3xl mx-auto">
               Tailored technology services for web development, mobile app development, AI/ML,
               deep learning, monitoring dashboards, APIs, cloud systems and custom business tools.
             </p>
@@ -148,7 +142,7 @@ const ServicesPage = () => {
             {programs.map((program) => (
               <div
                 key={program.slug}
-                className="group relative bg-white rounded-2xl overflow-hidden border border-slate-200 hover:border-slate-300 transition-all duration-500 hover:shadow-2xl hover:shadow-slate-200/50"
+                className="ion-card group relative overflow-hidden transition-all duration-500"
               >
                 {/* Card Content */}
                 <div className="flex flex-col md:flex-row">
@@ -161,10 +155,10 @@ const ServicesPage = () => {
                       loading="lazy"
                       decoding="async"
                     />
-                    <div className={`absolute inset-0 bg-gradient-to-br ${program.accentColor} opacity-0 group-hover:opacity-20 transition-opacity duration-500`} />
+                    <div className="absolute inset-0 bg-slate-950/35 opacity-100 transition-opacity duration-500" />
 
                     {/* Icon Badge */}
-                    <div className={`absolute bottom-4 left-4 p-3 ${program.bgAccent} rounded-xl text-white shadow-lg transform transition-transform duration-300 group-hover:scale-110`}>
+                    <div className="ion-icon-tile absolute bottom-4 left-4 transform transition-transform duration-300 group-hover:scale-110">
                       {program.iconComponent}
                     </div>
                   </div>
@@ -172,13 +166,13 @@ const ServicesPage = () => {
                   {/* Content Side */}
                   <div className="flex-1 p-6 md:p-8 flex flex-col">
                     <div className="mb-auto">
-                      <p className={`text-sm font-semibold bg-gradient-to-r ${program.accentColor} bg-clip-text text-transparent mb-2`}>
+                      <p className="text-sm font-semibold text-cyan-300 mb-2">
                         {program.tagline}
                       </p>
-                      <h3 className="text-xl md:text-2xl font-bold text-slate-900 mb-3">
+                      <h3 className="text-xl md:text-2xl font-bold text-white mb-3">
                         {program.title}
                       </h3>
-                      <p className="text-slate-500 text-sm leading-relaxed mb-6">
+                      <p className="text-slate-300/75 text-sm leading-relaxed mb-6">
                         {program.description}
                       </p>
 
@@ -187,9 +181,9 @@ const ServicesPage = () => {
                         {program.features.map((feature, idx) => (
                           <div
                             key={idx}
-                            className="flex items-center gap-2 text-xs text-slate-600"
+                            className="flex items-center gap-2 text-xs text-slate-300"
                           >
-                            <CheckCircle size={14} className={`${program.bgAccent.replace('bg-', 'text-')}`} />
+                            <CheckCircle size={14} className="text-amber-300" />
                             <span>{feature}</span>
                           </div>
                         ))}
@@ -199,14 +193,14 @@ const ServicesPage = () => {
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                       <button
                         onClick={() => setSelectedProgram(program)}
-                        className={`flex items-center justify-center gap-2 py-3.5 rounded-xl bg-gradient-to-r ${program.accentColor} text-white font-semibold transition-all shadow-lg opacity-90 hover:opacity-100 hover:shadow-xl group/btn`}
+                        className="ion-primary-btn group/btn"
                       >
                         Quick View
                         <ArrowRight size={16} className="group-hover/btn:translate-x-1 transition-transform" />
                       </button>
                       <a
                         href={program.path}
-                        className="flex items-center justify-center gap-2 py-3.5 rounded-xl border border-slate-200 text-slate-800 font-semibold transition-all hover:border-slate-300 hover:bg-slate-50"
+                        className="ion-secondary-btn"
                       >
                         Service Page
                       </a>
@@ -219,14 +213,15 @@ const ServicesPage = () => {
         </div>
       </section>
 
-      <section className="py-16 bg-slate-50">
+      <section className="ion-section py-16">
         <div className="container mx-auto px-6">
           <div className="max-w-6xl mx-auto grid gap-8 lg:grid-cols-[0.85fr_1.15fr] items-start">
             <div>
-              <span className="inline-block px-4 py-1.5 rounded-full bg-cyan-50 text-cyan-700 text-sm font-semibold mb-4">
+              <span className="ion-badge mb-4">
+                <span className="ion-live-dot" />
                 2026 Search-Ready Engineering
               </span>
-              <h2 className="text-3xl md:text-4xl font-bold text-slate-900">
+              <h2 className="ion-heading text-3xl md:text-4xl">
                 Built for discovery, speed and measurable business outcomes.
               </h2>
             </div>
@@ -237,9 +232,9 @@ const ServicesPage = () => {
                 'AI/ML, deep learning, agentic AI modelling and workflow automation',
                 'KPI dashboards, monitoring dashboards, reporting systems and custom builds',
               ].map((item) => (
-                <div key={item} className="flex gap-3 rounded-xl border border-slate-200 bg-white p-4">
-                  <CheckCircle size={18} className="mt-0.5 shrink-0 text-emerald-600" />
-                  <p className="text-sm leading-6 text-slate-700">{item}</p>
+                <div key={item} className="ion-card flex gap-3 p-4">
+                  <CheckCircle size={18} className="mt-0.5 shrink-0 text-amber-300" />
+                  <p className="text-sm leading-6 text-slate-300">{item}</p>
                 </div>
               ))}
             </div>
@@ -248,18 +243,19 @@ const ServicesPage = () => {
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 bg-slate-900">
+      <section className="ion-section py-20">
+        <div className="ion-aurora" aria-hidden="true" />
         <div className="container mx-auto px-6">
           <div className="max-w-4xl mx-auto text-center">
-            <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
+            <h2 className="ion-heading text-3xl md:text-4xl mb-4">
               Ready to Start Your Project?
             </h2>
-            <p className="text-slate-400 mb-8 text-lg">
+            <p className="ion-copy mb-8">
               Let&apos;s discuss your web, mobile, AI, dashboard or custom software project.
             </p>
             <button
               onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
-              className="inline-flex items-center gap-2 bg-white text-slate-900 px-8 py-4 rounded-xl font-semibold hover:bg-slate-100 transition-all shadow-lg"
+              className="ion-primary-btn"
             >
               Get in Touch <ArrowRight size={18} />
             </button>
@@ -270,7 +266,7 @@ const ServicesPage = () => {
       {/* Modal Section */}
       {selectedProgram && (
         <div
-          className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-slate-900/90 backdrop-blur-sm"
+          className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-[#02040a]/90 backdrop-blur-sm"
           role="presentation"
         >
           <button
@@ -283,7 +279,7 @@ const ServicesPage = () => {
             role="dialog"
             aria-modal="true"
             aria-labelledby="service-modal-title"
-            className="bg-white rounded-2xl w-full max-w-2xl max-h-[90vh] overflow-y-auto shadow-2xl relative"
+            className="ion-panel w-full max-w-2xl max-h-[90vh] overflow-y-auto shadow-2xl relative"
             style={{ animation: 'modalIn 0.3s ease-out' }}
           >
             <style>{`
@@ -294,16 +290,16 @@ const ServicesPage = () => {
             `}</style>
 
             {/* Modal Header */}
-            <div className={`relative p-8 bg-gradient-to-r ${selectedProgram.accentColor}`}>
+            <div className="relative p-8 border-b border-white/10">
               <button
                 onClick={() => setSelectedProgram(null)}
-                className="absolute top-4 right-4 p-2 rounded-full bg-white/20 hover:bg-white/30 text-white transition-all"
+                className="absolute top-4 right-4 p-2 rounded-[8px] bg-white/10 hover:bg-white/15 text-white transition-all"
               >
                 <X size={20} />
               </button>
 
               <div className="flex items-center gap-4">
-                <div className="p-4 bg-white/20 backdrop-blur-sm rounded-2xl text-white">
+                <div className="ion-icon-tile text-white">
                   {selectedProgram.iconComponent}
                 </div>
                 <div>
@@ -316,13 +312,13 @@ const ServicesPage = () => {
             </div>
 
             {/* Modal Body */}
-            <div className="p-8">
+            <div className="p-8 text-slate-200">
               {/* Overview */}
               <div className="mb-8">
-                <h3 className="text-lg font-bold mb-3 flex items-center gap-2 text-slate-800">
+                <h3 className="text-lg font-bold mb-3 flex items-center gap-2 text-white">
                   <Star size={18} className="text-amber-500 fill-amber-500" /> Overview
                 </h3>
-                <p className="text-slate-600 leading-relaxed">
+                <p className="text-slate-300 leading-relaxed">
                   {selectedProgram.summary}
                 </p>
               </div>
@@ -330,15 +326,15 @@ const ServicesPage = () => {
               <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                 {/* Technologies */}
                 <div>
-                  <h3 className="text-lg font-bold mb-4 text-slate-800 flex items-center gap-2">
-                    <Code size={18} className={selectedProgram.bgAccent.replace('bg-', 'text-')} />
+                  <h3 className="text-lg font-bold mb-4 text-white flex items-center gap-2">
+                    <Code size={18} className="text-cyan-300" />
                     Technologies
                   </h3>
                   <div className="flex flex-wrap gap-2">
                     {selectedProgram.technologies.map((tech, i) => (
                       <span
                         key={i}
-                        className="px-3 py-1.5 bg-slate-100 rounded-lg text-sm font-medium text-slate-700"
+                        className="ion-chip text-sm"
                       >
                         {tech}
                       </span>
@@ -348,12 +344,12 @@ const ServicesPage = () => {
 
                 {/* Benefits */}
                 <div>
-                  <h3 className="text-lg font-bold mb-4 text-slate-800">Key Benefits</h3>
+                  <h3 className="text-lg font-bold mb-4 text-white">Key Benefits</h3>
                   <div className="space-y-2">
                     {selectedProgram.outcomes.map((benefit, i) => (
                       <div
                         key={i}
-                        className="flex items-center gap-3 text-slate-600"
+                        className="flex items-center gap-3 text-slate-300"
                       >
                         <CheckCircle size={16} className="text-emerald-500 flex-shrink-0" />
                         <span>{benefit}</span>
@@ -364,12 +360,12 @@ const ServicesPage = () => {
               </div>
 
               {/* CTA */}
-              <div className="mt-8 p-6 bg-slate-50 rounded-xl border border-slate-100">
+              <div className="ion-card mt-8 p-6">
                 <div className="flex items-center gap-3 mb-4">
-                  <Clock size={18} className="text-slate-400" />
+                  <Clock size={18} className="text-cyan-300" />
                   <div>
-                    <p className="font-semibold text-slate-800">Ready to get started?</p>
-                    <p className="text-sm text-slate-500">Average project kickoff in 48 hours</p>
+                    <p className="font-semibold text-white">Ready to get started?</p>
+                    <p className="text-sm text-slate-400">Average project kickoff in 48 hours</p>
                   </div>
                 </div>
                 <button
@@ -377,7 +373,7 @@ const ServicesPage = () => {
                     setSelectedProgram(null);
                     document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
                   }}
-                  className={`w-full py-3.5 bg-gradient-to-r ${selectedProgram.accentColor} rounded-xl text-white font-semibold transition-all hover:shadow-lg flex items-center justify-center gap-2`}
+                  className="ion-primary-btn w-full"
                 >
                   Start Your Project <ArrowRight size={16} />
                 </button>
