@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import { useState, useEffect } from 'react'
 import './Navbar.css'
 import Iona from '../../assets/Iona.jpg'
 import { Link } from 'react-scroll'
@@ -36,11 +36,15 @@ const Navbar = () => {
   ]
 
   return (
-    <nav className={`navbar ${scrolled ? 'scrolled' : ''}`}>
+    <nav
+      className={`navbar ${scrolled ? 'scrolled' : ''}`}
+      role="navigation"
+      aria-label="Primary"
+    >
       <div className="navbar-container">
         {/* Logo */}
         <div className="navbar-logo">
-          <img src={Iona} alt="iONA Tech" className="logo" />
+          <img src={Iona} alt="" aria-hidden="true" className="logo" />
           <span className="logo-text">iONA Tech</span>
         </div>
 
@@ -77,13 +81,24 @@ const Navbar = () => {
         </div>
 
         {/* Mobile Menu Button */}
-        <button className="mobile-menu-button" onClick={ToggleMenu}>
-          {mobileMenu ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+        <button
+          type="button"
+          className="mobile-menu-button"
+          onClick={ToggleMenu}
+          aria-expanded={mobileMenu}
+          aria-controls="mobile-menu"
+          aria-label={mobileMenu ? 'Close menu' : 'Open menu'}
+        >
+          {mobileMenu ? <X className="w-6 h-6" aria-hidden="true" /> : <Menu className="w-6 h-6" aria-hidden="true" />}
         </button>
       </div>
 
       {/* Mobile Menu */}
-      <div className={`mobile-menu ${mobileMenu ? 'active' : ''}`}>
+      <div
+        id="mobile-menu"
+        className={`mobile-menu ${mobileMenu ? 'active' : ''}`}
+        aria-hidden={!mobileMenu}
+      >
         <div className="mobile-menu-content">
           {navItems.map((item) => (
             <Link

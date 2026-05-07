@@ -1,5 +1,4 @@
-import React from "react";
-import { Quote, Star, CheckCircle2 } from "lucide-react";
+import { Star, CheckCircle2 } from "lucide-react";
 
 const ClientTestimonials = ({
   testimonials = [
@@ -70,8 +69,10 @@ const ClientTestimonials = ({
                   <img
                     src={t.image}
                     alt={t.name}
+                    loading="lazy"
+                    decoding="async"
                     className="w-12 h-12 rounded-full object-cover grayscale hover:grayscale-0 transition-all"
-                    onError={(e) => { e.target.src = "https://ui-avatars.com/api/?name=" + t.name; }}
+                    onError={(e) => { e.target.src = "https://ui-avatars.com/api/?name=" + encodeURIComponent(t.name); }}
                   />
                   <CheckCircle2 className="absolute -bottom-1 -right-1 text-blue-500 bg-slate-950 rounded-full" size={16} />
                 </div>

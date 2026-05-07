@@ -1,12 +1,15 @@
-"use client"
-
-import { useState } from "react"
 import { useContactForm } from "../../hooks/useContactForm";
 import {
-  Mail, MapPin, Send, CheckCircle,
+  Mail, MapPin, Phone, Send, CheckCircle,
   AlertCircle, MessageCircle, ArrowUpRight,
   Zap, Clock, Shield
 } from "lucide-react"
+
+const PHONES = [
+  { display: "+256 767 896 608", tel: "+256767896608" },
+  { display: "+256 752 350 470", tel: "+256752350470" },
+]
+const EMAIL = "ionatec002@gmail.com"
 
 
 const Contacts = () => {
@@ -104,11 +107,11 @@ const Contacts = () => {
             ))}
 
             {/* Direct contacts */}
-            <div className="bg-white border border-slate-100 rounded-2xl p-6 shadow-sm space-y-4">
+            <div className="bg-white border border-slate-100 rounded-2xl p-6 shadow-sm space-y-2">
               <p className="text-xs font-bold text-slate-400 uppercase tracking-widest mb-4">Direct lines</p>
 
               <a
-                href="mailto:ionatec002@gmail.com"
+                href={`mailto:${EMAIL}`}
                 className="group flex items-center gap-4 p-3 rounded-xl hover:bg-indigo-50 transition-colors"
               >
                 <div className="w-9 h-9 bg-indigo-50 group-hover:bg-indigo-100 rounded-lg flex items-center justify-center text-indigo-600 transition-colors shrink-0">
@@ -116,10 +119,27 @@ const Contacts = () => {
                 </div>
                 <div className="min-w-0">
                   <p className="text-xs text-slate-400 font-medium">Email</p>
-                  <p className="text-sm font-semibold text-slate-800 truncate">ionatec002@gmail.com</p>
+                  <p className="text-sm font-semibold text-slate-800 truncate">{EMAIL}</p>
                 </div>
                 <ArrowUpRight size={14} className="ml-auto text-slate-300 group-hover:text-indigo-500 transition-colors shrink-0" />
               </a>
+
+              {PHONES.map((p, i) => (
+                <a
+                  key={p.tel}
+                  href={`tel:${p.tel}`}
+                  className="group flex items-center gap-4 p-3 rounded-xl hover:bg-indigo-50 transition-colors"
+                >
+                  <div className="w-9 h-9 bg-indigo-50 group-hover:bg-indigo-100 rounded-lg flex items-center justify-center text-indigo-600 transition-colors shrink-0">
+                    <Phone size={16} />
+                  </div>
+                  <div className="min-w-0">
+                    <p className="text-xs text-slate-400 font-medium">{i === 0 ? "Phone" : "Phone (alt.)"}</p>
+                    <p className="text-sm font-semibold text-slate-800 truncate">{p.display}</p>
+                  </div>
+                  <ArrowUpRight size={14} className="ml-auto text-slate-300 group-hover:text-indigo-500 transition-colors shrink-0" />
+                </a>
+              ))}
 
               <div className="flex items-center gap-4 p-3 rounded-xl">
                 <div className="w-9 h-9 bg-slate-50 rounded-lg flex items-center justify-center text-slate-500 shrink-0">
@@ -166,31 +186,29 @@ const Contacts = () => {
 
                 <div className="grid sm:grid-cols-2 gap-5">
                   <div className="space-y-1.5">
-                    <label className="text-xs font-bold text-slate-500 uppercase tracking-widest">
+                    <label htmlFor="contact-name" className="text-xs font-bold text-slate-500 uppercase tracking-widest">
                       Full name
                     </label>
                     <input
+                      id="contact-name"
                       name="name"
                       value={formData.name}
                       onChange={handleInputChange}
-                      onFocus={() => setFocused("name")}
-                      onBlur={() => setFocused("")}
                       placeholder="e.g. Allan Baliddawa"
                       required
                       className={inputBase}
                     />
                   </div>
                   <div className="space-y-1.5">
-                    <label className="text-xs font-bold text-slate-500 uppercase tracking-widest">
+                    <label htmlFor="contact-email" className="text-xs font-bold text-slate-500 uppercase tracking-widest">
                       Email address
                     </label>
                     <input
+                      id="contact-email"
                       type="email"
                       name="email"
                       value={formData.email}
                       onChange={handleInputChange}
-                      onFocus={() => setFocused("email")}
-                      onBlur={() => setFocused("")}
                       placeholder="you@company.com"
                       required
                       className={inputBase}
@@ -199,16 +217,15 @@ const Contacts = () => {
                 </div>
 
                 <div className="space-y-1.5">
-                  <label className="text-xs font-bold text-slate-500 uppercase tracking-widest">
+                  <label htmlFor="contact-phone" className="text-xs font-bold text-slate-500 uppercase tracking-widest">
                     Phone number
                   </label>
                   <input
+                    id="contact-phone"
                     type="tel"
                     name="phone"
                     value={formData.phone}
                     onChange={handleInputChange}
-                    onFocus={() => setFocused("phone")}
-                    onBlur={() => setFocused("")}
                     placeholder="+256 700 000 000"
                     required
                     className={inputBase}
@@ -216,15 +233,14 @@ const Contacts = () => {
                 </div>
 
                 <div className="space-y-1.5">
-                  <label className="text-xs font-bold text-slate-500 uppercase tracking-widest">
+                  <label htmlFor="contact-message" className="text-xs font-bold text-slate-500 uppercase tracking-widest">
                     Project details
                   </label>
                   <textarea
+                    id="contact-message"
                     name="message"
                     value={formData.message}
                     onChange={handleInputChange}
-                    onFocus={() => setFocused("message")}
-                    onBlur={() => setFocused("")}
                     rows={5}
                     placeholder="Describe your project — what you're building, your timeline, and what kind of support you need..."
                     required

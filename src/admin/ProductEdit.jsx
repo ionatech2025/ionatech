@@ -1,4 +1,3 @@
-import React from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useResourceItem } from './useResource'
 import { Field, TextInput, TextArea, NumberInput, CheckboxField, IconPicker, LinesField, FormActions, PageHeader } from './FormBits'

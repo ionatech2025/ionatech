@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import { useState } from 'react'
 import { adminFetch } from '../lib/api'
 
 export default function Login({ onSuccess }) {
@@ -33,22 +33,24 @@ export default function Login({ onSuccess }) {
         </div>
 
         <div className="space-y-2">
-          <label className="text-sm font-bold text-slate-700">Email</label>
+          <label htmlFor="admin-email" className="text-sm font-bold text-slate-700">Email</label>
           <input
+            id="admin-email"
             type="email"
             name="email"
             autoComplete="username"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             required
-            autoFocus
+            ref={(el) => el && el.focus()}
             className="w-full px-5 py-3 bg-slate-50 rounded-xl focus:ring-2 focus:ring-blue-600 outline-none"
           />
         </div>
 
         <div className="space-y-2">
-          <label className="text-sm font-bold text-slate-700">Password</label>
+          <label htmlFor="admin-password" className="text-sm font-bold text-slate-700">Password</label>
           <input
+            id="admin-password"
             type="password"
             name="password"
             autoComplete="current-password"

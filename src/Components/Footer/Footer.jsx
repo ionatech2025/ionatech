@@ -1,4 +1,3 @@
-import React from "react";
 import { useState } from "react";
 import { Github, Mail, MessageCircle, ArrowRight, MapPin, Zap } from "lucide-react";
 import Iona from '../../assets/Iona.jpg'
@@ -7,17 +6,16 @@ import { useContactForm } from "../../hooks/useContactForm";
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
-  const [email, setEmail] = useState("")
   const [subscribed, setSubscribed] = useState(false)
 
   const { formData, setFormData, isLoading, result, submitForm } = useContactForm({
     email: ""
   });
 
-  const handleSubscribe = (e) => {
+  const handleSubscribe = async (e) => {
     e.preventDefault();
-    // You can add a default name or subject suffix here if needed
-    submitForm({ ...formData, name: "Send Updates" });
+    const ok = await submitForm({ ...formData, name: "Send Updates" });
+    if (ok) setSubscribed(true);
   };
 
   const services = [
@@ -83,7 +81,7 @@ const Footer = () => {
             {/* Logo */}
             <div className="flex items-center gap-3">
               <div className="w-10 h-10 rounded-xl overflow-hidden ring-1 ring-white/10">
-                <img src={Iona} alt="iONA Tech" className="w-full h-full object-cover" />
+                <img src={Iona} alt="iONA Tech" loading="lazy" decoding="async" className="w-full h-full object-cover" />
               </div>
               <span className="text-xl font-black text-white tracking-tight">
                 iONA <span className="text-indigo-400">Tech</span>
@@ -203,13 +201,15 @@ const Footer = () => {
           </p>
           <div className="flex items-center gap-6">
             {["Privacy Policy", "Terms of Service"].map((item) => (
-              <a
+              <button
                 key={item}
-                href="#"
-                className="text-slate-600 hover:text-slate-400 text-xs transition-colors"
+                type="button"
+                disabled
+                aria-label={`${item} (coming soon)`}
+                className="text-slate-600 hover:text-slate-400 text-xs transition-colors disabled:cursor-not-allowed"
               >
                 {item}
-              </a>
+              </button>
             ))}
           </div>
         </div>

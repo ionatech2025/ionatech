@@ -1,4 +1,3 @@
-import React from 'react'
 import { Link } from 'react-router-dom'
 import { Package, Settings2, Users, Info, Phone } from 'lucide-react'
 

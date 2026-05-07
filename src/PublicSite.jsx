@@ -1,4 +1,3 @@
-import React from 'react'
 import Navbar from './Components/Navbar/Navbar'
 import Tech from './Components/Tech/Tech'
 import About from './Components/About/About'

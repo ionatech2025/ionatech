@@ -1,7 +1,5 @@
-"use client"
-
-import { useState, useEffect } from "react"
-import { ChevronLeft, ChevronRight, Quote, Github, Linkedin, ExternalLink } from "lucide-react"
+import { useState } from "react"
+import { ChevronLeft, ChevronRight, Quote } from "lucide-react"
 
 const teamMembers = [
     {

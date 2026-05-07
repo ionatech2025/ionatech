@@ -1,6 +1,5 @@
 import { useState } from 'react';
-
-{/*Handle the API calls and state management */ }
+import { contact } from '../data/contact';
 
 export const useContactForm = (initialData = {}) => {
     const [isLoading, setIsLoading] = useState(false);
@@ -8,12 +7,18 @@ export const useContactForm = (initialData = {}) => {
     const [formData, setFormData] = useState(initialData);
 
     const submitForm = async (data) => {
+        if (!contact.web3formsAccessKey) {
+            console.error('useContactForm: web3forms access key is not configured');
+            setResult("error");
+            return false;
+        }
+
         setIsLoading(true);
         setResult("sending");
 
         const payload = {
             ...data,
-            access_key: "059244e1-534a-434e-a22d-7add58b68447",
+            access_key: contact.web3formsAccessKey,
             subject: `New Inquiry: ${data.name || 'Newsletter/Footer'}`,
         };
 
@@ -28,13 +33,12 @@ export const useContactForm = (initialData = {}) => {
 
             if (resData.success) {
                 setResult("success");
-                setFormData(initialData); // Reset to initial state
+                setFormData(initialData);
                 return true;
-            } else {
-                setResult("error");
-                return false;
             }
-        } catch (error) {
+            setResult("error");
+            return false;
+        } catch {
             setResult("error");
             return false;
         } finally {

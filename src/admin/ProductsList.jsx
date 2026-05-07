@@ -1,4 +1,3 @@
-import React from 'react'
 import ResourceTable from './ResourceTable'
 import { useResourceList } from './useResource'
 

@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react'
+import { useEffect, useRef } from 'react'
 import './Tech.css'
 import { Sparkles, ArrowRight, Rocket, Users, Target, Briefcase, Clock, Award } from 'lucide-react'
 import { Link } from 'react-scroll'
