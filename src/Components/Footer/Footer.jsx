@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Github, Mail, MessageCircle, ArrowRight, MapPin, Zap } from "lucide-react";
+import { Github, Linkedin, Mail, MessageCircle, ArrowRight, MapPin, Zap } from "lucide-react";
 import Iona from '../../assets/Iona.jpg'
 
 import { useContactForm } from "../../hooks/useContactForm";
@@ -36,6 +36,7 @@ const Footer = () => {
 
   const socials = [
     { Icon: Github, href: "https://github.com/ionatech2025", label: "GitHub" },
+    { Icon: Linkedin, href: "https://www.linkedin.com/company/ionatech", label: "LinkedIn" },
     { Icon: Mail, href: "mailto:ionatec002@gmail.com", label: "Email" },
     { Icon: MessageCircle, href: "https://wa.me/256767896608", label: "WhatsApp" },
   ]

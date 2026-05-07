@@ -14,7 +14,10 @@ export const siteSeo = {
     addressLocality: 'Kampala',
     addressCountry: 'UG',
   },
-  sameAs: ['https://github.com/ionatech2025'],
+  sameAs: [
+    'https://github.com/ionatech2025',
+    'https://www.linkedin.com/company/ionatech',
+  ],
 };
 
 export const homeSeo = {
