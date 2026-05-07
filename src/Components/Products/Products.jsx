@@ -1,7 +1,5 @@
-import React from 'react';
 import './Products.css';
 import {
-  ArrowRight,
   GraduationCap,
   Brain,
   ShieldCheck,

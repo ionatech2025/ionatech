@@ -1,4 +1,3 @@
-import React from 'react';
 import PricingCard from './PricingCard';
 import { Target, TrendingUp, Globe, Banknote, FileText, Sparkles } from 'lucide-react';
 import './Pricing.css';

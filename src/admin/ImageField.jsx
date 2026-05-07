@@ -1,6 +1,6 @@
-import React, { useRef, useState } from 'react'
+import { useRef, useState } from 'react'
 import { Upload, X } from 'lucide-react'
-import { Field, TextInput, inputClass } from './FormBits'
+import { Field, inputClass } from './FormBits'
 
 /**
  * Image input that supports either pasting a URL/path or uploading a file

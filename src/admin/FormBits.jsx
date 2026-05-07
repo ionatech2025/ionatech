@@ -1,4 +1,3 @@
-import React from 'react'
 import { iconNames } from '../data/iconRegistry'
 
 export function Field({ label, hint, children }) {

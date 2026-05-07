@@ -1,6 +1,3 @@
-"use client"
-
-import { useState } from "react"
 import { useContactForm } from "../../hooks/useContactForm";
 import {
   Mail, MapPin, Send, CheckCircle,
@@ -166,31 +163,29 @@ const Contacts = () => {
 
                 <div className="grid sm:grid-cols-2 gap-5">
                   <div className="space-y-1.5">
-                    <label className="text-xs font-bold text-slate-500 uppercase tracking-widest">
+                    <label htmlFor="contact-name" className="text-xs font-bold text-slate-500 uppercase tracking-widest">
                       Full name
                     </label>
                     <input
+                      id="contact-name"
                       name="name"
                       value={formData.name}
                       onChange={handleInputChange}
-                      onFocus={() => setFocused("name")}
-                      onBlur={() => setFocused("")}
                       placeholder="e.g. Allan Baliddawa"
                       required
                       className={inputBase}
                     />
                   </div>
                   <div className="space-y-1.5">
-                    <label className="text-xs font-bold text-slate-500 uppercase tracking-widest">
+                    <label htmlFor="contact-email" className="text-xs font-bold text-slate-500 uppercase tracking-widest">
                       Email address
                     </label>
                     <input
+                      id="contact-email"
                       type="email"
                       name="email"
                       value={formData.email}
                       onChange={handleInputChange}
-                      onFocus={() => setFocused("email")}
-                      onBlur={() => setFocused("")}
                       placeholder="you@company.com"
                       required
                       className={inputBase}
@@ -199,16 +194,15 @@ const Contacts = () => {
                 </div>
 
                 <div className="space-y-1.5">
-                  <label className="text-xs font-bold text-slate-500 uppercase tracking-widest">
+                  <label htmlFor="contact-phone" className="text-xs font-bold text-slate-500 uppercase tracking-widest">
                     Phone number
                   </label>
                   <input
+                    id="contact-phone"
                     type="tel"
                     name="phone"
                     value={formData.phone}
                     onChange={handleInputChange}
-                    onFocus={() => setFocused("phone")}
-                    onBlur={() => setFocused("")}
                     placeholder="+256 700 000 000"
                     required
                     className={inputBase}
@@ -216,15 +210,14 @@ const Contacts = () => {
                 </div>
 
                 <div className="space-y-1.5">
-                  <label className="text-xs font-bold text-slate-500 uppercase tracking-widest">
+                  <label htmlFor="contact-message" className="text-xs font-bold text-slate-500 uppercase tracking-widest">
                     Project details
                   </label>
                   <textarea
+                    id="contact-message"
                     name="message"
                     value={formData.message}
                     onChange={handleInputChange}
-                    onFocus={() => setFocused("message")}
-                    onBlur={() => setFocused("")}
                     rows={5}
                     placeholder="Describe your project — what you're building, your timeline, and what kind of support you need..."
                     required

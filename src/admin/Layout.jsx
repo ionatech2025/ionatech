@@ -1,4 +1,3 @@
-import React from 'react'
 import { NavLink, Outlet, useNavigate } from 'react-router-dom'
 import { adminFetch } from '../lib/api'
 import { LayoutDashboard, Package, Settings2, Users, Info, Phone, LogOut } from 'lucide-react'
@@ -16,7 +15,11 @@ export default function Layout({ user, onLogout }) {
   const nav = useNavigate()
 
   const logout = async () => {
-    try { await adminFetch('/api/auth/logout', { method: 'POST' }) } catch {}
+    try {
+      await adminFetch('/api/auth/logout', { method: 'POST' })
+    } catch {
+      // Best-effort: clear the local session even if the server call fails.
+    }
     await onLogout?.()
     nav('/admin/login', { replace: true })
   }

@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import { useEffect, useState } from 'react'
 import {
   Sparkles, ArrowRight, Code, Smartphone,
   Palette, Monitor, X, CheckCircle,
@@ -16,7 +16,18 @@ import ManDesk from '../../assets/ManDesk.png'
 
 const ServicesPage = () => {
   const [selectedProgram, setSelectedProgram] = useState(null)
-  const [hoveredCard, setHoveredCard] = useState(null)
+
+  useEffect(() => {
+    if (!selectedProgram) return
+    const onKey = (e) => { if (e.key === 'Escape') setSelectedProgram(null) }
+    document.addEventListener('keydown', onKey)
+    const previousOverflow = document.body.style.overflow
+    document.body.style.overflow = 'hidden'
+    return () => {
+      document.removeEventListener('keydown', onKey)
+      document.body.style.overflow = previousOverflow
+    }
+  }, [selectedProgram])
 
   const scrollToSection = (id) => {
     const element = document.getElementById(id)
@@ -121,13 +132,14 @@ const ServicesPage = () => {
 
         <div className="container mx-auto px-6 relative z-10">
           <div className="max-w-4xl mx-auto text-center">
-            <div
+            <button
+              type="button"
               onClick={() => scrollToSection('programs')}
               className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 backdrop-blur-sm border border-white/10 text-blue-300 text-sm font-medium mb-8 cursor-pointer hover:bg-white/15 transition-all"
             >
               <Sparkles size={14} />
               <span>Professional Services</span>
-            </div>
+            </button>
 
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight mb-6 leading-tight text-white">
               Solutions That Drive{' '}
@@ -193,8 +205,6 @@ const ServicesPage = () => {
               <div
                 key={program.id}
                 className="group relative bg-white rounded-2xl overflow-hidden border border-slate-200 hover:border-slate-300 transition-all duration-500 hover:shadow-2xl hover:shadow-slate-200/50"
-                onMouseEnter={() => setHoveredCard(program.id)}
-                onMouseLeave={() => setHoveredCard(null)}
               >
                 {/* Card Content */}
                 <div className="flex flex-col md:flex-row">
@@ -204,6 +214,8 @@ const ServicesPage = () => {
                       src={program.image}
                       alt={program.title}
                       className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                      loading="lazy"
+                      decoding="async"
                     />
                     <div className={`absolute inset-0 bg-gradient-to-br ${program.accentColor} opacity-0 group-hover:opacity-20 transition-opacity duration-500`} />
 
@@ -279,11 +291,19 @@ const ServicesPage = () => {
       {selectedProgram && (
         <div
           className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-slate-900/90 backdrop-blur-sm"
-          onClick={() => setSelectedProgram(null)}
+          role="presentation"
         >
+          <button
+            type="button"
+            aria-label="Close dialog"
+            onClick={() => setSelectedProgram(null)}
+            className="absolute inset-0 w-full h-full cursor-default focus:outline-none"
+          />
           <div
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="service-modal-title"
             className="bg-white rounded-2xl w-full max-w-2xl max-h-[90vh] overflow-y-auto shadow-2xl relative"
-            onClick={(e) => e.stopPropagation()}
             style={{ animation: 'modalIn 0.3s ease-out' }}
           >
             <style>{`
@@ -310,7 +330,7 @@ const ServicesPage = () => {
                   <div className="flex items-center gap-2 text-white/80 text-sm font-medium mb-1">
                     <Award size={14} /> Premium Service
                   </div>
-                  <h2 className="text-2xl md:text-3xl font-bold text-white">{selectedProgram.title}</h2>
+                  <h2 id="service-modal-title" className="text-2xl md:text-3xl font-bold text-white">{selectedProgram.title}</h2>
                 </div>
               </div>
             </div>

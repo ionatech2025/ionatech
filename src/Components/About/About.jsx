@@ -1,5 +1,4 @@
-import React from "react";
-import { Trophy, Rocket, ShieldCheck, ArrowRight, Quote } from "lucide-react";
+import { Trophy, Rocket, ShieldCheck, ArrowRight } from "lucide-react";
 
 const About = () => {
   const stats = [
@@ -24,6 +23,8 @@ const About = () => {
                 className="w-full h-[400px] lg:h-[600px] object-cover rounded-3xl shadow-2xl transition-transform duration-500 group-hover:scale-[1.01]"
                 src="/images/team_of_developers.jpg"
                 alt="iONA Tech team collaborating"
+                loading="lazy"
+                decoding="async"
               />
               {/* Floating Stat Card */}
               <div className="absolute -bottom-6 -right-6 bg-blue-600 text-white p-8 rounded-2xl shadow-xl hidden md:block">

@@ -1,7 +1,5 @@
-"use client"
-
 import { useState, useEffect, useRef } from "react"
-import { ArrowLeft, ArrowRight, ExternalLink } from "lucide-react"
+import { ArrowLeft, ArrowRight } from "lucide-react"
 
 const teamMembers = [
   {
@@ -77,7 +75,7 @@ const tagColors = {
 export default function Team() {
   const [active, setActive] = useState(0)
   const [isPlaying, setIsPlaying] = useState(true)
-  const [animDir, setAnimDir] = useState("right")
+  const [, setAnimDir] = useState("right")
   const timerRef = useRef(null)
 
   const startTimer = () => {
@@ -149,6 +147,8 @@ export default function Team() {
                     <img
                       src={m.image || "/placeholder.svg"}
                       alt={m.name}
+                      loading="lazy"
+                      decoding="async"
                       style={styles.avatarSmallImg}
                     />
                     {i === active && <div style={styles.avatarRing} />}
@@ -192,6 +192,8 @@ export default function Team() {
                 <img
                   src={member.image || "/placeholder.svg"}
                   alt={member.name}
+                  loading="lazy"
+                  decoding="async"
                   style={styles.profileImg}
                 />
                 <div style={styles.imageAccent} />

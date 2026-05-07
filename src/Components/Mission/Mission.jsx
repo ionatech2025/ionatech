@@ -1,4 +1,3 @@
-import React from "react";
 import { Trophy, Rocket, ShieldCheck, ArrowRight } from "lucide-react";
 import "./Mission.css";
 
@@ -28,6 +27,8 @@ const Mission = () => {
                 className="mission-image"
                 src='/images/team_of_developers.jpg'
                 alt="iONA Tech team collaborating in a modern workspace"
+                loading="lazy"
+                decoding="async"
               />
             </div>
 

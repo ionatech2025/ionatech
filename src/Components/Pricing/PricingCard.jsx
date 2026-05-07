@@ -1,4 +1,3 @@
-import React from 'react';
 import { Link } from 'react-scroll';
 import { Check, X } from 'lucide-react';
 import './Pricing.css';
