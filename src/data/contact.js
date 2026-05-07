@@ -2,6 +2,7 @@
 export const contact = {
   email: 'ionatec002@gmail.com',
   phone: '+256767896608',
+  phoneAlt: '+256752350470',
   address: 'Kampala, Uganda',
   whatsappNumber: '256767896608',
   // Web3forms access keys are public by design (the form submits directly from the
