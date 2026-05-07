@@ -4,7 +4,7 @@ export const about = {
   titleLead: 'Turning Complex Ideas into',
   titleHighlight: 'Powerful Software.',
   description:
-    "At IONATECH, we don't just write code; we architect digital futures. We understand that in a crowded market, your technology needs to be your greatest competitive advantage. We bridge the gap between creative design and robust engineering to help you <strong>make it big.</strong>",
+    "At iONA TECH, we don't just write code; we architect digital futures. We understand that in a crowded market, your technology needs to be your greatest competitive advantage. We bridge the gap between creative design and robust engineering to help you <strong>make it big.</strong>",
   image: "/images/team-of-developers.jpeg",
   statBadgeValue: '100%',
   statBadgeLabel: 'Client Commitment',

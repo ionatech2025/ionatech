@@ -22,7 +22,7 @@ const About = () => {
               <img
                 className="w-full h-[400px] lg:h-[600px] object-cover rounded-3xl shadow-2xl transition-transform duration-500 group-hover:scale-[1.01]"
                 src="/images/team_of_developers.jpg"
-                alt="IONATECH team collaborating"
+                alt="iONA TECH team collaborating"
                 loading="lazy"
                 decoding="async"
               />
@@ -44,7 +44,7 @@ const About = () => {
                 Turning Complex Ideas into <span className="text-blue-600">Powerful Software.</span>
               </h2>
               <p className="text-lg text-slate-600 leading-relaxed">
-                At IONATECH, we don't just write code; we architect digital futures. We understand that in a crowded market, your technology needs to be your greatest competitive advantage. We bridge the gap between creative design and robust engineering to help you <strong>make it big.</strong>
+                At iONA TECH, we don't just write code; we architect digital futures. We understand that in a crowded market, your technology needs to be your greatest competitive advantage. We bridge the gap between creative design and robust engineering to help you <strong>make it big.</strong>
               </p>
             </div>
 

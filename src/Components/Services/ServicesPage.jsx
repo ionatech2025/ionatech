@@ -150,7 +150,7 @@ const ServicesPage = () => {
                   <div className="relative w-full md:w-2/5 h-48 md:h-auto overflow-hidden">
                     <img
                       src={program.image}
-                      alt={`${program.title} services by IONATECH`}
+                      alt={`${program.title} services by iONA TECH`}
                       className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
                       loading="lazy"
                       decoding="async"

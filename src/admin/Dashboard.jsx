@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom'
 import { Package, Settings2, Users, Info, Phone } from 'lucide-react'
 
 const CARDS = [
-  { to: '/admin/products', label: 'Products', desc: 'Showcase real IONATECH work — clients, links, tech stack.', icon: Package },
+  { to: '/admin/products', label: 'Products', desc: 'Showcase real iONA TECH work — clients, links, tech stack.', icon: Package },
   { to: '/admin/services', label: 'Services', desc: 'Edit service offerings, technologies, and benefits.',    icon: Settings2 },
   { to: '/admin/team',     label: 'Team',     desc: 'Manage team members, roles, bios, and photos.',          icon: Users },
   { to: '/admin/about',    label: 'About',    desc: 'About-section copy, eyebrow, and stats.',                icon: Info },

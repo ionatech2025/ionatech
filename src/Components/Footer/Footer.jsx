@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { Github, Linkedin, Mail, MessageCircle, ArrowRight, MapPin, Zap } from "lucide-react";
-import Iona from '../../assets/Iona.jpg'
 
 import { useContactForm } from "../../hooks/useContactForm";
 
@@ -84,10 +83,10 @@ const Footer = () => {
             {/* Logo */}
             <div className="flex items-center gap-3">
               <div className="w-10 h-10 rounded-xl overflow-hidden ring-1 ring-white/10">
-                <img src={Iona} alt="IONATECH" loading="lazy" decoding="async" className="w-full h-full object-cover" />
+                <img src="/images/logo.jpg" alt="iONA TECH" loading="lazy" decoding="async" className="w-full h-full object-cover" />
               </div>
                 <span className="text-xl font-black text-white">
-                IONA<span className="text-cyan-300">TECH</span>
+                iONA <span className="text-cyan-300">TECH</span>
               </span>
             </div>
 
@@ -200,7 +199,7 @@ const Footer = () => {
         {/* Bottom bar */}
         <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
           <p className="text-slate-600 text-xs">
-            © {currentYear} IONATECH. Built with purpose in Kampala, Uganda.
+            © {currentYear} iONA TECH. Built with purpose in Kampala, Uganda.
           </p>
           <div className="flex items-center gap-6">
             {["Privacy Policy", "Terms of Service"].map((item) => (

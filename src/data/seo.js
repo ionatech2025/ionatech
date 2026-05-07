@@ -1,11 +1,11 @@
 export const SITE_URL = 'https://ionatec.com';
 
 export const siteSeo = {
-  name: 'IONATECH',
-  legalName: 'IONATECH',
+  name: 'iONA TECH',
+  legalName: 'iONA TECH',
   url: SITE_URL,
-  logo: `${SITE_URL}/images/Logo.jpg`,
-  image: `${SITE_URL}/images/Logo.jpg`,
+  logo: `${SITE_URL}/images/logo.jpg`,
+  image: `${SITE_URL}/images/logo.jpg`,
   email: 'ionatec002@gmail.com',
   telephone: '+256767896608',
   alternateTelephone: '+256752350470',
@@ -22,9 +22,9 @@ export const siteSeo = {
 
 export const homeSeo = {
   path: '/',
-  metaTitle: 'IONATECH | Web Development, Mobile Apps, AI & Dashboards in Uganda',
+  metaTitle: 'iONA TECH | Web Development, Mobile Apps, AI & Dashboards in Uganda',
   metaDescription:
-    'IONATECH builds SEO-ready websites, mobile apps, AI/ML systems, KPI dashboards, monitoring tools and custom software for teams in Uganda and beyond.',
+    'iONA TECH builds SEO-ready websites, mobile apps, AI/ML systems, KPI dashboards, monitoring tools and custom software for teams in Uganda and beyond.',
   h1: 'Web Development, Mobile Apps, AI and Custom Software in Uganda',
 };
 
@@ -32,7 +32,7 @@ export const servicesIndexSeo = {
   path: '/services',
   metaTitle: 'Technology Services | Web, Mobile, AI/ML, Dashboards & Custom Builds',
   metaDescription:
-    'Explore IONATECH services: web development, native and Flutter mobile apps, AI/ML, deep learning, agentic AI, KPI dashboards and custom software builds.',
+    'Explore iONA TECH services: web development, native and Flutter mobile apps, AI/ML, deep learning, agentic AI, KPI dashboards and custom software builds.',
   h1: 'Technology Services Built for Search, Scale and Measurable Growth',
 };
 
@@ -63,7 +63,7 @@ export const seoServices = [
     deliverables: ['Corporate websites', 'SaaS dashboards', 'Customer portals', 'Content-managed pages'],
     faq: [
       {
-        question: 'Can IONATECH build SEO-ready company websites?',
+        question: 'Can iONA TECH build SEO-ready company websites?',
         answer:
           'Yes. We build semantic pages, metadata, structured data, responsive layouts, fast assets and internal links so search engines can understand the business and services clearly.',
       },
@@ -137,7 +137,7 @@ export const seoServices = [
     deliverables: ['Prediction systems', 'Recommendation tools', 'Computer vision prototypes', 'NLP workflows'],
     faq: [
       {
-        question: 'What AI/ML systems can IONATECH build?',
+        question: 'What AI/ML systems can iONA TECH build?',
         answer:
           'We build prediction models, classification systems, recommendation engines, document automation, NLP workflows and decision-support tools.',
       },
@@ -248,7 +248,7 @@ export const seoServices = [
     deliverables: ['CRMs', 'Admin portals', 'Inventory systems', 'Desktop applications'],
     faq: [
       {
-        question: 'Can IONATECH build software around our exact workflow?',
+        question: 'Can iONA TECH build software around our exact workflow?',
         answer:
           'Yes. We map the workflow, data, roles and reporting needs before designing a custom system around the process.',
       },
@@ -367,7 +367,7 @@ export function buildOrganizationSchema() {
     sameAs: siteSeo.sameAs,
     areaServed: ['Uganda', 'East Africa', 'Worldwide'],
     description:
-      'IONATECH is a software engineering company in Kampala, Uganda building websites, mobile applications, AI/ML systems, dashboards and custom software.',
+      'iONA TECH is a software engineering company in Kampala, Uganda building websites, mobile applications, AI/ML systems, dashboards and custom software.',
     contactPoint: [
       {
         '@type': 'ContactPoint',
@@ -434,7 +434,7 @@ export function buildServiceItemListSchema() {
   return {
     '@context': 'https://schema.org',
     '@type': 'ItemList',
-    name: 'IONATECH technology services',
+    name: 'iONA TECH technology services',
     itemListElement: seoServices.map((service, index) => ({
       '@type': 'ListItem',
       position: index + 1,

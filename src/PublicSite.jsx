@@ -33,7 +33,6 @@ const PublicSite = () => {
           title={service.metaTitle}
           description={service.metaDescription}
           path={service.path}
-          image={service.schemaImage}
           structuredData={buildServiceStructuredData(service)}
         />
         <ServiceLandingPage service={service} />

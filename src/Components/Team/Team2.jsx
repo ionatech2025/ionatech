@@ -7,7 +7,7 @@ const teamMembers = [
         name: "Nyombi Elijah",
         role: "Director | Co-founder",
         image: "/images/elijah.jpg",
-        bio: "Elijah leads IONATECH with a focus on digital transformation. With a background in journalism and public health, he bridges the gap between complex communication and high-quality software development.",
+        bio: "Elijah leads iONA TECH with a focus on digital transformation. With a background in journalism and public health, he bridges the gap between complex communication and high-quality software development.",
         focus: ["Digital Strategy", "Product Vision"]
     },
     {
@@ -23,7 +23,7 @@ const teamMembers = [
         name: "Baliddawa Allan",
         role: "Fullstack Architect | Co-founder",
         image: "/images/allanella.jpg",
-        bio: "Allan is a passionate architect specializing in Spring Boot and React ecosystems. He focuses on building the scalable backbone of IONATECH's enterprise-grade applications.",
+        bio: "Allan is a passionate architect specializing in Spring Boot and React ecosystems. He focuses on building the scalable backbone of iONA TECH's enterprise-grade applications.",
         focus: ["Backend Architecture", "Cloud Systems"]
     },
     {

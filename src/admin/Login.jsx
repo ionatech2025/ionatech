@@ -28,7 +28,7 @@ export default function Login({ onSuccess }) {
     <div className="min-h-screen bg-slate-50 flex items-center justify-center px-6">
       <form onSubmit={submit} className="w-full max-w-md bg-white rounded-3xl shadow-xl border border-slate-100 p-10 space-y-6">
         <div>
-          <h1 className="text-3xl font-bold text-slate-900 mb-1">IONATECH Admin</h1>
+          <h1 className="text-3xl font-bold text-slate-900 mb-1">iONA TECH Admin</h1>
           <p className="text-slate-500 text-sm">Sign in to manage site content.</p>
         </div>
 

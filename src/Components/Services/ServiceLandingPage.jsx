@@ -54,7 +54,7 @@ export function ServicesIndexPage() {
           <div className="mx-auto max-w-6xl">
             <p className="ion-badge mb-4">
               <span className="ion-live-dot" />
-              IONATECH Services
+              iONA TECH Services
             </p>
             <h1 className="ion-heading max-w-4xl">
               {servicesIndexSeo.h1}
@@ -156,7 +156,7 @@ export default function ServiceLandingPage({ service }) {
             <div className="ion-image-frame">
               <img
                 src={service.image}
-                alt={`${service.title} by IONATECH`}
+                alt={`${service.title} by iONA TECH`}
                 className="h-[320px] w-full object-cover"
                 loading="eager"
                 decoding="async"
@@ -234,7 +234,7 @@ export default function ServiceLandingPage({ service }) {
           <div className="ion-aurora" aria-hidden="true" />
           <div className="mx-auto grid max-w-6xl gap-10 lg:grid-cols-[1fr_1fr] lg:items-center">
             <div>
-              <h2 className="ion-heading text-3xl">Build with IONATECH</h2>
+              <h2 className="ion-heading text-3xl">Build with iONA TECH</h2>
               <p className="ion-copy mt-4">
                 Tell us what you want to build, who it serves and what success should look like.
                 We will help shape the scope, technical approach and delivery plan.

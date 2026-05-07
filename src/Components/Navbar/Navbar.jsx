@@ -1,6 +1,5 @@
 import { useState, useEffect } from 'react'
 import './Navbar.css'
-import Iona from '../../assets/Iona.jpg'
 import { Menu, X } from 'lucide-react'
 
 const Navbar = () => {
@@ -63,8 +62,8 @@ const Navbar = () => {
         <div className="navbar-container">
           {/* Logo */}
         <a href="/" className="navbar-logo" onClick={(event) => handleNavClick(event, '/')}>
-          <img src={Iona} alt="" aria-hidden="true" className="logo" />
-          <span className="logo-text">IONATECH</span>
+          <img src="/images/logo.jpg" alt="" aria-hidden="true" className="logo" />
+          <span className="logo-text">iONA TECH</span>
         </a>
 
         {/* Desktop Navigation */}

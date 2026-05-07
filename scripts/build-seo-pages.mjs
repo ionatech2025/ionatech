@@ -36,7 +36,7 @@ function setMetaProperty(html, property, content) {
 }
 
 function applyPageSeo(page) {
-  const image = page.schemaImage || page.image || siteSeo.image;
+  const image = siteSeo.image;
   let html = indexHtml;
 
   html = html.replace(/<title>[\s\S]*?<\/title>/, `<title>${escapeText(page.metaTitle)}</title>`);
@@ -47,6 +47,7 @@ function applyPageSeo(page) {
     `<link rel="canonical" href="${escapeAttribute(page.canonical)}" />`,
   );
   html = setMetaProperty(html, 'og:type', 'website');
+  html = setMetaProperty(html, 'og:site_name', siteSeo.name);
   html = setMetaProperty(html, 'og:title', page.metaTitle);
   html = setMetaProperty(html, 'og:description', page.metaDescription);
   html = setMetaProperty(html, 'og:url', page.canonical);

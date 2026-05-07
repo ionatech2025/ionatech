@@ -11,7 +11,7 @@ const Products = () => {
   const focusAreas = [
     {
       id: 1,
-      image: 'https://images.unsplash.com/photo-1509062522246-3755977927d7?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80',
+      image: '/images/TechGal.jpg',
       title: 'Transformative Education',
       subtitle: 'EdTech',
       description: 'Build collaborative hubs and mentorship platforms that scale human capital. We architect the next generation of digital learning for Africa\'s youth, leveraging frameworks like Scholaria to create immersive educational ecosystems.',
@@ -21,7 +21,7 @@ const Products = () => {
     },
     {
       id: 2,
-      image: 'https://images.unsplash.com/photo-1531482615713-2afd69097998?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80',
+      image: '/images/LightCode.jpeg',
       title: 'AI-Inclusive Systems',
       subtitle: 'Intelligent Automation',
       description: 'Integrate intelligent automation into local business workflows and research. We deliver accessible AI solutions that solve real-world operational bottlenecks, tailored for the regional context and scalable across industries.',
@@ -31,7 +31,7 @@ const Products = () => {
     },
     {
       id: 3,
-      image: 'https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80',
+      image: '/images/Info.jpg',
       title: 'Digital Health & Data Security',
       subtitle: 'Health Informatics',
       description: 'Develop secure, resilient health informatics and patient data systems. Our advanced software architecture ensures data integrity through robust encryption protocols, improving regional healthcare delivery and compliance.',
@@ -41,7 +41,7 @@ const Products = () => {
     },
     {
       id: 4,
-      image: 'https://images.unsplash.com/photo-1604689598793-b8bf1dc445a1?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80',
+      image: '/images/Afrikan.jpg',
       title: 'Next-Gen eCommerce & Agri-Fintech',
       subtitle: 'Digital Economies',
       description: 'Beyond simple storefronts, we architect integrated digital economies. Build secure middleware for cross-border transactions and value-chain automation, empowering the agriculture sector with fintech innovation.',
@@ -52,7 +52,7 @@ const Products = () => {
   ];
 
   return (
-    <section className="industry-section ion-section" id='ourFocus'>
+    <section className="industry-section ion-section">
       {/* Background Elements */}
       <div className="industry-bg-gradient" />
       <div className="ion-aurora" aria-hidden="true" />
@@ -70,7 +70,7 @@ const Products = () => {
             Industry <span className="industry-title-accent">Focus Areas</span>
           </h2>
           <p className="industry-subtitle">
-            Positioning IONATECH as an elite engineering partner, delivering transformative
+            Positioning iONA TECH as an elite engineering partner, delivering transformative
             solutions across Uganda&apos;s most critical sectors.
           </p>
         </div>
@@ -95,6 +95,7 @@ const Products = () => {
                   alt={area.title}
                   className="industry-card-image"
                   loading="lazy"
+                  decoding="async"
                 />
                 <div className="industry-card-image-overlay" />
               </div>

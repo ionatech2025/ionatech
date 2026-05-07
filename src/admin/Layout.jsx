@@ -28,7 +28,7 @@ export default function Layout({ user, onLogout }) {
     <div className="min-h-screen bg-slate-50 flex">
       <aside className="w-64 bg-white border-r border-slate-200 flex flex-col">
         <div className="p-6 border-b border-slate-100">
-          <p className="text-xs font-bold uppercase tracking-widest text-slate-400">IONATECH</p>
+          <p className="text-xs font-bold uppercase tracking-widest text-slate-400">iONA TECH</p>
           <p className="text-lg font-bold text-slate-900">Admin</p>
         </div>
 
