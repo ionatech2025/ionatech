@@ -1,6 +1,7 @@
 import { db } from '../_lib/db.js';
-import { json, noCache, methodNotAllowed, serverError } from '../_lib/respond.js';
+import { json, noCache, methodNotAllowed, badRequest, serverError } from '../_lib/respond.js';
 import { requireAdmin, readJson } from '../_lib/auth.js';
+import { ContactPatch, validate } from '../_lib/schemas.js';
 
 export default async function handler(req, res) {
   try {
@@ -19,13 +20,15 @@ export default async function handler(req, res) {
     }
 
     if (req.method === 'PATCH') {
-      const b = await readJson(req);
+      const body = await readJson(req);
+      const b = validate(ContactPatch, body, res, badRequest);
+      if (!b) return;
       const [row] = await sql`
         INSERT INTO contact_info
           (id, email, phone, address, whatsapp_number, web3forms_access_key)
         VALUES
-          (1, ${b.email ?? ''}, ${b.phone ?? ''}, ${b.address ?? ''},
-           ${b.whatsappNumber ?? ''}, ${b.web3formsAccessKey ?? ''})
+          (1, ${b.email}, ${b.phone}, ${b.address},
+           ${b.whatsappNumber}, ${b.web3formsAccessKey})
         ON CONFLICT (id) DO UPDATE SET
           email                = EXCLUDED.email,
           phone                = EXCLUDED.phone,

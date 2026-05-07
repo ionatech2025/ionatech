@@ -1,6 +1,7 @@
 import { db } from '../_lib/db.js';
-import { json, noCache, methodNotAllowed, serverError } from '../_lib/respond.js';
+import { json, noCache, methodNotAllowed, badRequest, serverError } from '../_lib/respond.js';
 import { requireAdmin, readJson } from '../_lib/auth.js';
+import { AboutPatch, validate } from '../_lib/schemas.js';
 
 export default async function handler(req, res) {
   try {
@@ -20,16 +21,17 @@ export default async function handler(req, res) {
     }
 
     if (req.method === 'PATCH') {
-      const b = await readJson(req);
-      // Upsert (id is forced to 1 by CHECK constraint).
+      const body = await readJson(req);
+      const b = validate(AboutPatch, body, res, badRequest);
+      if (!b) return;
       const [row] = await sql`
         INSERT INTO about_content
           (id, eyebrow, title_lead, title_highlight, description, image_url, stat_badge_value, stat_badge_label, stats)
         VALUES
-          (1, ${b.eyebrow ?? ''}, ${b.titleLead ?? ''}, ${b.titleHighlight ?? ''},
-           ${b.description ?? ''}, ${b.image ?? null},
-           ${b.statBadgeValue ?? ''}, ${b.statBadgeLabel ?? ''},
-           ${JSON.stringify(b.stats ?? [])}::jsonb)
+          (1, ${b.eyebrow}, ${b.titleLead}, ${b.titleHighlight},
+           ${b.description}, ${b.image ?? null},
+           ${b.statBadgeValue}, ${b.statBadgeLabel},
+           ${JSON.stringify(b.stats)}::jsonb)
         ON CONFLICT (id) DO UPDATE SET
           eyebrow          = EXCLUDED.eyebrow,
           title_lead       = EXCLUDED.title_lead,

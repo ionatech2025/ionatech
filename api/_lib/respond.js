@@ -27,6 +27,11 @@ export function badRequest(res, message = 'bad_request') {
   json(res, 400, { error: message });
 }
 
+export function tooManyRequests(res, retryAfterSeconds = 60) {
+  res.setHeader('Retry-After', String(retryAfterSeconds));
+  json(res, 429, { error: 'too_many_requests', retryAfterSeconds });
+}
+
 export function serverError(res, err) {
   const status = err?.status || 500;
   // Don't leak internal error messages to the client.

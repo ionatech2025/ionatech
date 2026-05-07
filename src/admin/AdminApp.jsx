@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { Routes, Route, Navigate, useLocation } from 'react-router-dom'
 import Login from './Login'
 import Layout from './Layout'
@@ -11,6 +11,7 @@ import TeamList from './TeamList'
 import TeamEdit from './TeamEdit'
 import AboutEdit from './AboutEdit'
 import ContactEdit from './ContactEdit'
+import ErrorBoundary from '../Components/ErrorBoundary/ErrorBoundary.jsx'
 import { adminFetch } from '../lib/api'
 
 export default function AdminApp() {
@@ -37,31 +38,33 @@ export default function AdminApp() {
   }
 
   return (
-    <Routes>
-      <Route path="login" element={
-        authState.status === 'authed'
-          ? <Navigate to="/admin" replace />
-          : <Login onSuccess={refreshAuth} />
-      } />
-      <Route path="*" element={
-        authState.status === 'authed'
-          ? <Layout user={authState.user} onLogout={refreshAuth} />
-          : <RedirectToLogin />
-      }>
-        <Route index element={<Dashboard />} />
-        <Route path="products" element={<ProductsList />} />
-        <Route path="products/new" element={<ProductEdit />} />
-        <Route path="products/:id" element={<ProductEdit />} />
-        <Route path="services" element={<ServicesList />} />
-        <Route path="services/new" element={<ServiceEdit />} />
-        <Route path="services/:id" element={<ServiceEdit />} />
-        <Route path="team" element={<TeamList />} />
-        <Route path="team/new" element={<TeamEdit />} />
-        <Route path="team/:id" element={<TeamEdit />} />
-        <Route path="about" element={<AboutEdit />} />
-        <Route path="contact" element={<ContactEdit />} />
-      </Route>
-    </Routes>
+    <ErrorBoundary>
+      <Routes>
+        <Route path="login" element={
+          authState.status === 'authed'
+            ? <Navigate to="/admin" replace />
+            : <Login onSuccess={refreshAuth} />
+        } />
+        <Route path="*" element={
+          authState.status === 'authed'
+            ? <Layout user={authState.user} onLogout={refreshAuth} />
+            : <RedirectToLogin />
+        }>
+          <Route index element={<Dashboard />} />
+          <Route path="products" element={<ProductsList />} />
+          <Route path="products/new" element={<ProductEdit />} />
+          <Route path="products/:id" element={<ProductEdit />} />
+          <Route path="services" element={<ServicesList />} />
+          <Route path="services/new" element={<ServiceEdit />} />
+          <Route path="services/:id" element={<ServiceEdit />} />
+          <Route path="team" element={<TeamList />} />
+          <Route path="team/new" element={<TeamEdit />} />
+          <Route path="team/:id" element={<TeamEdit />} />
+          <Route path="about" element={<AboutEdit />} />
+          <Route path="contact" element={<ContactEdit />} />
+        </Route>
+      </Routes>
+    </ErrorBoundary>
   )
 }
 

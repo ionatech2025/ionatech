@@ -1,6 +1,7 @@
 import { db } from '../_lib/db.js';
 import { json, noCache, methodNotAllowed, badRequest, serverError } from '../_lib/respond.js';
 import { requireAdmin, readJson } from '../_lib/auth.js';
+import { ProductCreate, validate } from '../_lib/schemas.js';
 
 export default async function handler(req, res) {
   try {
@@ -21,16 +22,17 @@ export default async function handler(req, res) {
     }
 
     if (req.method === 'POST') {
-      const b = await readJson(req);
-      if (!b.slug || !b.title) return badRequest(res, 'slug_and_title_required');
+      const body = await readJson(req);
+      const b = validate(ProductCreate, body, res, badRequest);
+      if (!b) return;
       const [row] = await sql`
         INSERT INTO products
           (slug, title, description, category, icon_name, image_url, client, project_url, tech_stack, sort_order, published)
         VALUES
-          (${b.slug}, ${b.title}, ${b.description ?? ''}, ${b.category ?? ''},
-           ${b.iconName ?? null}, ${b.image ?? null}, ${b.client ?? ''}, ${b.projectUrl ?? ''},
-           ${JSON.stringify(b.techStack ?? [])}::jsonb, ${b.sortOrder ?? 0},
-           ${b.published ?? true})
+          (${b.slug}, ${b.title}, ${b.description}, ${b.category},
+           ${b.iconName ?? null}, ${b.image ?? null}, ${b.client}, ${b.projectUrl},
+           ${JSON.stringify(b.techStack)}::jsonb, ${b.sortOrder},
+           ${b.published})
         RETURNING id
       `;
       return json(res, 201, { id: row.id });

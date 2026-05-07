@@ -1,6 +1,7 @@
 import { db } from '../_lib/db.js';
 import { json, noCache, methodNotAllowed, badRequest, serverError } from '../_lib/respond.js';
 import { requireAdmin, readJson } from '../_lib/auth.js';
+import { TeamCreate, validate } from '../_lib/schemas.js';
 
 export default async function handler(req, res) {
   try {
@@ -18,12 +19,13 @@ export default async function handler(req, res) {
     }
 
     if (req.method === 'POST') {
-      const b = await readJson(req);
-      if (!b.name) return badRequest(res, 'name_required');
+      const body = await readJson(req);
+      const b = validate(TeamCreate, body, res, badRequest);
+      if (!b) return;
       const [row] = await sql`
         INSERT INTO team_members (name, role, bio, image_url, sort_order, published)
-        VALUES (${b.name}, ${b.role ?? ''}, ${b.bio ?? ''}, ${b.image ?? null},
-                ${b.sortOrder ?? 0}, ${b.published ?? true})
+        VALUES (${b.name}, ${b.role}, ${b.bio}, ${b.image ?? null},
+                ${b.sortOrder}, ${b.published})
         RETURNING id
       `;
       return json(res, 201, { id: row.id });

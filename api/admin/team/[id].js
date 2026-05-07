@@ -1,6 +1,7 @@
 import { db } from '../../_lib/db.js';
 import { json, noCache, methodNotAllowed, badRequest, serverError } from '../../_lib/respond.js';
 import { requireAdmin, readJson } from '../../_lib/auth.js';
+import { TeamUpdate, validate } from '../../_lib/schemas.js';
 
 export default async function handler(req, res) {
   try {
@@ -21,7 +22,9 @@ export default async function handler(req, res) {
     }
 
     if (req.method === 'PATCH') {
-      const b = await readJson(req);
+      const body = await readJson(req);
+      const b = validate(TeamUpdate, body, res, badRequest);
+      if (!b) return;
       const [row] = await sql`
         UPDATE team_members SET
           name       = COALESCE(${b.name ?? null}, name),
