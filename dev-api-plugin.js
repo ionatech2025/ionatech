@@ -38,7 +38,8 @@ function loadEnv() {
  * Map "/api/admin/products/123" to a handler file path:
  *   1. api/admin/products/123.js     (literal)
  *   2. api/admin/products/[id].js    (dynamic, sets params.id = '123')
- *   3. api/admin/products.js         (catches /api/admin/products itself)
+ *   3. api/admin/[...path].js        (catch-all, sets params.path = ['products', '123'])
+ *   4. api/admin/products.js         (catches /api/admin/products itself)
  *
  * Returns { file, params } or null if no handler exists.
  */
@@ -58,7 +59,7 @@ function resolveHandler(pathname) {
     const parentDir = join(API_ROOT, ...segments.slice(0, -1));
     if (existsSync(parentDir)) {
       const entries = readdirSync(parentDir);
-      const dynamic = entries.find((e) => /^\[[^\]]+\]\.js$/.test(e));
+      const dynamic = entries.find((e) => /^\[(?!\.\.\.)[^\]]+\]\.js$/.test(e));
       if (dynamic) {
         const paramName = dynamic.match(/^\[([^\]]+)\]\.js$/)[1];
         return {
@@ -68,6 +69,21 @@ function resolveHandler(pathname) {
       }
     }
   }
+
+  // Catch-all [...param].js in the nearest ancestor directory.
+  for (let i = segments.length - 1; i >= 0; i -= 1) {
+    const parentDir = join(API_ROOT, ...segments.slice(0, i));
+    if (!existsSync(parentDir)) continue;
+    const entries = readdirSync(parentDir);
+    const catchAll = entries.find((e) => /^\[\.\.\.[^\]]+\]\.js$/.test(e));
+    if (!catchAll) continue;
+    const paramName = catchAll.match(/^\[\.\.\.([^\]]+)\]\.js$/)[1];
+    return {
+      file: join(parentDir, catchAll),
+      params: { [paramName]: segments.slice(i) },
+    };
+  }
+
   return null;
 }
 

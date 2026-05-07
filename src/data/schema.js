@@ -5,7 +5,7 @@
  * To add a new content type:
  *   1. Add a typedef + RESOURCES entry below.
  *   2. Add a CREATE TABLE to db/schema.sql.
- *   3. Add api/content/<name>.js (public GET) and api/admin/<name>/[[...id]].js (CRUD).
+ *   3. Add handlers in api/content/[resource].js and api/admin/[...path].js.
  *   4. Add list+edit pages under src/pages/admin/<name>/.
  *   5. Add or update the public component in src/Components/<Name>/ to fetch from /api/content/<name>.
  */
