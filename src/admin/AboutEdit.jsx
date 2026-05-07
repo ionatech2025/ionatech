@@ -1,4 +1,3 @@
-import React from 'react'
 import { useSingleton } from './useResource'
 import { Field, TextInput, TextArea, IconPicker, FormActions, PageHeader } from './FormBits'
 import ImageField from './ImageField'

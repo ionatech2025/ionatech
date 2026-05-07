@@ -1,4 +1,3 @@
-import React from 'react'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import PublicSite from './PublicSite'
 import AdminApp from './admin/AdminApp'

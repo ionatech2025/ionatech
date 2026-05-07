@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import { useState, useEffect } from 'react'
 import './Navbar.css'
 import Iona from '../../assets/Iona.jpg'
 import { Link } from 'react-scroll'
@@ -29,17 +29,22 @@ const Navbar = () => {
   // Updated Navigation Items
   const navItems = [
     { to: 'hero', label: 'Home' },
-    { to: 'programs', label: 'Services Page' }, // Pointing to the merged section ID
-    { to: 'MyProducts', label: 'Products' },
+    { to: 'programs', label: 'Services' }, // Pointing to the merged section ID
+    { to: 'OurFocus', label: 'Our Focus' },
+    { to: 'pricing', label: 'Pricing' },
     { to: 'testimonials-section', label: 'Team' }
   ]
 
   return (
-    <nav className={`navbar ${scrolled ? 'scrolled' : ''}`}>
+    <nav
+      className={`navbar ${scrolled ? 'scrolled' : ''}`}
+      role="navigation"
+      aria-label="Primary"
+    >
       <div className="navbar-container">
         {/* Logo */}
         <div className="navbar-logo">
-          <img src={Iona} alt="iONA Tech" className="logo" />
+          <img src={Iona} alt="" aria-hidden="true" className="logo" />
           <span className="logo-text">iONA Tech</span>
         </div>
 
@@ -47,10 +52,10 @@ const Navbar = () => {
         <ul className="navbar-menu">
           {navItems.map((item) => (
             <li key={item.to} className="navbar-item">
-              <Link 
-                to={item.to} 
-                smooth={true} 
-                offset={-80} 
+              <Link
+                to={item.to}
+                smooth={true}
+                offset={-80}
                 duration={500}
                 className="navbar-link"
                 onClick={closeMobileMenu}
@@ -63,11 +68,11 @@ const Navbar = () => {
 
         {/* Contact Button */}
         <div className="navbar-cta">
-          <Link 
-            to='contact_us' 
-            smooth={true} 
-            offset={-80} 
-            duration={500} 
+          <Link
+            to='contact_us'
+            smooth={true}
+            offset={-80}
+            duration={500}
             className='contact-button'
             onClick={closeMobileMenu}
           >
@@ -76,20 +81,31 @@ const Navbar = () => {
         </div>
 
         {/* Mobile Menu Button */}
-        <button className="mobile-menu-button" onClick={ToggleMenu}>
-          {mobileMenu ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+        <button
+          type="button"
+          className="mobile-menu-button"
+          onClick={ToggleMenu}
+          aria-expanded={mobileMenu}
+          aria-controls="mobile-menu"
+          aria-label={mobileMenu ? 'Close menu' : 'Open menu'}
+        >
+          {mobileMenu ? <X className="w-6 h-6" aria-hidden="true" /> : <Menu className="w-6 h-6" aria-hidden="true" />}
         </button>
       </div>
 
       {/* Mobile Menu */}
-      <div className={`mobile-menu ${mobileMenu ? 'active' : ''}`}>
+      <div
+        id="mobile-menu"
+        className={`mobile-menu ${mobileMenu ? 'active' : ''}`}
+        aria-hidden={!mobileMenu}
+      >
         <div className="mobile-menu-content">
           {navItems.map((item) => (
-            <Link 
+            <Link
               key={item.to}
-              to={item.to} 
-              smooth={true} 
-              offset={-80} 
+              to={item.to}
+              smooth={true}
+              offset={-80}
               duration={500}
               className="mobile-menu-link"
               onClick={closeMobileMenu}
@@ -97,11 +113,11 @@ const Navbar = () => {
               {item.label}
             </Link>
           ))}
-          <Link 
-            to='contact_us' 
-            smooth={true} 
-            offset={-80} 
-            duration={500} 
+          <Link
+            to='contact_us'
+            smooth={true}
+            offset={-80}
+            duration={500}
             className='mobile-contact-button'
             onClick={closeMobileMenu}
           >

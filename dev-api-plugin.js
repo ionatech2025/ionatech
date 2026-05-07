@@ -102,7 +102,6 @@ export default function devApiPlugin() {
           // Buffer the body and synthesize req.body as a string so handlers
           // that call readJson() can parse it. Upload endpoint reads the raw
           // stream — for that we leave req as-is and have already buffered.
-          const ct = String(req.headers['content-type'] || '');
           const isUpload = parsed.pathname.endsWith('/admin/upload');
           let bodyBuf = null;
           if (req.method !== 'GET' && req.method !== 'HEAD') {
