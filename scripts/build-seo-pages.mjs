@@ -52,6 +52,10 @@ function applyPageSeo(page) {
   html = setMetaProperty(html, 'og:description', page.metaDescription);
   html = setMetaProperty(html, 'og:url', page.canonical);
   html = setMetaProperty(html, 'og:image', image);
+  html = setMetaProperty(html, 'og:image:secure_url', image);
+  html = setMetaProperty(html, 'og:image:type', siteSeo.imageType);
+  html = setMetaProperty(html, 'og:image:width', siteSeo.imageWidth);
+  html = setMetaProperty(html, 'og:image:height', siteSeo.imageHeight);
   html = setMetaProperty(html, 'og:image:alt', `${siteSeo.name} ${page.title || page.h1 || 'technology services'}`);
   html = setMetaName(html, 'twitter:title', page.metaTitle);
   html = setMetaName(html, 'twitter:description', page.metaDescription);

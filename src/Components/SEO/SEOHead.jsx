@@ -72,6 +72,10 @@ export default function SEOHead({
     setMeta('meta[property="og:description"]', { property: 'og:description', content: description });
     setMeta('meta[property="og:url"]', { property: 'og:url', content: canonical });
     setMeta('meta[property="og:image"]', { property: 'og:image', content: imageUrl });
+    setMeta('meta[property="og:image:secure_url"]', { property: 'og:image:secure_url', content: imageUrl });
+    setMeta('meta[property="og:image:type"]', { property: 'og:image:type', content: siteSeo.imageType });
+    setMeta('meta[property="og:image:width"]', { property: 'og:image:width', content: String(siteSeo.imageWidth) });
+    setMeta('meta[property="og:image:height"]', { property: 'og:image:height', content: String(siteSeo.imageHeight) });
     setMeta('meta[property="og:image:alt"]', { property: 'og:image:alt', content: `${siteSeo.name} service preview` });
     setMeta('meta[property="og:locale"]', { property: 'og:locale', content: 'en_US' });
 
