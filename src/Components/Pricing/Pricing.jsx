@@ -20,7 +20,7 @@ const websitePricing = [
     costs: [
       { label: "Domain Registration (year 1)", value: "UGX 26,000 – 295,000" },
       { label: "Domain Renewal (yearly)", value: "UGX 37,000 – 295,000" },
-      { label: "Hosting (per year)", value: "UGX 148,000" },
+      { label: "Cloud Maintenance & SLA (per year)", value: "UGX 148,000" },
       { label: "Website build", value: "Free", isHighlight: false },
       { label: "Total / year", value: "UGX 174K – 443K", isTotal: true }
     ],
@@ -41,15 +41,15 @@ const websitePricing = [
       { text: "Priority technical support", included: true },
       { text: "WhatsApp support line included", included: true }
     ],
-    priceRange: "UGX 674,000 – 943,000",
-    pricePeriod: "per year · save up to 20% paying annually",
+    priceRange: "UGX 774,000 – 1,043,000",
+    pricePeriod: "per year save up to 20% paying annually",
     costs: [
       { label: "Domain Registration (year 1)", value: "UGX 26,000 – 295,000" },
       { label: "Domain Renewal (yearly)", value: "UGX 37,000 – 295,000" },
-      { label: "Hosting (per year)", value: "UGX 148,000" },
-      { label: "Dashboard Build", value: "UGX 500,000+" },
+      { label: "CMS Integration & Sync Setup", value: "UGX 600,000+" },
+      { label: "CMS Cloud & Sync Management (per year)", value: "UGX 148,000" },
       { label: "Website Build", value: "Free" },
-      { label: "Total / year", value: "UGX 674K – 943K", isTotal: true }
+      { label: "Total / year", value: "UGX 774,000 – 1,043,000", isTotal: true }
     ],
     footnote: "Annual plan unlocks 15–20% off.",
     note: "NOTE: Ongoing Dashboard Maintenance fees optionally apply per request or per month",
@@ -79,7 +79,7 @@ const websitePricing = [
       { label: "One-time build fee", value: "UGX 3M – 25M" },
       { label: "Domain Registration (year 1)", value: "UGX 26,000 – 295,000" },
       { label: "Domain Renewal (yearly)", value: "UGX 37,000 – 295,000" },
-      { label: "Hosting (per year)", value: "UGX 148,000 - 900,000" },
+      { label: "DevOps & Performance Retainer (per year)", value: "UGX 148,000 – 900,000" },
       { label: "Total yr 1", value: "UGX 3.174M – 26.195M", isTotal: true }
     ],
     footnote: "No build costs from Year 2. Maintenance keeps site secure and updated.",
