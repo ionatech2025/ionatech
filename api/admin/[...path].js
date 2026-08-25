@@ -98,7 +98,7 @@ function safeFilename(raw) {
 
 async function uploadImage(req, res) {
   if (req.method !== 'POST') return methodNotAllowed(res, ['POST']);
-  requireAdmin(req);
+  await requireAdmin(req, db());
 
   const filename = safeFilename(queryValue(req, 'filename'));
   if (!filename) return badRequest(res, 'invalid_filename');
@@ -556,8 +556,8 @@ export default async function handler(req, res) {
 
     if (resource === 'upload') return await uploadImage(req, res);
 
-    requireAdmin(req);
     const sql = db();
+    await requireAdmin(req, sql);
     noCache(res);
 
     if (resource === 'products') return await handleProducts(req, res, sql, idPart);

@@ -10,6 +10,30 @@ CREATE TABLE IF NOT EXISTS admin_users (
   created_at    TIMESTAMPTZ DEFAULT now()
 );
 
+-- Bumped on every password change/reset. Embedded in signed JWTs and checked
+-- on every request (see requireAdmin in api/_lib/auth.js) so that changing a
+-- password invalidates every session issued before the change — not just
+-- the credential itself. ADD COLUMN IF NOT EXISTS keeps this file idempotent
+-- for databases that already had admin_users before this column existed.
+ALTER TABLE admin_users ADD COLUMN IF NOT EXISTS token_version INT NOT NULL DEFAULT 0;
+
+-- Password reset tokens, kept in their own table (not columns on
+-- admin_users) so a full request history is preserved for auditing and so
+-- issuing a new token never has to clobber a still-valid one. Only a hash
+-- of the token is ever stored — the raw token exists only in the emailed
+-- link and briefly in memory while verifying, the same principle as
+-- password_hash never storing a plaintext password.
+CREATE TABLE IF NOT EXISTS password_reset_tokens (
+  id         SERIAL PRIMARY KEY,
+  user_id    INT NOT NULL REFERENCES admin_users(id) ON DELETE CASCADE,
+  token_hash TEXT NOT NULL,
+  expires_at TIMESTAMPTZ NOT NULL,
+  used_at    TIMESTAMPTZ,
+  created_at TIMESTAMPTZ DEFAULT now()
+);
+
+CREATE INDEX IF NOT EXISTS idx_password_reset_tokens_user_id ON password_reset_tokens(user_id);
+
 CREATE TABLE IF NOT EXISTS products (
   id          SERIAL PRIMARY KEY,
   slug        TEXT UNIQUE NOT NULL,

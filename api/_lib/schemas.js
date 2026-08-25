@@ -107,6 +107,27 @@ export const ProjectCreate = z.object({
 });
 export const ProjectUpdate = ProjectCreate.partial();
 
+const email = z.string().trim().toLowerCase().email().max(254);
+
+// NIST SP 800-63B recommends prioritizing length over composition rules —
+// no forced uppercase/number/symbol, just a reasonable minimum. Max is a
+// sanity bound, not a security measure (bcrypt truncates past 72 bytes
+// anyway; hashPassword's caller is expected to respect that indirectly via
+// this max).
+const newPassword = z.string().min(10, 'Password must be at least 10 characters.').max(200);
+
+export const ForgotPasswordRequest = z.object({ email });
+
+export const ResetPasswordRequest = z.object({
+  token: z.string().trim().min(1).max(200),
+  password: newPassword,
+});
+
+export const ChangePasswordRequest = z.object({
+  currentPassword: z.string().min(1).max(200),
+  newPassword,
+});
+
 export const TeamCreate = z.object({
   name: title,
   role: shortText(120).optional().default(''),

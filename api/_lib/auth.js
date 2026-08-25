@@ -19,7 +19,7 @@ export const hashPassword = (plain) => bcrypt.hash(plain, 12);
 
 export function signToken(user) {
   return jwt.sign(
-    { uid: user.id, email: user.email },
+    { uid: user.id, email: user.email, tokenVersion: user.tokenVersion ?? 0 },
     getSecret(),
     { expiresIn: '7d' }
   );
@@ -33,23 +33,38 @@ export function readCookie(req, name = COOKIE_NAME) {
 
 /**
  * Verify the auth cookie and return the JWT payload. Throws an Error with
- * `.status = 401` when the cookie is missing or invalid — admin handlers
- * should catch and respond.
+ * `.status = 401` when the cookie is missing, invalid, or was issued before
+ * the user's last password change/reset — admin handlers should catch and
+ * respond.
+ *
+ * Requires a `sql` client so it can check the token's embedded
+ * `tokenVersion` against the current value in the database: a JWT is
+ * otherwise stateless, and without this check, resetting a password (e.g.
+ * because a session was compromised) wouldn't actually invalidate any
+ * existing sessions until they naturally expired up to 7 days later.
  */
-export function requireAdmin(req) {
+export async function requireAdmin(req, sql) {
   const token = readCookie(req);
   if (!token) {
     const e = new Error('unauthorized');
     e.status = 401;
     throw e;
   }
+  let payload;
   try {
-    return jwt.verify(token, getSecret());
+    payload = jwt.verify(token, getSecret());
   } catch {
     const e = new Error('unauthorized');
     e.status = 401;
     throw e;
   }
+  const [row] = await sql`SELECT token_version AS "tokenVersion" FROM admin_users WHERE id = ${payload.uid}`;
+  if (!row || row.tokenVersion !== payload.tokenVersion) {
+    const e = new Error('session_revoked');
+    e.status = 401;
+    throw e;
+  }
+  return payload;
 }
 
 // Browsers refuse Secure cookies over plain HTTP. Vercel deployments are

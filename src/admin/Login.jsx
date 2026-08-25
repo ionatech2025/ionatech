@@ -1,11 +1,14 @@
 import { useState } from 'react'
+import { Link, useLocation } from 'react-router-dom'
 import { adminFetch } from '../lib/api'
 
 export default function Login({ onSuccess }) {
+  const location = useLocation()
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [busy, setBusy] = useState(false)
   const [error, setError] = useState('')
+  const resetSuccess = Boolean(location.state?.resetSuccess)
 
   const submit = async (e) => {
     e.preventDefault()
@@ -32,6 +35,12 @@ export default function Login({ onSuccess }) {
           <p className="text-slate-500 text-sm">Sign in to manage site content.</p>
         </div>
 
+        {resetSuccess && (
+          <div className="text-sm p-3 bg-emerald-50 text-emerald-700 rounded-xl border border-emerald-100">
+            Password reset. Sign in with your new password.
+          </div>
+        )}
+
         <div className="space-y-2">
           <label htmlFor="admin-email" className="text-sm font-bold text-slate-700">Email</label>
           <input
@@ -48,7 +57,12 @@ export default function Login({ onSuccess }) {
         </div>
 
         <div className="space-y-2">
-          <label htmlFor="admin-password" className="text-sm font-bold text-slate-700">Password</label>
+          <div className="flex items-center justify-between">
+            <label htmlFor="admin-password" className="text-sm font-bold text-slate-700">Password</label>
+            <Link to="/admin/forgot-password" className="text-sm text-blue-600 hover:text-blue-700">
+              Forgot password?
+            </Link>
+          </div>
           <input
             id="admin-password"
             type="password"

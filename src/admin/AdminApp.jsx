@@ -1,6 +1,9 @@
 import { useEffect, useState } from 'react'
 import { Routes, Route, Navigate, useLocation } from 'react-router-dom'
 import Login from './Login'
+import ForgotPassword from './ForgotPassword'
+import ResetPassword from './ResetPassword'
+import ChangePassword from './ChangePassword'
 import Layout from './Layout'
 import Dashboard from './Dashboard'
 import ProductsList from './ProductsList'
@@ -47,6 +50,16 @@ export default function AdminApp() {
             ? <Navigate to="/admin" replace />
             : <Login onSuccess={refreshAuth} />
         } />
+        <Route path="forgot-password" element={
+          authState.status === 'authed'
+            ? <Navigate to="/admin" replace />
+            : <ForgotPassword />
+        } />
+        <Route path="reset-password" element={
+          authState.status === 'authed'
+            ? <Navigate to="/admin" replace />
+            : <ResetPassword />
+        } />
         <Route path="*" element={
           authState.status === 'authed'
             ? <Layout user={authState.user} onLogout={refreshAuth} />
@@ -67,6 +80,7 @@ export default function AdminApp() {
           <Route path="team/:id" element={<TeamEdit />} />
           <Route path="about" element={<AboutEdit />} />
           <Route path="contact" element={<ContactEdit />} />
+          <Route path="change-password" element={<ChangePassword />} />
         </Route>
       </Routes>
     </ErrorBoundary>
