@@ -110,11 +110,23 @@ Vercel dashboard (or CLI — see below). **Status as of 2026-08-25:**
      await client.end();
      ```
 
-2. **Vercel Blob** — ⬜ not yet done. Install from the Vercel Marketplace when
-   the admin panel actually needs image uploads (`ImageField.jsx` /
-   `api/admin/upload`). Auto-injects `BLOB_READ_WRITE_TOKEN`. Until this is
-   done, pasting an image URL/path still works in the admin forms — only
-   the upload button will 503.
+2. **Vercel Blob** — ✅ done. Unlike Neon, this is a native Vercel product
+   with its own CLI namespace, not a third-party marketplace integration —
+   there's no `vercel integration add blob`, use `vercel blob` directly:
+
+   ```bash
+   vercel blob create-store ionatech-blob --access public --region sin1 \
+     --yes --environment production --environment preview --environment development
+   ```
+
+   - **Store:** `ionatech-blob`, region `sin1` (Singapore, same reasoning as
+     the database — see above)
+   - **Access:** `public` — matches `api/admin/[...path].js`'s upload
+     handler, which already calls `put(..., { access: 'public', ... })`;
+     images uploaded through the admin panel need to be publicly viewable
+     on the site
+   - **Connected to:** Production, Preview, Development. Auto-injects
+     `BLOB_READ_WRITE_TOKEN`.
 
 3. **`JWT_SECRET`** — ✅ done. 32 random bytes (`openssl rand -hex 32`), set
    on Production, Preview, and Development via
