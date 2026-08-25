@@ -17,9 +17,12 @@ export const siteSeo = {
     addressLocality: 'Kampala',
     addressCountry: 'UG',
   },
+  // NOTE: keep this in sync with index.html's static JSON-LD sameAs array —
+  // that copy isn't generated from this file, so it won't update itself.
+  // Only list profiles that are actually iONA TECH's — linkedin.com/company/ionatech
+  // belongs to an unrelated US company, so it's deliberately not listed here.
   sameAs: [
     'https://github.com/ionatech2025',
-    'https://www.linkedin.com/company/ionatech',
   ],
 };
 

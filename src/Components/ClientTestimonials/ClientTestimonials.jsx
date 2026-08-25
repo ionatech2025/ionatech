@@ -23,7 +23,7 @@ const ClientTestimonials = ({
       name: "Richard Musumba",
       role: "Director",
       company: "Makland Institute",
-      image: "/images/makland_boss.png",
+      image: "/images/makland_boss.jpg",
       quote: "We found the team at iONA TECH spot on. They effectively delivered our project on time tailored on great ideas.",
     },
   ],
