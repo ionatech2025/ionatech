@@ -7,6 +7,8 @@ import {
   ContactPatch,
   ProductCreate,
   ProductUpdate,
+  ProjectCreate,
+  ProjectUpdate,
   ServiceCreate,
   ServiceUpdate,
   TeamCreate,
@@ -224,6 +226,87 @@ async function handleProducts(req, res, sql, idPart) {
 
   if (req.method === 'DELETE') {
     const result = await sql`DELETE FROM products WHERE id = ${id} RETURNING id`;
+    if (result.length === 0) return routeNotFound(res);
+    return json(res, 200, { ok: true });
+  }
+
+  return methodNotAllowed(res, ['GET', 'PATCH', 'DELETE']);
+}
+
+async function handleProjects(req, res, sql, idPart) {
+  if (!idPart) {
+    if (req.method === 'GET') {
+      const rows = await sql`
+        SELECT id, slug, title, description, client, project_url AS "projectUrl",
+               image_url AS image, icon_name AS "iconName", tech_stack AS "techStack",
+               status, sort_order AS "sortOrder", published, updated_at AS "updatedAt"
+        FROM projects
+        ORDER BY sort_order ASC, id ASC
+      `;
+      return json(res, 200, rows);
+    }
+
+    if (req.method === 'POST') {
+      const body = await readJson(req);
+      const b = validate(ProjectCreate, body, res, badRequest);
+      if (!b) return;
+      const [row] = await sql`
+        INSERT INTO projects
+          (slug, title, description, client, project_url, image_url, icon_name, tech_stack, status, sort_order, published)
+        VALUES
+          (${b.slug}, ${b.title}, ${b.description}, ${b.client}, ${b.projectUrl},
+           ${b.image ?? null}, ${b.iconName ?? null},
+           ${JSON.stringify(b.techStack)}::jsonb, ${b.status}, ${b.sortOrder},
+           ${b.published})
+        RETURNING id
+      `;
+      return json(res, 201, { id: row.id });
+    }
+
+    return methodNotAllowed(res, ['GET', 'POST']);
+  }
+
+  const id = parseId(idPart, res);
+  if (id == null) return;
+
+  if (req.method === 'GET') {
+    const [row] = await sql`
+      SELECT id, slug, title, description, client, project_url AS "projectUrl",
+             image_url AS image, icon_name AS "iconName", tech_stack AS "techStack",
+             status, sort_order AS "sortOrder", published
+      FROM projects WHERE id = ${id}
+    `;
+    if (!row) return routeNotFound(res);
+    return json(res, 200, row);
+  }
+
+  if (req.method === 'PATCH') {
+    const body = await readJson(req);
+    const b = validate(ProjectUpdate, body, res, badRequest);
+    if (!b) return;
+    const [row] = await sql`
+      UPDATE projects SET
+        slug        = COALESCE(${b.slug ?? null}, slug),
+        title       = COALESCE(${b.title ?? null}, title),
+        description = COALESCE(${b.description ?? null}, description),
+        client      = COALESCE(${b.client ?? null}, client),
+        project_url = COALESCE(${b.projectUrl ?? null}, project_url),
+        image_url   = COALESCE(${b.image ?? null}, image_url),
+        icon_name   = COALESCE(${b.iconName ?? null}, icon_name),
+        tech_stack  = COALESCE(${b.techStack ? JSON.stringify(b.techStack) : null}::jsonb, tech_stack),
+        status      = COALESCE(${b.status ?? null}, status),
+        sort_order  = COALESCE(${b.sortOrder ?? null}, sort_order),
+        published   = COALESCE(${b.published ?? null}, published),
+        updated_at  = now()
+      WHERE id = ${id}
+      RETURNING id
+    `;
+    if (!row) return routeNotFound(res);
+    return json(res, 200, { id: row.id });
+  }
+
+  if (req.method === 'DELETE') {
+    const result = await sql`DELETE FROM projects WHERE id = ${id} RETURNING id`;
     if (result.length === 0) return routeNotFound(res);
     return json(res, 200, { ok: true });
   }
@@ -478,6 +561,7 @@ export default async function handler(req, res) {
     noCache(res);
 
     if (resource === 'products') return await handleProducts(req, res, sql, idPart);
+    if (resource === 'projects') return await handleProjects(req, res, sql, idPart);
     if (resource === 'services') return await handleServices(req, res, sql, idPart);
     if (resource === 'team') return await handleTeam(req, res, sql, idPart);
     if (resource === 'about') return await handleAbout(req, res, sql, idPart);

@@ -14,6 +14,7 @@ import dns from 'node:dns';
 import { readFileSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
 import { dirname, join } from 'node:path';
+import { projects as projectsSeed } from '../src/data/projects.js';
 
 // Force IPv4. setDefaultResultOrder isn't honored by all Node versions/paths,
 // so monkey-patch dns.lookup as a belt-and-suspenders fix for hosts whose
@@ -208,6 +209,22 @@ async function seedProducts() {
   console.log(`✓ products seeded (${productsSeed.length})`);
 }
 
+// Unlike the other *Seed arrays above (which are stale hand-duplicates of
+// older content and have drifted from what's actually live), this one
+// imports straight from src/data/projects.js — the same file the public
+// Projects section uses as its fallback — so there's exactly one place to
+// edit and nothing to keep in sync by hand.
+async function seedProjects() {
+  for (const p of projectsSeed) {
+    await sql`
+      INSERT INTO projects (slug, title, description, client, project_url, image_url, icon_name, tech_stack, status, sort_order)
+      VALUES (${p.slug}, ${p.title}, ${p.description}, ${p.client}, ${p.projectUrl}, ${p.image}, ${p.iconName}, ${JSON.stringify(p.techStack)}::jsonb, ${p.status}, ${p.sortOrder})
+      ON CONFLICT (slug) DO NOTHING
+    `;
+  }
+  console.log(`✓ projects seeded (${projectsSeed.length})`);
+}
+
 async function seedServices() {
   for (const s of servicesSeed) {
     await sql`
@@ -274,6 +291,7 @@ async function seedAdmin() {
 (async () => {
   try {
     await seedProducts();
+    await seedProjects();
     await seedServices();
     await seedTeam();
     await seedAbout();

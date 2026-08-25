@@ -42,6 +42,22 @@ CREATE TABLE IF NOT EXISTS services (
   updated_at  TIMESTAMPTZ DEFAULT now()
 );
 
+CREATE TABLE IF NOT EXISTS projects (
+  id          SERIAL PRIMARY KEY,
+  slug        TEXT UNIQUE NOT NULL,
+  title       TEXT NOT NULL,
+  description TEXT,
+  client      TEXT,
+  project_url TEXT,
+  image_url   TEXT,
+  icon_name   TEXT,
+  tech_stack  JSONB DEFAULT '[]'::jsonb,
+  status      TEXT DEFAULT 'live',
+  sort_order  INT DEFAULT 0,
+  published   BOOLEAN DEFAULT true,
+  updated_at  TIMESTAMPTZ DEFAULT now()
+);
+
 CREATE TABLE IF NOT EXISTS team_members (
   id         SERIAL PRIMARY KEY,
   name       TEXT NOT NULL,

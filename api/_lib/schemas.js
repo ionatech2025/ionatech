@@ -92,6 +92,21 @@ export const ServiceCreate = z.object({
 });
 export const ServiceUpdate = ServiceCreate.partial();
 
+export const ProjectCreate = z.object({
+  slug,
+  title,
+  description: richText(4000).optional().default(''),
+  client: shortText(120).optional().default(''),
+  projectUrl: url.optional().default(''),
+  image: pathOrUrl.nullish(),
+  iconName: shortText(80).nullish(),
+  techStack: z.array(techStackEntry).max(40).optional().default([]),
+  status: shortText(40).optional().default('live'),
+  sortOrder: sortOrder.optional().default(0),
+  published: published.optional().default(true),
+});
+export const ProjectUpdate = ProjectCreate.partial();
+
 export const TeamCreate = z.object({
   name: title,
   role: shortText(120).optional().default(''),

@@ -1,10 +1,11 @@
 import { NavLink, Outlet, useNavigate } from 'react-router-dom'
 import { adminFetch } from '../lib/api'
-import { LayoutDashboard, Package, Settings2, Users, Info, Phone, LogOut } from 'lucide-react'
+import { LayoutDashboard, Package, FolderKanban, Settings2, Users, Info, Phone, LogOut } from 'lucide-react'
 
 const NAV = [
   { to: '/admin',          label: 'Dashboard', icon: LayoutDashboard, end: true },
   { to: '/admin/products', label: 'Products',  icon: Package },
+  { to: '/admin/projects', label: 'Projects',  icon: FolderKanban },
   { to: '/admin/services', label: 'Services',  icon: Settings2 },
   { to: '/admin/team',     label: 'Team',      icon: Users },
   { to: '/admin/about',    label: 'About',     icon: Info },

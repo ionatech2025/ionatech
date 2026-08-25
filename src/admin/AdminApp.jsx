@@ -5,6 +5,8 @@ import Layout from './Layout'
 import Dashboard from './Dashboard'
 import ProductsList from './ProductsList'
 import ProductEdit from './ProductEdit'
+import ProjectsList from './ProjectsList'
+import ProjectEdit from './ProjectEdit'
 import ServicesList from './ServicesList'
 import ServiceEdit from './ServiceEdit'
 import TeamList from './TeamList'
@@ -54,6 +56,9 @@ export default function AdminApp() {
           <Route path="products" element={<ProductsList />} />
           <Route path="products/new" element={<ProductEdit />} />
           <Route path="products/:id" element={<ProductEdit />} />
+          <Route path="projects" element={<ProjectsList />} />
+          <Route path="projects/new" element={<ProjectEdit />} />
+          <Route path="projects/:id" element={<ProjectEdit />} />
           <Route path="services" element={<ServicesList />} />
           <Route path="services/new" element={<ServiceEdit />} />
           <Route path="services/:id" element={<ServiceEdit />} />
