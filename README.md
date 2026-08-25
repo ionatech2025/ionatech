@@ -134,6 +134,49 @@ Vercel dashboard (or CLI — see below). **Status as of 2026-08-25:**
    existing admin session (everyone has to sign in again) — that's the only
    effect, it's safe to rotate any time.
 
+4. **`RESEND_API_KEY`** — ✅ done, but **not** via the Vercel Marketplace.
+   `vercel integration add resend/resend-email` is the documented path
+   (region options: `us-east-1, eu-west-1, sa-east-1, ap-northeast-1` — no
+   Singapore; `ap-northeast-1`/Tokyo is the closest to the Southeast Asia
+   preference above), but this team's free-tier eligibility for it is
+   disabled for a reason not visible via the CLI (confirmed no existing
+   Resend resource anywhere on the team is consuming a "one free per team"
+   slot — `vercel integration list --all -i resend` returns empty — so it's
+   some other account-level restriction). Rather than pay for Pro
+   ($20/month) to work around an unexplained block, the key was created
+   directly at resend.com (outside Vercel's marketplace, own free tier:
+   3,000 emails/month) and set with `vercel env add RESEND_API_KEY
+   <environment>` like `JWT_SECRET` above. The domain (`ionatec.com`) has to
+   be verified in Resend's dashboard (SPF/DKIM/DMARC DNS records at whatever
+   manages that domain's DNS) before sending actually works — verify this
+   is done if reset emails aren't arriving.
+
+### Password reset
+
+`admin_users.token_version` (bumped on every password change/reset, embedded
+in the JWT, checked on every authenticated request by `requireAdmin` in
+`api/_lib/auth.js`) is what makes a reset actually invalidate existing
+sessions rather than just changing the credential — a stateless JWT
+otherwise has no way to be revoked before it naturally expires (7 days).
+
+- `POST /api/auth/forgot-password` — always responds `200 {ok:true}`
+  whether or not the email exists (doesn't leak account existence). If it
+  does, stores a hashed, single-use, 1-hour token in
+  `password_reset_tokens` and emails a link via Resend.
+- `POST /api/auth/reset-password` — verifies the token, updates the
+  password, bumps `token_version`, and burns every outstanding token for
+  that user (not just the one used).
+- `POST /api/auth/change-password` — for an already-logged-in admin
+  (`/admin/change-password`, linked from the sidebar). Also bumps
+  `token_version`, then immediately re-issues a fresh cookie for the
+  current browser so changing your own password doesn't log you out of the
+  session that just changed it — only every *other* session.
+
+Password rule is minimum 10 characters, nothing else — per NIST SP
+800-63B, which recommends length over forced composition rules
+(uppercase/symbol/number requirements produce predictable patterns and more
+reuse, not stronger passwords).
+
 ### Known local-dev gotcha: IPv6 and the Neon HTTP driver
 
 In some sandboxed/dev environments, outbound IPv6 is broken (`Network is

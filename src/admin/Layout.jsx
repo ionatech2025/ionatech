@@ -1,6 +1,6 @@
 import { NavLink, Outlet, useNavigate } from 'react-router-dom'
 import { adminFetch } from '../lib/api'
-import { LayoutDashboard, Package, FolderKanban, Settings2, Users, Info, Phone, LogOut } from 'lucide-react'
+import { LayoutDashboard, Package, FolderKanban, Settings2, Users, Info, Phone, KeyRound, LogOut } from 'lucide-react'
 
 const NAV = [
   { to: '/admin',          label: 'Dashboard', icon: LayoutDashboard, end: true },
@@ -53,8 +53,14 @@ export default function Layout({ user, onLogout }) {
           ))}
         </nav>
 
-        <div className="p-4 border-t border-slate-100">
-          <p className="text-xs text-slate-500 mb-2 truncate">{user?.email}</p>
+        <div className="p-4 border-t border-slate-100 space-y-3">
+          <p className="text-xs text-slate-500 truncate">{user?.email}</p>
+          <NavLink
+            to="/admin/change-password"
+            className="flex items-center gap-2 text-sm text-slate-600 hover:text-slate-900 transition-colors"
+          >
+            <KeyRound size={16} /> Change password
+          </NavLink>
           <button
             onClick={logout}
             className="w-full flex items-center gap-2 text-sm text-slate-600 hover:text-red-600 transition-colors"
