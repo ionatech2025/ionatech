@@ -34,7 +34,15 @@ export function tooManyRequests(res, retryAfterSeconds = 60) {
 
 export function serverError(res, err) {
   const status = err?.status || 500;
-  // Don't leak internal error messages to the client.
   console.error('[api]', err);
+  // 4xx errors thrown with a .status (e.g. requireAdmin's 401 'unauthorized'
+  // / 'session_revoked') are intentional, developer-authored messages safe
+  // to show as-is — collapsing them to 'server_error' just made every
+  // authorization failure indistinguishable from a real crash. 5xx stays
+  // generic: those come from unexpected exceptions (DB errors, etc.) that
+  // can carry internals in err.message.
+  if (status >= 400 && status < 500) {
+    return json(res, status, { error: err.message || 'client_error' });
+  }
   json(res, status, { error: status === 503 ? 'service_unavailable' : 'server_error' });
 }
