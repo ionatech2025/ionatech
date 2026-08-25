@@ -10,6 +10,7 @@
     "dev": "vite",
     "build": "vite build",
     "postbuild": "node scripts/build-seo-pages.mjs",
+    "submit-indexnow": "node scripts/submit-indexnow.mjs",
     "lint": "eslint .",
     "preview": "vite preview",
     "test": "vitest",

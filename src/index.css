@@ -1,6 +1,7 @@
 
-/* Outfit fonts copied from Google fonts*/
-@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap');
+/* Outfit font is loaded via a <link> in index.html (not @import) so the
+   browser can discover and fetch it in parallel with the CSS bundle
+   instead of waiting to parse this file first. */
 
 @tailwind base;
 @tailwind components;

@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef } from "react"
 import { ArrowLeft, ArrowRight } from "lucide-react"
+import "./Team.css"
 
 const teamMembers = [
   {
@@ -72,184 +73,211 @@ const tagColors = {
   Backend: { bg: "rgba(96, 165, 250, 0.12)", text: "#93c5fd", dot: "#60a5fa" },
 }
 
+const AUTOPLAY_MS = 6000
+
+const prefersReducedMotion = () =>
+  typeof window !== "undefined" &&
+  typeof window.matchMedia === "function" &&
+  window.matchMedia("(prefers-reduced-motion: reduce)").matches
+
 export default function Team() {
   const [active, setActive] = useState(0)
-  const [isPlaying, setIsPlaying] = useState(true)
-  const [, setAnimDir] = useState("right")
+  const [isPlaying, setIsPlaying] = useState(() => !prefersReducedMotion())
+  const [isHovering, setIsHovering] = useState(false)
   const timerRef = useRef(null)
-
-  const startTimer = () => {
-    clearInterval(timerRef.current)
-    timerRef.current = setInterval(() => {
-      setAnimDir("right")
-      setActive((prev) => (prev + 1) % teamMembers.length)
-    }, 6000)
-  }
+  const sidebarRef = useRef(null)
+  const itemRefs = useRef([])
 
   useEffect(() => {
-    if (isPlaying) startTimer()
-    else clearInterval(timerRef.current)
+    clearInterval(timerRef.current)
+    if (isPlaying && !isHovering) {
+      timerRef.current = setInterval(() => {
+        setActive((prev) => (prev + 1) % teamMembers.length)
+      }, AUTOPLAY_MS)
+    }
     return () => clearInterval(timerRef.current)
-  }, [isPlaying])
+  }, [isPlaying, isHovering])
+
+  // Keep the active member visible when the picker is a horizontal
+  // scroll strip (tablet/mobile). Scroll only this container directly —
+  // item.scrollIntoView() would also nudge ancestors that merely clip
+  // overflow (e.g. overflow-x: hidden further up the tree), shifting the
+  // whole page sideways instead of just the strip.
+  useEffect(() => {
+    const container = sidebarRef.current
+    const item = itemRefs.current[active]
+    if (!container || !item) return
+    const target = item.offsetLeft - (container.clientWidth - item.clientWidth) / 2
+    container.scrollTo({
+      left: Math.max(0, target),
+      behavior: prefersReducedMotion() ? "auto" : "smooth",
+    })
+  }, [active])
 
   const navigate = (dir) => {
-    setAnimDir(dir)
     setActive((prev) =>
       dir === "right"
         ? (prev + 1) % teamMembers.length
         : (prev - 1 + teamMembers.length) % teamMembers.length
     )
     setIsPlaying(false)
-    clearInterval(timerRef.current)
   }
 
   const pick = (i) => {
-    setAnimDir(i > active ? "right" : "left")
     setActive(i)
     setIsPlaying(false)
-    clearInterval(timerRef.current)
+  }
+
+  const pause = () => setIsHovering(true)
+  const resume = () => setIsHovering(false)
+  const handleBlur = (e) => {
+    if (!e.currentTarget.contains(e.relatedTarget)) {
+      setIsHovering(false)
+    }
   }
 
   const member = teamMembers[active]
   const tag = tagColors[member.tag] || tagColors["Frontend"]
 
   return (
-    <section className="ion-section" style={styles.section}>
+    <section className="ion-section team-section" aria-labelledby="team-heading">
       <div className="ion-aurora" aria-hidden="true" />
       <div className="ion-aurora ion-aurora-right" aria-hidden="true" />
-      {/* Background grid */}
-      <div style={styles.gridBg} aria-hidden />
 
-      <div style={styles.container}>
+      <div className="team-container">
 
         {/* Header */}
-        <div style={styles.header}>
-          <p style={styles.eyebrow}>The people behind iONA TECH</p>
-          <h2 style={styles.heading}>Built by founders,<br />driven by purpose</h2>
+        <div className="team-header">
+          <p className="team-eyebrow">The people behind iONA TECH</p>
+          <h2 id="team-heading" className="team-heading">
+            Built by founders,<br />driven by purpose
+          </h2>
         </div>
 
         {/* Main layout */}
-        <div style={styles.layout}>
+        <div
+          className="team-layout"
+          onMouseEnter={pause}
+          onMouseLeave={resume}
+          onFocus={pause}
+          onBlur={handleBlur}
+        >
 
-          {/* Left — member list */}
-          <div style={styles.sidebar}>
+          {/* Member picker — vertical list on desktop, horizontal scroll strip on mobile */}
+          <div className="team-sidebar" ref={sidebarRef} aria-label="Select a team member">
             {teamMembers.map((m, i) => {
               const t = tagColors[m.tag] || tagColors["Frontend"]
+              const isActive = i === active
               return (
                 <button
                   key={m.id}
+                  ref={(el) => (itemRefs.current[i] = el)}
+                  type="button"
                   onClick={() => pick(i)}
-                  style={{
-                    ...styles.sidebarItem,
-                    background: i === active ? "rgba(56, 189, 248, 0.1)" : "transparent",
-                    borderLeft: i === active ? "3px solid #22d3ee" : "3px solid transparent",
-                  }}
+                  className={`team-sidebar-item${isActive ? " is-active" : ""}`}
+                  aria-current={isActive ? "true" : undefined}
                 >
-                  <div style={styles.avatarSmall}>
+                  <span className="team-avatar-sm">
                     <img
                       src={m.image || "/placeholder.svg"}
-                      alt={m.name}
+                      alt=""
+                      width={40}
+                      height={40}
                       loading="lazy"
                       decoding="async"
-                      style={styles.avatarSmallImg}
+                      className="team-avatar-sm-img"
                     />
-                    {i === active && <div style={styles.avatarRing} />}
-                  </div>
-                  <div style={styles.sidebarText}>
-                    <p style={{ ...styles.sidebarName, color: i === active ? "#ffffff" : "rgba(226,232,240,0.64)" }}>
-                      {m.name}
-                    </p>
-                    <span style={{ ...styles.tagPill, background: t.bg, color: t.text }}>
-                      <span style={{ ...styles.tagDot, background: t.dot }} />
+                    {isActive && <span className="team-avatar-ring" aria-hidden="true" />}
+                  </span>
+                  <span className="team-sidebar-text">
+                    <span className="team-sidebar-name">{m.name}</span>
+                    <span className="team-tag-pill" style={{ background: t.bg, color: t.text }}>
+                      <span className="team-tag-dot" style={{ background: t.dot }} />
                       {m.tag}
                     </span>
-                  </div>
+                  </span>
                 </button>
               )
             })}
           </div>
 
-          {/* Right — featured card */}
-          <div style={styles.card}>
+          {/* Featured card */}
+          <div className="team-card">
             {/* Top bar */}
-            <div style={styles.cardTop}>
-              <span style={{ ...styles.tagBig, background: tag.bg, color: tag.text }}>
-                <span style={{ ...styles.tagDot, background: tag.dot }} />
+            <div className="team-card-top">
+              <span className="team-tag-big" style={{ background: tag.bg, color: tag.text }}>
+                <span className="team-tag-dot" style={{ background: tag.dot }} />
                 {member.tag}
               </span>
-              <div style={styles.navRow}>
-                <button onClick={() => navigate("left")} style={styles.navBtn} aria-label="Previous">
+              <div className="team-nav-row">
+                <button type="button" onClick={() => navigate("left")} className="team-nav-btn" aria-label="Previous team member">
                   <ArrowLeft size={16} />
                 </button>
-                <span style={styles.counter}>{active + 1} / {teamMembers.length}</span>
-                <button onClick={() => navigate("right")} style={styles.navBtn} aria-label="Next">
+                <span className="team-counter">{active + 1} / {teamMembers.length}</span>
+                <button type="button" onClick={() => navigate("right")} className="team-nav-btn" aria-label="Next team member">
                   <ArrowRight size={16} />
                 </button>
               </div>
             </div>
 
             {/* Profile area */}
-            <div style={styles.profileArea}>
-              <div style={styles.imageWrap}>
+            <div className="team-profile-area" aria-live="polite">
+              <div className="team-image-wrap">
                 <img
                   src={member.image || "/placeholder.svg"}
                   alt={member.name}
+                  width={180}
+                  height={180}
                   loading="lazy"
                   decoding="async"
-                  style={styles.profileImg}
+                  className="team-profile-img"
                 />
               </div>
 
-              <div style={styles.profileInfo}>
-                <h3 style={styles.memberName}>{member.name}</h3>
-                <p style={styles.memberRole}>{member.role}</p>
-                <p style={styles.memberDesc}>{member.description}</p>
+              <div className="team-profile-info">
+                <h3 className="team-member-name">{member.name}</h3>
+                <p className="team-member-role">{member.role}</p>
+                <p className="team-member-desc">{member.description}</p>
 
-                <div style={styles.skills}>
+                <div className="team-skills">
                   {member.skills.map((s) => (
-                    <span key={s} style={styles.skillChip}>{s}</span>
+                    <span key={s} className="team-skill-chip">{s}</span>
                   ))}
                 </div>
               </div>
             </div>
 
             {/* Progress bar */}
-            <div style={styles.progressBar}>
+            <div className="team-progress-bar">
               <div
-                style={{
-                  ...styles.progressFill,
-                  width: `${((active + 1) / teamMembers.length) * 100}%`,
-                }}
+                className="team-progress-fill"
+                style={{ width: `${((active + 1) / teamMembers.length) * 100}%` }}
               />
             </div>
 
             {/* Autoplay toggle */}
             <button
+              type="button"
               onClick={() => setIsPlaying((p) => !p)}
-              style={styles.autoplayBtn}
+              className="team-autoplay-btn"
+              aria-pressed={isPlaying}
             >
-              <span style={{
-                ...styles.autoplayDot,
-                background: isPlaying ? "#3d5afe" : "#ccc",
-                boxShadow: isPlaying ? "0 0 0 5px rgba(247,201,72,0.12)" : "none",
-              }} />
+              <span className={`team-autoplay-dot${isPlaying ? " is-playing" : ""}`} aria-hidden="true" />
               {isPlaying ? "Auto-advancing" : "Paused"}
             </button>
           </div>
         </div>
 
         {/* Bottom dot nav */}
-        <div style={styles.dots}>
+        <div className="team-dots" role="group" aria-label="Team member quick navigation">
           {teamMembers.map((_, i) => (
             <button
               key={i}
+              type="button"
               onClick={() => pick(i)}
-              style={{
-                ...styles.dot,
-                background: i === active ? "#22d3ee" : "rgba(148,163,184,0.3)",
-                width: i === active ? 28 : 8,
-              }}
+              className={`team-dot${i === active ? " is-active" : ""}`}
               aria-label={`Go to ${teamMembers[i].name}`}
+              aria-current={i === active ? "true" : undefined}
             />
           ))}
         </div>
@@ -257,279 +285,4 @@ export default function Team() {
       </div>
     </section>
   )
-}
-
-const styles = {
-  section: {
-    position: "relative",
-    padding: "96px 0",
-    background: "transparent",
-    fontFamily: "'Outfit', 'Segoe UI', sans-serif",
-    overflow: "hidden",
-  },
-  gridBg: {
-    position: "absolute",
-    inset: 0,
-    display: "none",
-    pointerEvents: "none",
-  },
-  container: {
-    maxWidth: 1200,
-    margin: "0 auto",
-    padding: "0 32px",
-    position: "relative",
-  },
-  header: {
-    marginBottom: 56,
-  },
-  eyebrow: {
-    fontSize: 12,
-    fontWeight: 800,
-    letterSpacing: 0,
-    textTransform: "none",
-    color: "#22d3ee",
-    marginBottom: 12,
-    margin: "0 0 12px",
-  },
-  heading: {
-    fontSize: "clamp(32px, 4vw, 52px)",
-    fontWeight: 800,
-    color: "#f8fafc",
-    lineHeight: 1.15,
-    margin: 0,
-    letterSpacing: 0,
-  },
-  layout: {
-    display: "flex",
-    gap: 32,
-    alignItems: "flex-start",
-  },
-  sidebar: {
-    width: 240,
-    flexShrink: 0,
-    display: "flex",
-    flexDirection: "column",
-    gap: 4,
-  },
-  sidebarItem: {
-    display: "flex",
-    alignItems: "center",
-    gap: 12,
-    padding: "12px 14px",
-    borderRadius: 8,
-    border: "none",
-    cursor: "pointer",
-    textAlign: "left",
-    transition: "all 0.2s",
-    width: "100%",
-  },
-  avatarSmall: {
-    position: "relative",
-    width: 40,
-    height: 40,
-    flexShrink: 0,
-  },
-  avatarSmallImg: {
-    width: 40,
-    height: 40,
-    borderRadius: "50%",
-    objectFit: "cover",
-    display: "block",
-  },
-  avatarRing: {
-    position: "absolute",
-    inset: -3,
-    borderRadius: "50%",
-    border: "2px solid #3d5afe",
-    pointerEvents: "none",
-  },
-  sidebarText: {
-    flex: 1,
-    minWidth: 0,
-  },
-  sidebarName: {
-    fontSize: 13,
-    fontWeight: 800,
-    margin: "0 0 4px",
-    whiteSpace: "nowrap",
-    overflow: "hidden",
-    textOverflow: "ellipsis",
-    transition: "color 0.2s",
-  },
-  tagPill: {
-    display: "inline-flex",
-    alignItems: "center",
-    gap: 5,
-    fontSize: 11,
-    fontWeight: 800,
-    padding: "2px 8px",
-    borderRadius: 8,
-  },
-  tagDot: {
-    width: 6,
-    height: 6,
-    borderRadius: "50%",
-    flexShrink: 0,
-  },
-  card: {
-    flex: 1,
-    background: "linear-gradient(180deg, rgba(15, 23, 42, 0.82), rgba(8, 13, 24, 0.74))",
-    borderRadius: 8,
-    border: "1px solid rgba(148,163,184,0.22)",
-    overflow: "hidden",
-    boxShadow: "0 26px 60px -34px rgba(56,189,248,0.55)",
-    backdropFilter: "blur(18px)",
-  },
-  cardTop: {
-    display: "flex",
-    justifyContent: "space-between",
-    alignItems: "center",
-    padding: "20px 28px",
-    borderBottom: "1px solid rgba(148,163,184,0.16)",
-  },
-  tagBig: {
-    display: "inline-flex",
-    alignItems: "center",
-    gap: 6,
-    fontSize: 12,
-    fontWeight: 800,
-    padding: "5px 12px",
-    borderRadius: 8,
-    letterSpacing: 0,
-  },
-  navRow: {
-    display: "flex",
-    alignItems: "center",
-    gap: 12,
-  },
-  navBtn: {
-    width: 34,
-    height: 34,
-    borderRadius: 8,
-    border: "1px solid rgba(255,255,255,0.14)",
-    background: "rgba(255,255,255,0.06)",
-    cursor: "pointer",
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "center",
-    color: "#f8fafc",
-    transition: "all 0.2s",
-  },
-  counter: {
-    fontSize: 12,
-    fontWeight: 800,
-    color: "rgba(226,232,240,0.58)",
-    minWidth: 40,
-    textAlign: "center",
-  },
-  profileArea: {
-    display: "flex",
-    gap: 32,
-    padding: "32px 28px",
-    alignItems: "flex-start",
-  },
-  imageWrap: {
-    position: "relative",
-    flex: "0 0 180px",
-    width: 180,
-    height: 180,
-    borderRadius: 8,
-    overflow: "hidden",
-    border: "1px solid rgba(148,163,184,0.24)",
-    background: "#0f172a",
-  },
-  profileImg: {
-    width: "100%",
-    height: "100%",
-    objectFit: "cover",
-    objectPosition: "center top",
-    borderRadius: 8,
-    display: "block",
-  },
-  profileInfo: {
-    flex: 1,
-    minWidth: 0,
-  },
-  memberName: {
-    fontSize: 26,
-    fontWeight: 800,
-    color: "#ffffff",
-    margin: "0 0 4px",
-    letterSpacing: 0,
-  },
-  memberRole: {
-    fontSize: 13,
-    fontWeight: 800,
-    color: "#22d3ee",
-    margin: "0 0 16px",
-    textTransform: "none",
-    letterSpacing: 0,
-  },
-  memberDesc: {
-    fontSize: 15,
-    lineHeight: 1.7,
-    color: "rgba(226,232,240,0.72)",
-    margin: "0 0 20px",
-  },
-  skills: {
-    display: "flex",
-    flexWrap: "wrap",
-    gap: 8,
-  },
-  skillChip: {
-    fontSize: 12,
-    fontWeight: 800,
-    color: "rgba(226,232,240,0.82)",
-    background: "rgba(15,23,42,0.52)",
-    padding: "5px 12px",
-    borderRadius: 8,
-    border: "1px solid rgba(148,163,184,0.18)",
-  },
-  progressBar: {
-    height: 3,
-    background: "rgba(148,163,184,0.18)",
-    margin: "0 28px",
-  },
-  progressFill: {
-    height: "100%",
-    background: "linear-gradient(90deg, #22d3ee, #f7c948)",
-    borderRadius: 2,
-    transition: "width 0.4s ease",
-  },
-  autoplayBtn: {
-    display: "flex",
-    alignItems: "center",
-    gap: 8,
-    margin: "14px 28px",
-    background: "none",
-    border: "none",
-    cursor: "pointer",
-    fontSize: 11,
-    fontWeight: 800,
-    color: "rgba(226,232,240,0.58)",
-    letterSpacing: 0,
-    textTransform: "none",
-    padding: 0,
-  },
-  autoplayDot: {
-    width: 8,
-    height: 8,
-    borderRadius: "50%",
-    transition: "all 0.3s",
-  },
-  dots: {
-    display: "flex",
-    justifyContent: "center",
-    gap: 6,
-    marginTop: 40,
-    alignItems: "center",
-  },
-  dot: {
-    height: 8,
-    borderRadius: 4,
-    border: "none",
-    cursor: "pointer",
-    padding: 0,
-    transition: "all 0.3s ease",
-  },
 }
