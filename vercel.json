@@ -9,6 +9,7 @@
     { "source": "/services/custom-software-development", "destination": "/services/custom-software-development/index.html" },
     { "source": "/services/cloud-api-integrations", "destination": "/services/cloud-api-integrations/index.html" },
     { "source": "/services/ui-ux-graphic-design", "destination": "/services/ui-ux-graphic-design/index.html" },
+    { "source": "/api/admin/:path*", "destination": "/api/admin/[...path]" },
     { "source": "/((?!api/).*)", "destination": "/" }
   ],
   "headers": [
