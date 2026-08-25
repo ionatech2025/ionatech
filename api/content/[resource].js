@@ -56,6 +56,18 @@ export default async function handler(req, res) {
       return json(res, 200, rows);
     }
 
+    if (resource === 'projects') {
+      const rows = await sql`
+        SELECT id, slug, title, description, client, project_url AS "projectUrl",
+               image_url AS image, icon_name AS "iconName", tech_stack AS "techStack",
+               status, sort_order AS "sortOrder", published
+        FROM projects
+        WHERE published = true
+        ORDER BY sort_order ASC, id ASC
+      `;
+      return json(res, 200, rows);
+    }
+
     if (resource === 'services') {
       const rows = await sql`
         SELECT id, slug, title, description, icon_name AS "iconName",

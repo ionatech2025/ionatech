@@ -3,6 +3,7 @@ import Navbar from './Components/Navbar/Navbar'
 import Tech from './Components/Tech/Tech'
 import Mission from './Components/Mission/Mission'
 import Products from './Components/Products/Products'
+import Projects from './Components/Projects/Projects'
 import Team from './Components/Team/Team'
 import Contacts from './Components/Contacts/Contacts'
 import Footer from './Components/Footer/Footer'
@@ -78,6 +79,10 @@ const PublicSite = () => {
 
       <section id="OurFocus">
         <Products />
+      </section>
+
+      <section id="projects">
+        <Projects />
       </section>
 
       <section id="pricing">

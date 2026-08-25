@@ -2,6 +2,7 @@ import {
   Code, Smartphone, Monitor, Palette,
   Rocket, ShieldCheck, Trophy,
   Mail, Phone, MapPin, MessageCircle,
+  Globe, Briefcase,
 } from 'lucide-react';
 
 /**
@@ -12,6 +13,7 @@ export const iconRegistry = {
   Code, Smartphone, Monitor, Palette,
   Rocket, ShieldCheck, Trophy,
   Mail, Phone, MapPin, MessageCircle,
+  Globe, Briefcase,
 };
 
 export const iconNames = Object.keys(iconRegistry);
