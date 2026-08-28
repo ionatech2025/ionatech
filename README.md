@@ -235,3 +235,21 @@ database branch per preview.
 
 The duplicate `iona-tech/` subdirectory is a frozen historical copy from a
 2025-11 merge — do not edit. It will be removed in a separate cleanup commit.
+
+## SEO
+
+- `public/sitemap.xml` — bump a page's `<lastmod>` whenever its content
+  changes meaningfully; search engines use it to prioritize recrawls.
+- `public/<key>.txt` — the IndexNow key file (key:
+  `1afab5815748511871c3386893427890`). Proves domain ownership for IndexNow
+  submissions. To push new/changed URLs immediately instead of waiting on
+  crawl schedule:
+  ```
+  curl -X POST https://api.indexnow.org/indexnow \
+    -H "Content-Type: application/json; charset=utf-8" \
+    -d '{"host":"ionatec.com","key":"1afab5815748511871c3386893427890","keyLocation":"https://ionatec.com/1afab5815748511871c3386893427890.txt","urlList":["https://ionatec.com/"]}'
+  ```
+  Covers Bing, Yandex, and other IndexNow participants — **not Google**,
+  which has no push API and must be handled via Search Console instead
+  (not yet set up — needs manual verification with a Google account that
+  has access to the domain).
