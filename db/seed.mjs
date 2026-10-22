@@ -15,6 +15,7 @@ import { readFileSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
 import { dirname, join } from 'node:path';
 import { projects as projectsSeed } from '../src/data/projects.js';
+import { teamMembers as teamSeed } from '../src/data/team.js';
 
 // Force IPv4. setDefaultResultOrder isn't honored by all Node versions/paths,
 // so monkey-patch dns.lookup as a belt-and-suspenders fix for hosts whose
@@ -166,15 +167,6 @@ const servicesSeed = [
   },
 ];
 
-const teamSeed = [
-  { name: 'Nyombi Elijah',     role: 'Director | Co-founder',          image_url: '/images/elijah.jpg',    sort_order: 1, bio: 'Elijah Nyombi is one of the Directors and Co-founders for iONA Tech, a cutting-edge software company committed to driving innovation and providing impactful technological solutions. With a rich background in journalism, public health, and digital marketing communication, Elijah leads the company with a focus on digital transformation and high-quality software development.' },
-  { name: 'Nakunda Lillian',   role: 'Software Engineer | Co-founder', image_url: '/images/lillian.jpg',   sort_order: 2, bio: 'Lillian is an innovative Software Engineering student at Makerere University and a Co-founder at iONA Tech. As a versatile developer, she serves as a Systems Analyst, Web Developer, and Graphic Designer. She specializes in crafting high-quality front-end web experiences and mobile applications, bringing a fresh, modern perspective to the tech space.' },
-  { name: 'Baliddawa Allan',   role: 'Director | Co-founder',          image_url: '/images/allanella.jpg', sort_order: 3, bio: 'Allan is a Director, Co-founder, and a passionate, skilled Fullstack Web Developer with a strong background in both front-end and back-end development. He specializes in building responsive, user-friendly, and scalable web applications using modern technologies including ReactJS, Java (Spring Boot), and Node.js.' },
-  { name: 'Mulungi Abigail',   role: 'JavaScript Developer | Co-founder', image_url: '/images/jordi.jpg', sort_order: 4, bio: 'Abigail is a passionate JavaScript developer and Co-founder with a keen eye for innovation. With a strong focus on crafting exceptional software experiences, she excels in designing and developing scalable web applications and desktop solutions.' },
-  { name: 'Mpairwe Lauben',    role: 'Software Engineer | Co-founder', image_url: '/images/alien.jpg',     sort_order: 5, bio: 'With over five years of hands-on experience, Mpairwe Lauben is a dynamic software engineer and Co-founder with a passion for crafting intelligent, scalable, and user-centric digital solutions. His core expertise lies at the intersection of mobile application development, cloud-native systems, and machine learning technologies.' },
-  { name: 'Katongole Samuel',  role: 'Director | Co-founder',          image_url: '/images/sam.jpg',       sort_order: 6, bio: 'Samuel is a Director and Co-founder, and a passionate Java Developer dedicated to crafting software that inspires progress and delivers value. Skilled in building intuitive, functional desktop and web applications, he combines technical expertise with a heart for service, collaboration and faith-driven purpose.' },
-];
-
 const aboutSeed = {
   eyebrow: 'Who We Are',
   title_lead: 'Turning Complex Ideas into',
@@ -210,10 +202,9 @@ async function seedProducts() {
 }
 
 // Unlike the other *Seed arrays above (which are stale hand-duplicates of
-// older content and have drifted from what's actually live), this one
-// imports straight from src/data/projects.js — the same file the public
-// Projects section uses as its fallback — so there's exactly one place to
-// edit and nothing to keep in sync by hand.
+// older content and have drifted from what's actually live), projects and team
+// import straight from src/data/ — the same files the public sections use as
+// their fallback — so there's one place to edit and nothing to keep in sync by hand.
 async function seedProjects() {
   for (const p of projectsSeed) {
     await sql`
@@ -246,7 +237,7 @@ async function seedTeam() {
   for (const m of teamSeed) {
     await sql`
       INSERT INTO team_members (name, role, bio, image_url, sort_order)
-      VALUES (${m.name}, ${m.role}, ${m.bio}, ${m.image_url}, ${m.sort_order})
+      VALUES (${m.name}, ${m.role}, ${m.bio}, ${m.image}, ${m.sortOrder})
     `;
   }
   console.log(`✓ team seeded (${teamSeed.length})`);

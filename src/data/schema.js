@@ -49,6 +49,8 @@
  * @property {string} role
  * @property {string} bio
  * @property {string} image
+ * @property {string} [tag]
+ * @property {string[]} [skills]
  * @property {number} sortOrder
  * @property {boolean} published
  */

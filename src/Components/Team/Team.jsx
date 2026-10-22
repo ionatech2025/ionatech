@@ -1,77 +1,8 @@
-import { useState, useEffect, useRef } from "react"
+import { useState, useEffect, useRef, useMemo } from "react"
 import { ArrowLeft, ArrowRight } from "lucide-react"
+import { useContent } from "../../lib/api"
+import { teamMembers as teamFallback, getTagStyle, mergeTeamMembers } from "../../data/team"
 import "./Team.css"
-
-const teamMembers = [
-  {
-    id: 1,
-    name: "Nyombi Elijah",
-    role: "Director & Co-founder",
-    image: "/images/elijah.jpg",
-    tag: "Leadership",
-    description:
-      "With a rich background in journalism, public health, and digital marketing communication, Elijah leads iONA TECH with a focus on digital transformation and high-quality software development.",
-    skills: ["Digital Strategy", "Public Health Tech", "Marketing"],
-  },
-  {
-    id: 2,
-    name: "Nakunda Lillian",
-    role: "Software Engineer & Co-founder",
-    image: "/images/lillian.jpg",
-    tag: "Frontend",
-    description:
-      "An innovative Software Engineering student at Makerere University, Lillian specialises in crafting high-quality front-end web experiences and mobile applications with a fresh, modern perspective.",
-    skills: ["React", "UI/UX Design", "Mobile Dev"],
-  },
-  {
-    id: 3,
-    name: "Baliddawa Allan",
-    role: "Director & Co-founder",
-    image: "/images/allanella.jpg",
-    tag: "Fullstack",
-    description:
-      "A passionate Fullstack Developer specialising in building responsive, scalable web applications. Allan brings expertise in ReactJS, Java Spring Boot, and Node.js to every project.",
-    skills: ["Spring Boot", "ReactJS", "Node.js"],
-  },
-  {
-    id: 4,
-    name: "Mulungi Abigail",
-    role: "JavaScript Developer & Co-founder",
-    image: "/images/jordi.jpg",
-    tag: "Frontend",
-    description:
-      "With a keen eye for innovation, Abigail excels in designing and developing scalable web applications and desktop solutions with a strong focus on exceptional software experiences.",
-    skills: ["JavaScript", "Desktop Apps", "Web Architecture"],
-  },
-  {
-    id: 5,
-    name: "Mpairwe Lauben",
-    role: "Software Engineer & Co-founder",
-    image: "/images/alien.jpg",
-    tag: "ML & Cloud",
-    description:
-      "With over five years of experience, Lauben's expertise sits at the intersection of mobile development, cloud-native systems, and machine learning technologies.",
-    skills: ["Machine Learning", "Cloud Systems", "Mobile Dev"],
-  },
-  {
-    id: 6,
-    name: "Katongole Samuel",
-    role: "Director & Co-founder",
-    image: "/images/sam.jpg",
-    tag: "Backend",
-    description:
-      "A passionate Java Developer dedicated to crafting software that inspires progress. Samuel combines technical expertise in desktop and web applications with a heart for service and collaboration.",
-    skills: ["Spring Boot", "JavaFX", "React Ecosystem", "Product Design"],
-  },
-]
-
-const tagColors = {
-  Leadership: { bg: "rgba(34, 211, 238, 0.12)", text: "#67e8f9", dot: "#22d3ee" },
-  Frontend: { bg: "rgba(52, 211, 153, 0.12)", text: "#86efac", dot: "#34d399" },
-  Fullstack: { bg: "rgba(56, 189, 248, 0.12)", text: "#7dd3fc", dot: "#38bdf8" },
-  "ML & Cloud": { bg: "rgba(247, 201, 72, 0.12)", text: "#f7c948", dot: "#f7c948" },
-  Backend: { bg: "rgba(96, 165, 250, 0.12)", text: "#93c5fd", dot: "#60a5fa" },
-}
 
 const AUTOPLAY_MS = 6000
 
@@ -81,6 +12,8 @@ const prefersReducedMotion = () =>
   window.matchMedia("(prefers-reduced-motion: reduce)").matches
 
 export default function Team() {
+  const liveTeam = useContent("team", teamFallback)
+  const teamMembers = useMemo(() => mergeTeamMembers(liveTeam, teamFallback), [liveTeam])
   const [active, setActive] = useState(0)
   const [isPlaying, setIsPlaying] = useState(() => !prefersReducedMotion())
   const [isHovering, setIsHovering] = useState(false)
@@ -88,15 +21,17 @@ export default function Team() {
   const sidebarRef = useRef(null)
   const itemRefs = useRef([])
 
+  const currentIndex = teamMembers.length > 0 ? active % teamMembers.length : 0
+
   useEffect(() => {
     clearInterval(timerRef.current)
-    if (isPlaying && !isHovering) {
+    if (isPlaying && !isHovering && teamMembers.length > 1) {
       timerRef.current = setInterval(() => {
         setActive((prev) => (prev + 1) % teamMembers.length)
       }, AUTOPLAY_MS)
     }
     return () => clearInterval(timerRef.current)
-  }, [isPlaying, isHovering])
+  }, [isPlaying, isHovering, teamMembers.length])
 
   // Keep the active member visible when the picker is a horizontal
   // scroll strip (tablet/mobile). Scroll only this container directly —
@@ -105,14 +40,16 @@ export default function Team() {
   // whole page sideways instead of just the strip.
   useEffect(() => {
     const container = sidebarRef.current
-    const item = itemRefs.current[active]
+    const item = itemRefs.current[currentIndex]
     if (!container || !item) return
     const target = item.offsetLeft - (container.clientWidth - item.clientWidth) / 2
     container.scrollTo({
       left: Math.max(0, target),
       behavior: prefersReducedMotion() ? "auto" : "smooth",
     })
-  }, [active])
+  }, [currentIndex])
+
+  if (teamMembers.length === 0) return null
 
   const navigate = (dir) => {
     setActive((prev) =>
@@ -136,8 +73,8 @@ export default function Team() {
     }
   }
 
-  const member = teamMembers[active]
-  const tag = tagColors[member.tag] || tagColors["Frontend"]
+  const member = teamMembers[currentIndex]
+  const tag = getTagStyle(member.tag, member.role)
 
   return (
     <section className="ion-section team-section" aria-labelledby="team-heading">
@@ -166,8 +103,8 @@ export default function Team() {
           {/* Member picker — vertical list on desktop, horizontal scroll strip on mobile */}
           <div className="team-sidebar" ref={sidebarRef} aria-label="Select a team member">
             {teamMembers.map((m, i) => {
-              const t = tagColors[m.tag] || tagColors["Frontend"]
-              const isActive = i === active
+              const t = getTagStyle(m.tag, m.role)
+              const isActive = i === currentIndex
               return (
                 <button
                   key={m.id}
@@ -213,7 +150,7 @@ export default function Team() {
                 <button type="button" onClick={() => navigate("left")} className="team-nav-btn" aria-label="Previous team member">
                   <ArrowLeft size={16} />
                 </button>
-                <span className="team-counter">{active + 1} / {teamMembers.length}</span>
+                <span className="team-counter">{currentIndex + 1} / {teamMembers.length}</span>
                 <button type="button" onClick={() => navigate("right")} className="team-nav-btn" aria-label="Next team member">
                   <ArrowRight size={16} />
                 </button>
@@ -237,13 +174,15 @@ export default function Team() {
               <div className="team-profile-info">
                 <h3 className="team-member-name">{member.name}</h3>
                 <p className="team-member-role">{member.role}</p>
-                <p className="team-member-desc">{member.description}</p>
+                <p className="team-member-desc">{member.bio || member.description}</p>
 
-                <div className="team-skills">
-                  {member.skills.map((s) => (
-                    <span key={s} className="team-skill-chip">{s}</span>
-                  ))}
-                </div>
+                {member.skills?.length > 0 && (
+                  <div className="team-skills">
+                    {member.skills.map((s) => (
+                      <span key={s} className="team-skill-chip">{s}</span>
+                    ))}
+                  </div>
+                )}
               </div>
             </div>
 
@@ -251,7 +190,7 @@ export default function Team() {
             <div className="team-progress-bar">
               <div
                 className="team-progress-fill"
-                style={{ width: `${((active + 1) / teamMembers.length) * 100}%` }}
+                style={{ width: `${((currentIndex + 1) / teamMembers.length) * 100}%` }}
               />
             </div>
 
@@ -272,12 +211,12 @@ export default function Team() {
         <div className="team-dots" role="group" aria-label="Team member quick navigation">
           {teamMembers.map((_, i) => (
             <button
-              key={i}
+              key={teamMembers[i].id ?? i}
               type="button"
               onClick={() => pick(i)}
-              className={`team-dot${i === active ? " is-active" : ""}`}
+              className={`team-dot${i === currentIndex ? " is-active" : ""}`}
               aria-label={`Go to ${teamMembers[i].name}`}
-              aria-current={i === active ? "true" : undefined}
+              aria-current={i === currentIndex ? "true" : undefined}
             />
           ))}
         </div>

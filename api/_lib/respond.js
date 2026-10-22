@@ -11,7 +11,7 @@ export function json(res, status, body, headers = {}) {
 }
 
 export function publicCache(res) {
-  res.setHeader('Cache-Control', 'public, s-maxage=60, stale-while-revalidate=300');
+  res.setHeader('Cache-Control', 'public, max-age=0, must-revalidate');
 }
 
 export function noCache(res) {
